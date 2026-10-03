@@ -30,7 +30,7 @@ quarter-century, not just this one year. Use the dropdown above the chart to
 highlight specific years, or search for an artist to see every year they
 made the list.
 
-> **Author's note** (styled callout box, teal accent border)
+> **Note from John** (styled callout box, teal accent border)
 > KEXP itself has gone back and forth between "Best Of" and "Listeners'
 > Favorite" over the years. I'm going with Listeners' Favorite here — it's
 > more consistent, and it better fits the spirit of what I'm analyzing and
