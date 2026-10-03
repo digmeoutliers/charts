@@ -8,3 +8,7 @@ yarn-error.log
 # its own Claude Code project, where .claude/launch.json's plain "npm run
 # dev" is enough on its own.
 dev.bat
+
+# Private project docs (kept locally, not published)
+PROJECT_BRIEF.md
+DESIGN_DECISIONS.md
