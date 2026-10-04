@@ -1,4 +1,6 @@
-# KEXP Best Of Data Project
+# Dig Me Out(liers & Trends) — charts
+
+Code and curated data behind the interactive charts on [digmeoutliers.com](https://digmeoutliers.com).
 
 This is an [Observable Framework](https://observablehq.com/framework/) app. To install the required dependencies, run:
 
