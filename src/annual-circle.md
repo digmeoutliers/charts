@@ -503,7 +503,7 @@ function artistTable(artistId, data) {
 artistTable(selectedArtist, rows)
 ```
 
-## Key findings
+## Interesting observations
 
 The wheel above shows every entry from every list. The charts below pull
 back to ask what those entries add up to.
@@ -595,9 +595,12 @@ tierCohortChart(totalArtists, tierArtistCounts)
 ### Does it matter *when* an artist first shows up?
 
 You'd expect an artist's tier to just reflect how good and prolific they
-are. But the tier is a 25-year *total*, and the 25-year window itself has
-edges — so an artist's odds of reaching a high tier also depend on how much
-of that window they had to work with.
+are. That was my hypothesis, at least. An artist shows up in the early
+2000s, listeners fall in love with them, and then vote for them year after
+year as they release new albums. That's kind of borne out by the data, but
+there's an interesting wrinkle: the tier is a 25-year *total*, and the
+25-year window itself has edges — so an artist's odds of reaching a high
+tier also depend on how much of that window they had to work with.
 
 Take Wet Leg: their self-titled debut hit #1 in 2022, and their follow-up,
 *moisturizer*, hit #1 again in 2025. Both appearances land in the "2
@@ -734,7 +737,7 @@ lowest in the middle stretch (down near 12&ndash;14% around 2008, 2017, and
 2019&ndash;2020).
 
 That matches a real, well-known effect from cohort analysis, cutting
-both ways rather than one: near **2001**, any artist whose prolific run was
+from both directions rather than just one: near **2001**, any artist whose prolific run was
 already mostly behind them before the list existed gets none of that
 earlier history counted — a **left-truncation** effect. Near **2025**, a
 brand-new artist simply hasn't had the calendar time yet to earn a second
