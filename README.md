@@ -59,3 +59,20 @@ A typical Framework project looks like this:
 | `npm run deploy`     | Deploy your app to Observable                            |
 | `npm run clean`      | Clear the local data loader cache                        |
 | `npm run observable` | Run commands like `observable help`                      |
+
+## License and credit
+
+The charts, written content, and curated data files in this repository are shared under the
+[Creative Commons Attribution-NonCommercial 4.0 International](LICENSE) license (CC BY-NC 4.0).
+
+In plain terms: you're welcome to reuse and build on this work, **as long as you give credit and
+don't use it commercially**. If you'd like to use it commercially, please get in touch first.
+
+**Suggested credit:** "Dig Me Out(liers & Trends), digmeoutliers.com, CC BY-NC 4.0".
+
+What this does *not* cover:
+- KEXP's names, logos, and the original lists remain KEXP's. This project is independent and
+  is not affiliated with or endorsed by KEXP.
+- Artist and release names and IDs come from [MusicBrainz](https://musicbrainz.org), whose core
+  data is available under its own open terms.
+- The private pipeline and curation work behind these exports is not part of this repository.

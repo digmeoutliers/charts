@@ -22,7 +22,7 @@ made the list.
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">KEXP itself has gone back and forth between &ldquo;Best Of&rdquo; and &ldquo;Listeners&rsquo; Favorite&rdquo; over the years. I&rsquo;m going with Listeners&rsquo; Favorite here &mdash; it&rsquo;s more consistent, and it better fits the spirit of what I&rsquo;m analyzing and presenting. These lists also go through some manual reconciliation before they end up here &mdash; see the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page for where I&rsquo;ve made corrections or judgment calls.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">KEXP itself has gone back and forth between &ldquo;Best Of&rdquo; and &ldquo;Listeners&rsquo; Favorite&rdquo; over the years. I&rsquo;m going with Listeners&rsquo; Favorite here &mdash; it&rsquo;s more consistent, and it better fits the spirit of what I&rsquo;m analyzing and presenting. These lists also go through some manual reconciliation before they end up here. I treat KEXP&rsquo;s own published lists as the record; anywhere I&rsquo;ve departed from them, it&rsquo;s noted in <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a>.</div>
 </div>
 
 ```js
