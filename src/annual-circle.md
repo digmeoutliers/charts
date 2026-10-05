@@ -762,7 +762,8 @@ It isn't automatic, though. The National has made the list with every
 album since 2005's *Alligator* (eight in a row), and TV on the Radio with
 all five of theirs. But Interpol landed six albums in a row, from 2002 to
 2018, then missed with their seventh, and Arcade Fire's first five albums
-all made a list while their last two didn't. KEXP listeners keep voting new
+all made a list while their last two didn't. KEXP's own airplay of them
+fell from 142 plays in 2022 to 0 in 2023. KEXP listeners keep voting new
 artists in, and with a fixed number of spots that comes at the expense of
 established ones: since 2013, between about 31% and 44% of each year's list
 has been artists who had never appeared on one before.
