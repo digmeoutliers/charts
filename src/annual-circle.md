@@ -1,14 +1,14 @@
 ---
 title: 25 years of KEXP annual Listeners' Favorite lists
 toc: false
-head: '<link rel="icon" href="favicon.png" type="image/png" sizes="32x32"><script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js"></script><style>p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; }</style>'
+head: '<link rel="icon" href="favicon.png" type="image/png" sizes="32x32"><script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js"></script><script>if (window.self !== window.top) { document.documentElement.classList.add("embedded"); }</script><style>p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; } .embedded #observablehq-center { margin: 0 !important; } .embedded main > h1, .embedded .standalone-only { display: none; } .dmo-tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; } .dmo-tile { padding: 0 0.25rem; } .dmo-tile + .dmo-tile { border-top: 1px solid #33322f; padding-top: 1.25rem; } @media (min-width: 760px) { .dmo-tiles { grid-template-columns: repeat(3, 1fr); gap: 0; } .dmo-tile { padding: 0 1.5rem; } .dmo-tile + .dmo-tile { border-top: 0; padding-top: 0; border-left: 1px solid #33322f; } }</style>'
 ---
 
 # 25 years of KEXP annual Listeners' Favorite lists
 
-As an introduction to the project, we'll start with the lists themselves.
+<p class="standalone-only">As an introduction to the project, we'll start with the lists themselves.
 What's in them, what kinds of trends have we seen over the years, movers
-and shakers. Stuff like that.
+and shakers. Stuff like that.</p>
 
 Each spoke is one year of KEXP's Annual "Favorite Albums of the Year" list, 2001
 (top, running clockwise) through 2025. Rank 1 sits nearest the center; longer
@@ -998,11 +998,11 @@ function consistencyStatTiles(stats) {
   ];
 
   const wrap = document.createElement("div");
-  wrap.style.cssText = "display:flex;flex-wrap:wrap;";
+  wrap.className = "dmo-tiles";
 
   tileDefs.forEach((t, i) => {
     const tile = document.createElement("div");
-    tile.style.cssText = `flex:1 1 220px;padding:0 1.5rem;${i > 0 ? "border-left:1px solid #33322f;" : ""}`;
+    tile.className = "dmo-tile";
 
     const label = document.createElement("div");
     label.style.cssText = "color:#898781;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.5rem;";
@@ -1219,11 +1219,11 @@ function gapStatTiles(stats) {
   ];
 
   const wrap = document.createElement("div");
-  wrap.style.cssText = "display:flex;flex-wrap:wrap;";
+  wrap.className = "dmo-tiles";
 
   tileDefs.forEach((t, i) => {
     const tile = document.createElement("div");
-    tile.style.cssText = `flex:1 1 220px;padding:0 1.5rem;${i > 0 ? "border-left:1px solid #33322f;" : ""}`;
+    tile.className = "dmo-tile";
 
     const label = document.createElement("div");
     label.style.cssText = "color:#898781;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.5rem;";
