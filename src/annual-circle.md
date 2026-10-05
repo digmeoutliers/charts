@@ -595,12 +595,17 @@ tierCohortChart(totalArtists, tierArtistCounts)
 ### Does it matter *when* an artist first shows up?
 
 You'd expect an artist's tier to just reflect how good and prolific they
-are. That was my hypothesis, at least. An artist shows up in the early
-2000s, listeners fall in love with them, and then vote for them year after
-year as they release new albums. That's kind of borne out by the data, but
-there's an interesting wrinkle: the tier is a 25-year *total*, and the
-25-year window itself has edges — so an artist's odds of reaching a high
-tier also depend on how much of that window they had to work with.
+are. That was my hypothesis, at least. I was thinking of artists I follow
+like TV on the Radio, The National, and Interpol: they showed up in the
+early 2000s, listeners fell in love with them, and then kept voting for
+them as they released new albums. I checked, and the basic idea holds up:
+the average listed album goes from about an artist's 4th in the early
+2000s to between their 5th and 6th over the last decade. So I expected the
+yellow bar, the artists with just one album, to start tall in 2001 and
+shrink year after year as familiar artists piled up more albums. But the
+tier is a 25-year *total*, and the 25-year window itself has edges, so an
+artist's odds of reaching a high tier also depend on how much of that
+window they had to work with.
 
 Take Wet Leg: their self-titled debut hit #1 in 2022, and their follow-up,
 *moisturizer*, hit #1 again in 2025. Both appearances land in the "2
@@ -741,9 +746,26 @@ from both directions rather than just one: near **2001**, any artist whose proli
 already mostly behind them before the list existed gets none of that
 earlier history counted — a **left-truncation** effect. Near **2025**, a
 brand-new artist simply hasn't had the calendar time yet to earn a second
-appearance — the mirror-image **right-censoring** effect. An artist who
-happened to arrive mid-window, by contrast, had room on both sides to build
+appearance — the mirror-image **right-censoring** effect. Even artists
+who've clearly won listeners over, like IDLES and Fontaines D.C. (four
+albums on the lists each so far), are still years from the 10+ tier. They
+just haven't had the calendar time. An artist who happened to arrive
+mid-window, by contrast, had room on both sides to build
 a track record.
+
+If anything, this understates how much artists had already built up before
+2001: KEXP's lists start that year, so there's no way to see who was
+already a favorite earlier, which means the real climb is probably steeper
+than any chart here shows.
+
+It isn't automatic, though. The National has made the list with every
+album since 2005's *Alligator* (eight in a row), and TV on the Radio with
+all five of theirs. But Interpol landed six albums in a row, from 2002 to
+2018, then missed with their seventh, and Arcade Fire's first five albums
+all made a list while their last two didn't. KEXP listeners keep voting new
+artists in, and with a fixed number of spots that comes at the expense of
+established ones: since 2013, between about 31% and 44% of each year's list
+has been artists who had never appeared on one before.
 
 ### Is the top of the list reserved for familiar names?
 
