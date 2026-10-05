@@ -613,13 +613,6 @@ tier is a 25-year *total*, and the 25-year window itself has edges, so an
 artist's odds of reaching a high tier also depend on how much of that
 window they had to work with.
 
-Take Wet Leg: their self-titled debut hit #1 in 2022, and their follow-up,
-*moisturizer*, hit #1 again in 2025. Both appearances land in the "2
-albums" (teal) segment below — not "1 album" — because the tier reflects
-an artist's full 25-year total, applied identically to every one of their
-appearances, not just how many albums they'd released by that particular
-year.
-
 ```js
 const yearStats = years.map((yr) => {
   const entries = rows.filter((d) => d.list_year === yr);
@@ -754,7 +747,8 @@ earlier history counted — a **left-truncation** effect. Near **2025**, a
 brand-new artist simply hasn't had the calendar time yet to earn a second
 appearance — the mirror-image **right-censoring** effect. Even artists
 who've clearly won listeners over, like IDLES and Fontaines D.C. (four
-albums on the lists each so far), are still years from the 10+ tier. They
+albums on the lists each so far, represented by the purple 3–9 albums
+tier), are still years from the 10+ tier. They
 just haven't had the calendar time. An artist who happened to arrive
 mid-window, by contrast, had room on both sides to build
 a track record.
@@ -901,7 +895,7 @@ established.
 This lines up with KEXP's own mission of championing music discovery.
 Listeners clearly develop favorites and keep voting for their latest
 releases, but the community still devotes roughly a third of its annual
-ten-album ballot to artists it's never voted for before.
+ten-album ballot to artists it's never voted onto a list before.
 
 ### Is the top of the list reserved for familiar names?
 
@@ -918,7 +912,8 @@ list **up to and including this one**. For example, the wheel shows
 Sleater-Kinney in the 3&ndash;9 tier, with 6 albums across the full
 25-year span. But their 2005 album *The Woods* was only their second
 Annual-list appearance up to that point — this chart is what shows that
-distinction.
+distinction. Here, *The Woods* is captured in the teal box (second
+appearance) in the 11–20 rank column (representing the #16 ranking in 2005).
 
 ```js
 const asOfBucketed = (() => {
