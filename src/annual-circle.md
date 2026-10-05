@@ -1085,7 +1085,7 @@ come back.
 
 ### When artists come back, how long is the wait?
 
-Debuting at the top isn't rare, but those artists tend to come back. How long does that take? The charts above already show *that* repeat appearances happen; these three numbers are about the *timing*.
+Those returning artists raise a different question: how long do they stay away? The charts above already show *that* repeat appearances happen; these three numbers are about the *timing*.
 
 ```js
 const gapStats = (() => {
