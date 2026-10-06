@@ -15,7 +15,7 @@ const rows = FileAttachment("data/who_is_on_the_list_2001_2025.csv").csv({typed:
 ```js
 // ---- Palette: the same four brand hues as the wheel post, used by category here (each chart has its own key). ----
 // To change a color or the stacking order, edit ONLY these two lines.
-const catColor = {"Solo women": "#d6b45b", "Solo men": "#58cec8", "Groups": "#9c57f3", "Other / not recorded": "#6b6a64"};
+const catColor = {"Solo women": "#d6b45b", "Solo men": "#58cec8", "Groups": "#9c57f3", "Other / not recorded": "#dcdad2"};
 const catOrder = ["Solo women", "Solo men", "Groups", "Other / not recorded"];
 
 function category(d) {
@@ -104,10 +104,139 @@ const top10 = (r) => r.filter((d) => d.rank <= 10);
 
 ## Every album, by who made it
 
-Each dot is one album on one year's list, in rank order: #1 is the top left, and the list reads across and down like a page. Gold is a solo woman, teal is a solo man, and purple is a band. Click a color in the key to light up one kind of artist, or hover a dot to see who it is.
+Each dot is one album on one year's list, in rank order: #1 is the top left, and the list reads across and down like a page. Gold is a solo woman, teal is a solo man, and purple is a band. Click a color in the key to light up one kind of artist, pick years from the box, or search for an artist to see where all of their albums sit. Hover any dot to see who it is.
 
 ```js
-function waffleChart() {
+function yearMultiSelect(allYears) {
+  const container = document.createElement("div");
+  container.style.cssText = "position:relative;max-width:320px;margin:0 0 0.75rem;";
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.style.cssText = "width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;padding:8px 10px;border-radius:6px;border:1px solid var(--theme-foreground-faint);background:var(--theme-background);color:var(--theme-foreground);cursor:pointer;";
+  const toggleLabel = document.createElement("span");
+  const caret = document.createElement("span");
+  caret.textContent = "▾";
+  caret.style.cssText = "color:var(--theme-foreground-faint);";
+  toggle.append(toggleLabel, caret);
+  const panel = document.createElement("div");
+  panel.style.cssText = "position:absolute;top:100%;left:0;right:0;background:var(--theme-background);border:1px solid var(--theme-foreground-faint);border-radius:8px;margin-top:4px;padding:10px;max-height:280px;overflow-y:auto;z-index:20;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.15);";
+  const controls = document.createElement("div");
+  controls.style.cssText = "display:flex;gap:8px;margin-bottom:0.5rem;";
+  const selectAllBtn = document.createElement("button");
+  selectAllBtn.type = "button";
+  selectAllBtn.textContent = "Select all";
+  selectAllBtn.style.cssText = "font-size:12px;padding:4px 10px;border-radius:6px;border:1px solid var(--theme-foreground-faint);background:transparent;color:var(--theme-foreground);cursor:pointer;";
+  const clearAllBtn = document.createElement("button");
+  clearAllBtn.type = "button";
+  clearAllBtn.textContent = "Clear all";
+  clearAllBtn.style.cssText = selectAllBtn.style.cssText;
+  controls.append(selectAllBtn, clearAllBtn);
+  const grid = document.createElement("div");
+  grid.style.cssText = "display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;";
+  const boxes = allYears.map((yr) => {
+    const label = document.createElement("label");
+    label.style.cssText = "display:flex;align-items:center;gap:4px;cursor:pointer;";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = true;
+    input.value = yr;
+    label.append(input, document.createTextNode(String(yr)));
+    grid.append(label);
+    return input;
+  });
+  panel.append(controls, grid);
+  container.append(toggle, panel);
+  Object.defineProperty(container, "value", { get() { return boxes.filter((b) => b.checked).map((b) => +b.value); } });
+  function updateLabel() {
+    const n = boxes.filter((b) => b.checked).length;
+    toggleLabel.textContent = n === allYears.length ? `All ${n} years` : n === 0 ? "No years selected" : `${n} of ${allYears.length} years`;
+  }
+  function notify() { updateLabel(); container.dispatchEvent(new Event("input")); }
+  function setAll(checked) { for (const b of boxes) b.checked = checked; notify(); }
+  selectAllBtn.addEventListener("click", setAll.bind(null, true));
+  clearAllBtn.addEventListener("click", setAll.bind(null, false));
+  for (const b of boxes) b.addEventListener("change", notify);
+  function open() { panel.style.display = "block"; caret.textContent = "▴"; }
+  function close() { panel.style.display = "none"; caret.textContent = "▾"; }
+  toggle.addEventListener("click", () => (panel.style.display === "block" ? close() : open()));
+  document.addEventListener("pointerdown", (event) => { if (!container.contains(event.target)) close(); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") close(); });
+  updateLabel();
+  return container;
+}
+
+const selectedYears = view(yearMultiSelect(years));
+```
+
+```js
+const artistList = (() => {
+  const seen = new Map();
+  for (const d of rows) if (!seen.has(d.artist_id)) seen.set(d.artist_id, d.artist_name);
+  return Array.from(seen, ([id, name]) => ({id, name})).sort((a, b) => a.name.localeCompare(b.name));
+})();
+
+function artistSearch(list) {
+  const container = document.createElement("div");
+  container.style.cssText = "position:relative;max-width:320px;margin:0.25rem 0 0.75rem;";
+  const row = document.createElement("div");
+  row.style.cssText = "display:flex;align-items:center;gap:8px;";
+  const input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = "Search for an artist…";
+  input.autocomplete = "off";
+  input.style.cssText = "flex:1;box-sizing:border-box;padding:8px 10px;font-size:14px;border:1px solid var(--theme-foreground-faint);border-radius:6px;background:var(--theme-background);color:var(--theme-foreground);";
+  const clearBtn = document.createElement("button");
+  clearBtn.type = "button";
+  clearBtn.textContent = "Clear";
+  clearBtn.style.cssText = "font-size:13px;padding:7px 10px;border-radius:6px;border:1px solid var(--theme-foreground-faint);background:transparent;color:var(--theme-foreground);cursor:pointer;display:none;";
+  row.append(input, clearBtn);
+  const suggestions = document.createElement("div");
+  suggestions.style.cssText = "position:absolute;top:100%;left:0;right:0;background:#1a1a19;border:1px solid #383835;border-radius:8px;margin-top:4px;max-height:240px;overflow-y:auto;z-index:20;display:none;";
+  container.append(row, suggestions);
+  Object.defineProperty(container, "value", { get() { return container._selectedId ?? null; } });
+  function renderSuggestions(query) {
+    suggestions.innerHTML = "";
+    const q = query.trim().toLowerCase();
+    if (!q) { suggestions.style.display = "none"; return; }
+    const matches = list.filter((a) => a.name.toLowerCase().includes(q)).slice(0, 8);
+    if (!matches.length) { suggestions.style.display = "none"; return; }
+    for (const a of matches) {
+      const item = document.createElement("div");
+      item.textContent = a.name;
+      item.style.cssText = "padding:8px 10px;cursor:pointer;color:#f0efec;font-size:14px;";
+      item.addEventListener("pointerenter", () => (item.style.background = "#2a2a27"));
+      item.addEventListener("pointerleave", () => (item.style.background = "transparent"));
+      item.addEventListener("mousedown", (event) => { event.preventDefault(); select(a); });
+      suggestions.append(item);
+    }
+    suggestions.style.display = "block";
+  }
+  function select(a) {
+    container._selectedId = a.id;
+    input.value = a.name;
+    suggestions.style.display = "none";
+    clearBtn.style.display = "inline-block";
+    container.dispatchEvent(new Event("input"));
+  }
+  function clear() {
+    container._selectedId = null;
+    input.value = "";
+    suggestions.style.display = "none";
+    clearBtn.style.display = "none";
+    input.focus();
+    container.dispatchEvent(new Event("input"));
+  }
+  input.addEventListener("input", () => { container._selectedId = null; clearBtn.style.display = "none"; renderSuggestions(input.value); });
+  clearBtn.addEventListener("click", clear);
+  return container;
+}
+
+const selectedArtist = view(artistSearch(artistList));
+const gridState = {cat: null};   // the color-key filter survives redraws when the boxes above change
+```
+
+```js
+function waffleChart(yearsSel, artistSel) {
   const cols = 10, pitch = 12, r = 4.6, perRow = 5, gapX = 34, gapY = 36, labelH = 16;
   const panelW = cols * pitch;
   const maxRows = Math.ceil(d3.max(years, (y) => byYear.get(y).length) / cols);
@@ -117,16 +246,16 @@ function waffleChart() {
 
   const wrap = document.createElement("div");
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
-  let selected = null;
+  const yearOn = new Set(yearsSel);
 
   years.forEach((yr, yi) => {
     const px = x0 + (yi % perRow) * (panelW + gapX), py = 14 + Math.floor(yi / perRow) * (panelH + gapY + labelH);
-    svg.append("text").attr("x", px).attr("y", py + 6).attr("fill", "#c9c8c3").attr("font-size", 12).attr("font-weight", 600).text(yr);
+    svg.append("text").attr("x", px).attr("y", py + 6).attr("fill", "#c9c8c3").attr("font-size", 12).attr("font-weight", 600).attr("opacity", yearOn.has(yr) ? 1 : 0.35).text(yr);
     const list = byYear.get(yr).slice().sort((a, b) => a.rank - b.rank);
     list.forEach((d, i) => {
       const cx = px + (i % cols) * pitch + pitch / 2, cy = py + labelH + Math.floor(i / cols) * pitch + pitch / 2;
       const c = category(d);
-      svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", catColor[c]).attr("data-cat", c)
+      svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", catColor[c]).attr("data-cat", c).attr("data-year", yr).attr("data-artist", d.artist_id)
         .style("transition", "opacity 0.15s")
         .on("pointerenter pointermove", (event) => showTip(event, `<b>${yr} &middot; #${d.rank}</b><br>${d.artist_name}<br><i>${d.release_group_name}</i><br><span style="color:#898781">${swatch(c)}${c}</span>`))
         .on("pointerleave", hideTip);
@@ -137,8 +266,17 @@ function waffleChart() {
   key.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin:0.9rem 0 0.25rem;justify-content:center;";
   const buttons = new Map();
   function apply() {
-    svg.selectAll("circle").style("opacity", function () { return !selected || this.getAttribute("data-cat") === selected ? 1 : 0.1; });
-    buttons.forEach((b, c) => { b.style.outline = selected === c ? "2px solid #f0efec" : "none"; b.style.opacity = !selected || selected === c ? 1 : 0.55; });
+    const sel = gridState.cat;
+    svg.selectAll("circle")
+      .style("opacity", function () {
+        const okCat = !sel || this.getAttribute("data-cat") === sel;
+        const okYear = yearOn.has(+this.getAttribute("data-year"));
+        const okArtist = !artistSel || this.getAttribute("data-artist") === artistSel;
+        return okCat && okYear && okArtist ? 1 : 0.1;
+      })
+      .attr("stroke", function () { return artistSel && this.getAttribute("data-artist") === artistSel ? "#f0efec" : "none"; })
+      .attr("stroke-width", 1.6);
+    buttons.forEach((b, c) => { b.style.outline = sel === c ? "2px solid #f0efec" : "none"; b.style.opacity = !sel || sel === c ? 1 : 0.55; });
   }
   catOrder.forEach((c) => {
     const n = rows.filter((d) => category(d) === c).length;
@@ -146,11 +284,20 @@ function waffleChart() {
     b.type = "button";
     b.style.cssText = "display:flex;align-items:center;gap:6px;font-size:13px;color:#c9c8c3;background:#232321;border:1px solid #383835;border-radius:999px;padding:5px 12px;cursor:pointer;font-family:var(--sans-serif);";
     b.innerHTML = `<span style="width:12px;height:12px;border-radius:3px;background:${catColor[c]};display:inline-block"></span>${c} <span style="color:#898781">${n.toLocaleString()}</span>`;
-    b.onclick = () => { selected = selected === c ? null : c; apply(); };
+    b.onclick = () => { gridState.cat = gridState.cat === c ? null : c; apply(); };
     buttons.set(c, b);
     key.append(b);
   });
+  apply();
   wrap.append(svg.node(), key);
+  if (artistSel) {
+    const mine = rows.filter((d) => d.artist_id === artistSel).sort((a, b) => a.list_year - b.list_year);
+    const t = document.createElement("div");
+    t.style.cssText = "margin:0.9rem 0 0.25rem;font-size:13px;color:#c9c8c3;line-height:1.7;";
+    t.innerHTML = `<b style="color:#f0efec">${mine[0].artist_name}</b> &middot; ${category(mine[0])} &middot; ${mine.length} album${mine.length === 1 ? "" : "s"} on the lists<br>` +
+      mine.map((d) => `${d.list_year} &middot; #${d.rank} &middot; <i>${d.release_group_name}</i>`).join("<br>");
+    wrap.append(t);
+  }
   return wrap;
 }
 ```
@@ -158,7 +305,7 @@ function waffleChart() {
 <div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
 
 ```js
-waffleChart()
+waffleChart(selectedYears, selectedArtist)
 ```
 
 </div>
@@ -178,11 +325,7 @@ The first thing you notice is the purple. The second is the gold: a few scattere
 
 ## The share, year by year
 
-Counting every album gives one picture, and counting each artist once per year gives a slightly different one. Switch between them.
-
-```js
-const viewMode = view(Inputs.radio(["Entries (albums on the lists)", "Distinct artists"], {value: "Entries (albums on the lists)"}));
-```
+The same story, as a share of each year's list. Every album counts once.
 
 ```js
 function shareArea(mode) {
@@ -231,7 +374,7 @@ function shareArea(mode) {
 <div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
 
 ```js
-shareArea(viewMode)
+shareArea("Entries")
 ```
 
 </div>
@@ -327,7 +470,7 @@ function soloCounts(mode) {
 <div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
 
 ```js
-soloCounts(viewMode)
+soloCounts("Entries")
 ```
 
 </div>
@@ -347,9 +490,65 @@ statTiles([
 
 Solo women went from five or six albums a year to more than twenty. Solo men didn't change. The lists didn't get any bigger, so the new room came from bands, not from solo men.
 
+## Counting albums or counting artists?
+
+So far every chart has counted albums, so an artist with three albums on the lists counts three times. Counting each artist once instead barely changes the picture:
+
+```js
+function albumsVsArtists() {
+  const cats = ["Groups", "Solo men", "Solo women", "Other / not recorded"];
+  const albumCounts = bucketCounts(rows, "Entries");
+  const artistCounts = bucketCounts(rows, "Distinct artists");
+  const nAlbums = d3.sum(cats, (c) => albumCounts[c] || 0), nArtists = d3.sum(cats, (c) => artistCounts[c] || 0);
+  const width = 880, m = {l: 150, r: 200, t: 18, b: 12}, rowH = 66, height = m.t + cats.length * rowH + m.b;
+  const pw = width - m.l - m.r;
+  const x = d3.scaleLinear().domain([0, 70]).range([0, pw]);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
+  const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
+  cats.forEach((c, i) => {
+    const y0 = i * rowH;
+    const a = 100 * (albumCounts[c] || 0) / nAlbums, b = 100 * (artistCounts[c] || 0) / nArtists;
+    g.append("text").attr("x", -14).attr("y", y0 + 24).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 13).text(c);
+    [[a, albumCounts[c] || 0, "of albums", 1, 0], [b, artistCounts[c] || 0, "of artists", 0.45, 24]].forEach(([v, n, lab, op, dy]) => {
+      g.append("rect").attr("x", 0).attr("y", y0 + 6 + dy).attr("width", Math.max(2, x(v))).attr("height", 18).attr("rx", 3).attr("fill", catColor[c]).attr("opacity", op)
+        .on("pointerenter pointermove", (event) => showTip(event, `<b>${c}</b><br>${v.toFixed(0)}% ${lab} (${n.toLocaleString()})`))
+        .on("pointerleave", hideTip);
+      g.append("text").attr("x", x(v) + 10).attr("y", y0 + 15 + dy).attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(`${v.toFixed(0)}% ${lab}  (${n.toLocaleString()})`);
+    });
+  });
+  return svg.node();
+}
+```
+
+<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+
+```js
+albumsVsArtists()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Solid bars count albums on the lists. Faded bars count each artist once.</p>
+
 ## Do they come back?
 
-Back to the question from the first post: who sticks around? To keep the comparison fair, this looks only at artists first listed by 2015, so everyone has had at least ten years to return.
+Back to the question from the first post: who sticks around? Counting artists here makes sense, because the question is about people, not albums.
+
+```js
+// how long it takes returning artists to come back (artists first listed by 2015, so 10+ years are observable)
+const _first = d3.rollup(rows, (v) => d3.min(v, (d) => d.list_year), (d) => d.artist_id);
+const _all = d3.rollup(rows, (v) => d3.sort(new Set(v.map((d) => d.list_year))), (d) => d.artist_id);
+const _gaps = [..._first].filter(([id, fy]) => fy <= 2015).map(([id]) => _all.get(id)).filter((ys) => ys.length >= 2).map((ys) => ys[1] - ys[0]);
+const within = (k) => Math.round(100 * _gaps.filter((g) => g <= k).length / _gaps.length);
+```
+
+```js
+(() => {
+  const p = document.createElement("p");
+  p.innerHTML = `Why only artists first listed by 2015? An artist who debuts on a list in 2024 hasn't had time to come back, so for them "one and done" mostly means "not yet." And when artists do come back, they do it quickly: of those who returned, ${within(3)}% were back within three years and ${within(10)}% within ten. Giving every artist at least ten years to return catches nearly all of the comebacks, and keeps the comparison fair between artists who debuted in 2003 and ones who debuted in 2013.`;
+  return p;
+})()
+```
 
 ```js
 function wilson(k, n, z = 1.96) {
@@ -402,7 +601,12 @@ retentionChart()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share who appeared on more than one year's list. The line is the range the true figure could plausibly fall in, given how many artists there are. Where the lines overlap, the data can't tell the groups apart.</p>
 
-About half of every kind of artist came back. The solo women look a little higher, but with only 57 of them in this group, their range overlaps with everyone else's. I'd call it a tie.
+About half of every kind of artist came back. The solo women look a little higher, and they stay a bit higher when I move the cutoff earlier or later, but with only 57 of them in this group, their range overlaps with everyone else's. I'd call it a tie, and a good one to revisit as more years come in.
+
+<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
+  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Whether an artist counts as a band or a solo act, and the gender recorded for solo artists, comes from <a href="https://musicbrainz.org/" target="_top" style="color:inherit; text-decoration:underline;">MusicBrainz</a>, a free music database that volunteers around the world add to and correct. That crowd-sourcing is why it's so thorough, and also why it's occasionally wrong. In my own saved copy I found a year typo on one album that MusicBrainz's editors had already fixed by the time I looked, and another date that I had to correct myself. When I catch an error that matters, I note it on the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page.</div>
+</div>
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
