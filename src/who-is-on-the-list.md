@@ -638,7 +638,7 @@ statTiles([
 ])
 ```
 
-The answer is new names. About ${newPerYear("Solo women", 2011, 2015).toFixed(0)} solo women a year made a list for the first time in 2011&ndash;2015, and about ${newPerYear("Solo women", 2021, 2025).toFixed(0)} a year did in 2021&ndash;2025. For solo men it went the other way, from about ${newPerYear("Solo men", 2011, 2015).toFixed(0)} a year to about ${newPerYear("Solo men", 2021, 2025).toFixed(0)}. Once artists are in, women and men come back at about the same rate (more on that below), so the change is in who gets through the door, not in who stays.
+The answer is new names. About ${newPerYear("Solo women", 2011, 2015).toFixed(0)} solo women a year made a list for the first time in 2011&ndash;2015, and about ${newPerYear("Solo women", 2021, 2025).toFixed(0)} a year did in 2021&ndash;2025. For solo men it went the other way, from about ${newPerYear("Solo men", 2011, 2015).toFixed(0)} a year to about ${newPerYear("Solo men", 2021, 2025).toFixed(0)}. Once artists are in, women and men come back at about the same rate (more on that below), so the change is mostly in who gets through the door, not in who stays.
 
 ## The names behind the numbers
 
