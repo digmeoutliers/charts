@@ -326,7 +326,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2004,52,6821bf3f-5d5b-4b0f-8fa4-79d2ab2d9219,Blonde Redhead,6312daed-1a02-35a0-a8ef-c6addf0336a5,Misery Is a Butterfly,Group,
 2004,53,1f16a425-2606-4137-a6b7-234b6dabe037,Pinback,6e4b6b21-8ab6-31f1-a8ee-a26d036af05a,Summer in Abaddon,Group,
 2004,54,6d7b7cd4-254b-4c25-83f6-dd20f98ceacd,M83,528afc2e-39d4-3e78-bb88-40aeb08bd122,"Dead Cities, Red Seas & Lost Ghosts",Group,
-2004,55,19f40952-e3ba-44ba-87b2-218e2744fb58,Mark Lanegan Band,cb823ddc-2c03-37f5-9252-b945c4622040,Bubblegum,Group,
+2004,55,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,cb823ddc-2c03-37f5-9252-b945c4622040,Bubblegum,Person,Male
 2004,56,254b5419-1819-49c9-abcf-6e9b8210ebf4,Jesse Sykes & The Sweet Hereafter,c8e854ba-a953-37c6-8c26-21c98fac9505,"Oh, My Girl",Group,
 2004,57,9c9f1380-2516-4fc9-a3e6-f9f61941d090,Muse,6f151223-f3a3-3e57-810f-598f7897006c,Absolution,Group,
 2004,58,26860648-1c93-4849-bc52-a8541ec88219,mclusky,16c12427-7def-374d-b4f2-e2b12281e6de,The Difference Between Me and You Is That I’m Not on Fire,Group,
@@ -761,7 +761,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2009,32,1f43d76f-8edf-44f6-aaf1-b65f05ad9402,The Flaming Lips,6654ee18-9421-4204-ae48-f0fdc3d6ab9e,Embryonic,Group,
 2009,33,912f8045-c9ec-4020-b89e-44f748b5012b,Handsome Furs,79d1f17c-6853-38a3-8258-471d9ee2fe60,Face Control,Group,
 2009,34,91f909a4-809a-47a7-b15f-94d6878b06cb,Fanfarlo,3370d1d2-05b8-3bba-8754-091c7f71e19f,Reservoir,Group,
-2009,35,c1857ec7-94b1-43dc-8cc2-0c9d265cd8c1,Elvis Perkins in Dearland,a13dcf2a-bebd-394c-ada0-3cdb82fa9205,Elvis Perkins in Dearland,Group,
+2009,35,ca2f9ff7-c53d-4b8b-a687-a5001ce5fcf6,Elvis Perkins,a13dcf2a-bebd-394c-ada0-3cdb82fa9205,Elvis Perkins in Dearland,Person,Male
 2009,36,a4584a84-3a14-430c-933f-cc2147842d04,The Big Pink,3842dd32-5088-4529-9f7a-1c65bbb65210,A Brief History of Love,Group,
 2009,37,a186c93d-0f30-4c56-9265-98c0eba19242,Blitzen Trapper,47f02c49-9c0f-42b4-a32d-b2d3ad4465c8,Black River Killer,Group,
 2009,38,0f96c38b-8e21-4571-afe0-cb11196a8acd,Gossip,cf64fa05-b823-4ab2-830b-518f522a0691,Music for Men,Group,
@@ -1060,7 +1060,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2012,58,9df31471-e54e-43ba-bbe8-38fd94c63dbb,Shearwater,4e1de113-91cc-478a-ac6d-7d073f7c7175,Animal Joy,Group,
 2012,59,75167b8b-44e4-407b-9d35-effe87b223cf,Neil Young,4c5857a3-d19e-4b46-bb26-c0a972e22c66,Psychedelic Pill,Person,Male
 2012,60,b9a2a9a6-7a40-48a6-bcb1-8eff5b89ad5b,Nada Surf,fa5b5ddc-5079-45f1-8f52-bf9210b9c7d1,The Stars Are Indifferent to Astronomy,Group,
-2012,61,19f40952-e3ba-44ba-87b2-218e2744fb58,Mark Lanegan Band,db54bd13-c792-403c-8b55-6dc8bceded0b,Blues Funeral,Group,
+2012,61,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,db54bd13-c792-403c-8b55-6dc8bceded0b,Blues Funeral,Person,Male
 2012,62,0c751690-c784-4a4f-b1e4-c1de27d47581,Animal Collective,90e00c26-8d55-4378-8576-f1bd1199ce91,Centipede Hz,Group,
 2012,63,e9aed5e5-ed35-4244-872e-194862290295,Dr. Dog,e5493f04-ecb1-4889-88e5-e7832f5d5547,Be the Void,Group,
 2012,64,4449ccf6-c948-4d33-aa97-b6ad98ce4b5b,Metric,f61e4bc1-651a-4e35-ab10-0cccf862a7ee,Synthetica,Group,
@@ -1100,7 +1100,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2012,98,d38c47f6-d9bb-4a77-aaea-df53a6616a68,Titus Andronicus,6d2ed01a-9f6c-4938-b21c-8e661d9a38b1,Local Business,Group,
 2012,99,3dee0ca7-99ae-4421-9c3b-f42d8caf4c88,Lower Dens,181c85f7-210f-4d58-9b45-0b0ddf7128f0,Nootropics,Group,
 2012,100,57843aed-c1c1-4f45-9859-478dd999bc18,School of Seven Bells,6dba96ec-1f9a-4fec-b4d8-37a601b0137b,Ghostory,Group,
-2012,101,d0a5d602-5172-46ed-9b4d-bae8fb8c33f9,Ty Segall Band,a1ddceee-9777-4d2f-b7c3-f867fb7f2339,Slaughterhouse,Group,
+2012,101,07a17571-81fc-4cf8-a634-98f0d926d313,Ty Segall,a1ddceee-9777-4d2f-b7c3-f867fb7f2339,Slaughterhouse,Person,Male
 2012,102,4e442c83-b547-4d6e-9270-cdd35e3c3195,King Tuff,406dabc6-8cb0-4efa-9b34-b0bd85d9f21b,King Tuff,Person,Male
 2012,103,70248960-cb53-4ea4-943a-edb18f7d336f,Bruce Springsteen,d875c2f0-27d5-4946-81f9-3ebaf6636ccd,Wrecking Ball,Person,Male
 2012,104,c733c4e6-22a2-499d-ace7-17b832356aff,Gary Clark Jr.,6e652b2f-6f94-47ef-834a-a85d25921fce,Blak and Blu,Person,Male
@@ -1286,7 +1286,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2014,73,20395131-fbde-43ce-b141-b700cfdae99c,Glass Animals,75f62ce7-2b19-4e54-8e53-c043eb847650,ZABA,Group,
 2014,74,7c340ac5-6eda-4981-91d6-d5b1f4d1bbbf,Kishi Bashi,425330b2-2c18-4197-b3a8-a382fb6e8cf2,Lighght,Person,Male
 2014,75,c8a9ae11-63bf-409b-8bf3-a96b3712a2ff,Little Dragon,ef2ff639-244d-4ae7-9e53-9cc3fd64a9aa,Nabuma Rubberband,Group,
-2014,76,19f40952-e3ba-44ba-87b2-218e2744fb58,Mark Lanegan Band,1c23153e-21cc-43c2-a504-8a536c78cd71,Phantom Radio,Group,
+2014,76,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,1c23153e-21cc-43c2-a504-8a536c78cd71,Phantom Radio,Person,Male
 2014,77,cfd1fdcc-3c1d-4854-a500-31d96a6d5184,Allah-Las,d2f19f34-8430-486d-8ffc-91c0325238cf,Worship the Sun,Group,
 2014,78,8e4a41a5-6ec6-4042-b064-acd1cb51cf1b,Broncho,b3f6dc78-c2be-425b-b044-59d459ce2cd1,Just Enough Hip to Be Woman,Group,
 2014,79,3c8ff4c9-b5b9-4e78-ad9d-5157c323de24,Wye Oak,9671bae9-68e1-4e63-9efd-736d69bf319d,Shriek,Group,
@@ -1543,7 +1543,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2017,57,78e854b8-9713-4ff2-9218-6b3784893bff,Vince Staples,847a8456-f742-4894-8fdb-5911afc65e9c,Big Fish Theory,Person,Male
 2017,58,b053efc9-e8ea-474a-981f-a3c6fffcc694,Hurray for the Riff Raff,23573120-b2c9-49b5-9db3-e1621aa9b775,The Navigator,Group,
 2017,59,6069d86f-ca46-48a5-bb34-77d21f6e3d0a,Charly Bliss,191cc667-6c1b-45e2-9fcc-19cffca89d90,Guppy,Group,
-2017,60,19f40952-e3ba-44ba-87b2-218e2744fb58,Mark Lanegan Band,5ab38b8c-6dc7-4525-aff1-700775aa17e1,Gargoyle,Group,
+2017,60,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,5ab38b8c-6dc7-4525-aff1-700775aa17e1,Gargoyle,Person,Male
 2017,61,a46c2fea-ec1d-44c1-88f1-dbc6c62a8acc,Sera Cahoone,9cd417b6-58f4-4821-85ae-ae5b90280ccb,From Where I Started,Person,Female
 2017,62,3f575ecd-627d-4f08-a89f-abd46d469c7e,Ride,8589d191-7d6f-450f-a380-ae9a4a18a8b8,Weather Diaries,Group,
 2017,63,6462c4f6-6f69-4636-a835-02eebe81c90f,Shabazz Palaces,51f7966c-cadc-4291-8fe1-f30f1dbfb316,Quazarz: Born on a Gangster Star,Group,
@@ -1738,7 +1738,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2019,70,f4abc0b5-3f7a-4eff-8f78-ac078dbce533,Billie Eilish,72375978-a9a1-4254-b957-85565c716b7e,"WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",Person,Female
 2019,71,d02dd67e-f655-4600-bc47-f789f59e7367,Anderson .Paak,59732510-a2ad-447d-bd8b-9cbdfef39f88,Ventura,Person,Male
 2019,72,4afbef0a-05ee-4551-b0e0-f1f1870d8f1c,black midi,c65fb96b-08dc-44b4-b0ca-3576317b5513,Schlagenheim,Group,
-2019,73,19f40952-e3ba-44ba-87b2-218e2744fb58,Mark Lanegan Band,50242085-1f54-46e3-8838-ed8b6661b7f4,Somebody’s Knocking,Group,
+2019,73,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,50242085-1f54-46e3-8838-ed8b6661b7f4,Somebody’s Knocking,Person,Male
 2019,74,3f575ecd-627d-4f08-a89f-abd46d469c7e,Ride,923ad3ed-9f87-43d9-aad2-5fbb5d1a302c,This Is Not a Safe Place,Group,
 2019,75,0efbd9d6-4c5b-48e5-b7ff-d61e0969893a,Strand of Oaks,36971440-e5b0-41cc-bb18-cba82b5c5212,Eraserland,Person,Male
 2019,76,7c340ac5-6eda-4981-91d6-d5b1f4d1bbbf,Kishi Bashi,43aebfcf-69dc-42be-952e-f8af99572474,Omoiyari,Person,Male
