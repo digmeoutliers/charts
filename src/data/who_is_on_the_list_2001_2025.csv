@@ -31,7 +31,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2001,30,cb67438a-7f50-4f2b-a6f1-2bb2729fd538,Air,21062c6a-bf91-3d5d-866a-7f54f6918861,10 000 Hz Legend,Group,
 2001,31,1f16a425-2606-4137-a6b7-234b6dabe037,Pinback,c4c05867-a68e-39c1-976d-54eeb1639489,Blue Screen Life,Group,
 2001,32,a9126556-f555-4920-9617-6e013f8228a7,Mark Lanegan,52826eb4-d7f2-316c-997b-ad249d17727c,Field Songs,Person,Male
-2001,33,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,82c9fedb-4475-378b-b850-6e119d6b1828,No More Shall We Part,Group,
+2001,33,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,82c9fedb-4475-378b-b850-6e119d6b1828,No More Shall We Part,Person,Male
 2001,34,1131e5da-dfdf-46c9-b6ff-b7ac552c2a3c,The Dismemberment Plan,253d9d94-9177-420f-ac07-5532e630a698,Change,Group,
 2001,35,2d50057a-5541-4b1a-990d-92d3698e7ba5,Jay Farrar,227824e1-7479-3a75-b5f6-b9c096725a22,Sebastopol,Person,Male
 2001,36,3df29542-402a-49a5-ae1f-82f936184b3b,Quasi,b38ef5e5-58c3-47d2-8efe-6564c782deb6,The Sword of God,Group,
@@ -216,7 +216,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2003,33,0f82d6b5-12fb-4569-b047-a00194f572a7,Fountains of Wayne,db2a3102-5ea2-395f-89e9-2de7881186b3,Welcome Interstate Managers,Group,
 2003,34,8eae1e0a-1696-4532-9e3c-0a072217ef4c,Drive‐By Truckers,196730c7-2c36-3157-b68c-3edd2bc4bebd,Decoration Day,Group,
 2003,35,ae8e3434-a8fd-4ba8-9c76-6ee6a9301d03,Radio Nationals,67ef0bcb-655d-3d98-b19b-0495b53599ef,Place You Call Home,Group,
-2003,36,98e4bf9e-9e33-4f07-9962-f7c1c2d773ba,Stephen Malkmus and the Jicks,2960a73e-b0ce-34e2-8459-9aa81d4842c5,Pig Lib,Group,
+2003,36,eaefd603-84c1-4db4-a72b-0cb718a0cc07,Stephen Malkmus,2960a73e-b0ce-34e2-8459-9aa81d4842c5,Pig Lib,Person,Male
 2003,37,39c1e474-647e-42ef-a157-fcfb30c2c2ff,Joe Strummer & the Mescaleros,56d7dcc5-2c78-3518-b8c2-b7964a758144,Streetcore,Group,
 2003,38,d700b3f5-45af-4d02-95ed-57d301bda93e,Mogwai,8a26df58-c36a-3c4b-a507-2a526f57cbd2,Happy Songs for Happy People,Group,
 2003,39,041a113f-4734-4765-8e2e-af9726390749,The Divorce,915b8bc8-64c1-359d-9de7-eff280b5ba01,There Will Be Blood Tonight,Group,
@@ -305,7 +305,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2004,31,01d3c51b-9b98-418a-8d8e-37f6fab59d8c,Sufjan Stevens,9c034a12-db0e-3bc1-b3ed-e74e7ffa92b1,Seven Swans,Person,Male
 2004,32,69cd93fd-1c2b-40f5-ae03-7bf4b4213fd3,Blue Scholars,f4be3234-0afc-31e0-82e7-b7eba0d69061,Blue Scholars,Group,
 2004,33,e795e03d-b5d5-4a5f-834d-162cfb308a2c,PJ Harvey,08fdd0c0-ea57-367f-afa6-2743004807ef,Uh Huh Her,Person,Female
-2004,34,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,f0ffb9ec-fcb5-3e03-9a1b-3f018472d831,Abattoir Blues / The Lyre of Orpheus,Group,
+2004,34,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,f0ffb9ec-fcb5-3e03-9a1b-3f018472d831,Abattoir Blues / The Lyre of Orpheus,Person,Male
 2004,35,0cf9d983-aecf-4d57-9e94-fde2beac014f,The Futureheads,b300f38d-667a-30e4-8fb8-fd3f419e949e,The Futureheads,Group,
 2004,36,5cbef01b-cc35-4f52-af7b-d0df0c4f61b9,Sonic Youth,65697dec-0741-3e6d-bd81-72de8a079824,Sonic Nurse,Group,
 2004,37,b7c3af7b-1379-4125-8a64-95f3e1fb3546,Ambulance LTD,17cf0d15-7255-3bc6-a233-e80664ed2bde,Ambulance LTD,Group,
@@ -403,7 +403,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2005,38,9de8f66e-3cd1-4f11-8328-38200f0612b0,Doves,d9aa4e3e-d74f-3c02-99d2-1ff37269ed5f,Some Cities,Group,
 2005,39,cc197bad-dc9c-440d-a5b5-d52ba2e14234,Coldplay,c50b180a-12c9-3153-8ba5-eac6a6537d6f,X&Y,Group,
 2005,40,b5bd9f88-962e-4730-84a7-795592ba42e8,Silversun Pickups,ab03d170-1582-3f54-bfec-7fac33a88e55,Pikul,Group,
-2005,41,90cc2464-234e-4da0-b39b-576f36e633bc,ANOHNI and the Johnsons,63373d83-a96e-355c-aa44-837db92c2193,I Am a Bird Now,Group,
+2005,41,91b67275-db2c-4fc2-b51f-82978aeb5c41,ANOHNI,63373d83-a96e-355c-aa44-837db92c2193,I Am a Bird Now,Person,Female
 2005,42,8475297d-fb78-4630-8d74-9b87b6bb7cc8,of Montreal,d0b72322-9f88-3b55-a761-279b083d1c9d,The Sunlandic Twins,Group,
 2005,43,8b2350de-b682-4fe7-ad8f-4508d7b6c697,Brazilian Girls,df9e8d11-9d68-3e49-b348-8454cfbaa692,Brazilian Girls,Group,
 2005,44,a33a9cd6-8c03-4047-b62d-59f76f494c20,Cloud Cult,20dbdc4c-f7ce-35fe-99ea-b7211036c621,Advice From the Happy Hippopotamus,Group,
@@ -411,7 +411,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2005,46,6d7b7cd4-254b-4c25-83f6-dd20f98ceacd,M83,ddaa2d4d-314e-3e7c-b1d0-f6d207f5aa2f,Before the Dawn Heals Us,Group,
 2005,47,c0a1179b-b14a-4d68-a3c1-1fdab16ed602,Common,93b891c9-4fc4-3085-960e-5da4c7fe8113,Be,Person,Male
 2005,48,1b3e92d4-1c68-412d-a92d-1172f24f7de3,Aqualung,33b8a20d-f0b2-3a61-ac7d-d26e77f45514,Strange and Beautiful,Person,Male
-2005,49,27a8ce8c-4e41-4a56-ba65-3a82662c9af9,Ryan Adams & the Cardinals,4a767b64-09bf-3f44-a78b-bab05b90f29d,Cold Roses,Group,
+2005,49,c80f38a6-9980-485d-997c-5c1a9cbd0d64,Ryan Adams,4a767b64-09bf-3f44-a78b-bab05b90f29d,Cold Roses,Person,Male
 2005,50,0110e63e-0a9b-4818-af8e-41e180c20b9a,Devendra Banhart,7ea71cb3-5fd9-35e8-a7a3-fe74715b0700,Cripple Crow,Person,Male
 2005,51,1d25e697-096d-43b1-94bd-74e0619c5567,Tullycraft,33bdd6e6-f3cb-310b-b631-dd2673a837b3,Disenchanted Hearts Unite,Group,
 2005,52,49814f71-8fef-41ec-9af8-b6995c0bd601,The Black Angels,17a51bac-7619-36fd-a35c-ae91a29b6054,The Black Angels,Group,
@@ -652,7 +652,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2008,14,8f6bd1e4-fbe1-4f50-aa9b-94c450ec0f11,Portishead,163339ab-813b-3d29-bba8-e1d5acf63cab,Third,Group,
 2008,15,1f574ab1-a46d-4586-9331-f0ded23e0411,Flight of the Conchords,bfcb5a88-9c37-30a8-b8d4-a90c644a8aa0,Flight of the Conchords,Group,
 2008,16,6d7b7cd4-254b-4c25-83f6-dd20f98ceacd,M83,81fa7a0e-451f-3e51-8bc8-b8ab2b599bf0,Saturdays = Youth,Group,
-2008,17,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,3e63aa06-0538-3680-8d11-800f5950b9b3,"Dig, Lazarus, Dig!!!",Group,
+2008,17,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,3e63aa06-0538-3680-8d11-800f5950b9b3,"Dig, Lazarus, Dig!!!",Person,Male
 2008,18,caaba574-dfbc-4681-8e56-19b5150897d2,Cut Copy,9154444d-7328-3302-8e65-ece04b563de4,In Ghost Colours,Group,
 2008,19,a66cc38c-e6cd-4725-a8fd-7d32b998347f,DeVotchKa,32f418ad-2180-361e-bb34-2947e568fe2d,A Mad & Faithful Telling,Group,
 2008,20,d4659efb-b8eb-4f03-95e9-f69ce35967a9,David Byrne,c9cf80df-db8f-34b4-9b86-012edfa6180f,Everything That Happens Will Happen Today,Person,Male
@@ -702,7 +702,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2008,64,60feda7a-9247-48fe-8892-79f9a7d0d503,Department of Eagles,8f36107d-cf13-3a83-81eb-99dcd2b49879,In Ear Park,Group,
 2008,65,6a65d878-fcd0-42cf-aff9-ca1d636a8bcc,Foals,b3354e1f-317e-3b64-88e1-d4dc54571a6d,Antidotes,Group,
 2008,66,4898b9ad-f564-4ff1-9046-b1a16dfd5200,Black Mountain,d4bc322a-66e3-33ca-b923-21765296ccce,In the Future,Group,
-2008,67,27a8ce8c-4e41-4a56-ba65-3a82662c9af9,Ryan Adams & the Cardinals,682f30fa-5beb-3c24-abb5-b07f91463e2e,Cardinology,Group,
+2008,67,c80f38a6-9980-485d-997c-5c1a9cbd0d64,Ryan Adams,682f30fa-5beb-3c24-abb5-b07f91463e2e,Cardinology,Person,Male
 2008,68,72c536dc-7137-4477-a521-567eeb840fa8,Bob Dylan,68b2468f-c4d5-31f4-ac97-4829f7f90bb7,"The Bootleg Series, Vol. 8: Tell Tale Signs: Rare and Unreleased 1989–2006",Person,Male
 2008,69,d5cc67b8-1cc4-453b-96e8-44487acdebea,Beach House,2717ae60-ecbd-38a8-b8ef-ed1c9f8df908,Devotion,Group,
 2008,70,55821c25-bd47-4f67-baf8-17ccd2cf1c86,No Age,a6a476d1-caa7-3641-b8a6-597c4b06886c,Nouns,Group,
@@ -725,7 +725,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2008,87,35a6a353-b186-4c13-a264-d18d5e2ce853,Tokyo Police Club,2eb5fc8a-36bc-3769-ba5d-f8c26038506c,Elephant Shell,Group,
 2008,88,9639cd52-c351-4a17-9797-58880e95a7ef,The Mountain Goats,b43f6e75-ac1b-3d24-b910-fcd4e49497c0,Heretic Pride,Group,
 2008,89,892fb2e4-0af4-42be-9e60-22898de51d32,The Airborne Toxic Event,2c6cf5f6-3eb0-31a3-86d2-969b6f3d35db,The Airborne Toxic Event,Group,
-2008,90,98e4bf9e-9e33-4f07-9962-f7c1c2d773ba,Stephen Malkmus and the Jicks,964ab6d5-5c20-412c-aefb-787a571af0a4,Real Emotional Trash,Group,
+2008,90,eaefd603-84c1-4db4-a72b-0cb718a0cc07,Stephen Malkmus,964ab6d5-5c20-412c-aefb-787a571af0a4,Real Emotional Trash,Person,Male
 2008,91,0daf1c34-212a-442f-905d-c44f2adcc020,Jamie Lidell,7c67e12b-f419-3216-8fc4-abe50f7e29d4,Jim,Person,Male
 2009,1,0c751690-c784-4a4f-b1e4-c1de27d47581,Animal Collective,b059890c-d415-3e65-aaed-52c810565922,Merriweather Post Pavilion,Group,
 2009,2,8d455809-96b3-4bb6-8829-ea4beb580d35,Phoenix,32304f6e-5b80-3818-a66b-47f09efff0d9,Wolfgang Amadeus Phoenix,Group,
@@ -807,8 +807,8 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2009,78,d13f0f47-36f9-4661-87fe-2de56f45c649,Tegan and Sara,b08e5e9a-b1dc-43d2-ba0a-0a0430939401,Sainthood,Group,
 2009,79,74208a0b-8b72-4954-9aa4-b359babd39bc,Throw Me the Statue,ef6cd6c2-fb9a-4ed3-84cd-b71536da9664,Creaturesque,Group,
 2009,80,f3e2ad21-900e-46a0-8597-2a3e457a7c27,Gui Boratto,62f0e9d7-c5a3-3771-a046-d8dea3cc47af,Take My Breath Away,Person,Male
-2009,81,90cc2464-234e-4da0-b39b-576f36e633bc,ANOHNI and the Johnsons,009f05b6-06ed-360e-95ea-4378bc548957,The Crying Light,Group,
-2009,82,67e2b81b-9b86-4bf6-b2cc-767dc9967642,Conor Oberst and the Mystic Valley Band,4c63a63f-70e1-35b9-85b3-179e90c9406c,Outer South,Group,
+2009,81,91b67275-db2c-4fc2-b51f-82978aeb5c41,ANOHNI,009f05b6-06ed-360e-95ea-4378bc548957,The Crying Light,Person,Female
+2009,82,0eee89dc-7d86-4a15-97be-011652c49288,Conor Oberst,4c63a63f-70e1-35b9-85b3-179e90c9406c,Outer South,Person,Male
 2009,83,7cd2d860-c6d7-4be2-af50-57c51ee45687,The Thermals,a6e59675-b7ac-3ae7-ab08-f2e652cc23eb,Now We Can See,Group,
 2009,84,ada7a83c-e3e1-40f1-93f9-3e73dbc9298a,Arctic Monkeys,23b7e9e9-8820-4a49-b44f-a7a60e0a7e81,Humbug,Group,
 2009,85,89ad4ac3-39f7-470e-963a-56509c546377,Various Artists,bdbbe38c-c497-48e6-ae0a-0997fceaf55a,"Live at KEXP, Volume Five",Other,
@@ -1150,7 +1150,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2013,28,913e6848-6865-4717-ac5e-3bd9c22826be,Foxygen,e14ac953-238c-4dda-9b80-b2e0b8397cec,We Are the 21st Century Ambassadors of Peace & Magic,Group,
 2013,29,1bbf31dc-dbc0-4a7a-bf3f-48bc665878e1,Local Natives,bd38ca79-efb2-4f96-b68a-ef0fa09eaffd,Hummingbird,Group,
 2013,30,74a30f2a-dae6-4e99-8a75-cb0f93b31aa6,Washed Out,0c1447ba-c34c-4824-9b1c-f56612836db6,Paracosm,Person,Male
-2013,31,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,ae8faaeb-9134-400d-819b-773e20a7d4e4,Push the Sky Away,Group,
+2013,31,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,ae8faaeb-9134-400d-819b-773e20a7d4e4,Push the Sky Away,Person,Male
 2013,32,8ca01f46-53ac-4af2-8516-55a909c0905e,My Bloody Valentine,46211613-b2c8-4a00-a5ac-c6a8c8226119,m b v,Group,
 2013,33,3f542031-b054-454d-b57b-812fa2a81b11,Yo La Tengo,6d08ebb5-78ff-40d9-9ecb-37c8f06cf089,Fade,Group,
 2013,34,ee190f6b-7d98-43ec-b924-da5f8018eca0,Janelle Monáe,c7400a4b-26cc-4720-aadc-e061b86d693a,The Electric Lady,Person,Non-binary
@@ -1293,7 +1293,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2014,80,a0cded3a-4ca3-4ddb-8e46-ed9037f30aea,Todd Terje,10fb8690-04c8-44d7-b36c-74ac61c56c5a,It’s Album Time,Person,Male
 2014,81,11375302-8f1d-421c-ad0d-172c9d815631,The Orwells,de1b31a0-fa30-432c-9ece-a10f0f3f46c8,Disgraceland,Group,
 2014,82,42a1253e-0efc-45e8-b627-ff802fb9e9ee,Woods,1317ef6e-b517-4b25-9117-b4999b1d6eed,With Light and With Love,Group,
-2014,83,2cc71cd1-6f49-4fe4-ac0b-36ff6aee172d,Kurt Vile & the Violators,3ef7b225-aba8-417c-94fc-39d87d7cd8a5,It’s a Big World Out There (and I Am Scared),Group,
+2014,83,e07a111e-4e8a-4651-a849-01ac60551ab2,Kurt Vile,3ef7b225-aba8-417c-94fc-39d87d7cd8a5,It’s a Big World Out There (and I Am Scared),Person,Male
 2014,84,e8c28ca7-c14d-4dff-86d6-06bfac138422,The Barr Brothers,0cc75875-e9da-4045-8fd2-004f33941d85,Sleeping Operator,Group,
 2014,85,d700b3f5-45af-4d02-95ed-57d301bda93e,Mogwai,29d4bd45-d99e-4f38-bf87-971f102b04ed,Rave Tapes,Group,
 2014,86,4486702e-7b26-43fd-babc-c0df7be0e1d9,St. Paul & The Broken Bones,48c920e8-64e0-42db-8027-b654eba7f504,Half the City,Group,
@@ -1410,7 +1410,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2016,15,18a627eb-c6e8-4175-b947-9322d8deb938,Deep Sea Diver,4b6dabb0-0582-47ac-bab9-1511d5aaa83c,Secrets,Group,
 2016,16,381086ea-f511-4aba-bdf9-71c753dc5077,Kendrick Lamar,4e44335c-3f2b-4874-a6c3-71b5e65f75d5,untitled unmastered.,Person,Male
 2016,17,3d254f1e-7d18-431b-baeb-68e57695dfdb,Blood Orange,28758285-c1e0-4b97-a014-c21bd1c8f5ec,Freetown Sound,Person,Male
-2016,18,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,49339024-c6b4-4345-b521-6349463513cb,Skeleton Tree,Group,
+2016,18,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,49339024-c6b4-4345-b521-6349463513cb,Skeleton Tree,Person,Male
 2016,19,dfe78af2-779e-4137-826a-3073a16e3278,Phantogram,7b278ec9-b4e2-4a6b-9721-ec55afc65997,Three,Group,
 2016,20,11f570ff-44d9-4e9c-8812-e6d56103c5c1,Michael Kiwanuka,c51bb243-59ac-4de0-9a51-4ead3d4e1bf8,Love & Hate,Person,Male
 2016,21,e01755e3-58ab-4a5b-a9e9-a0a3bd3dff4c,Parquet Courts,3353a8a0-a5ab-4970-b34e-090afcc2bba7,Human Performance,Group,
@@ -1533,7 +1533,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2017,47,eac962e1-0295-4e69-a266-4dab2adb4f11,Kevin Morby,ce2c280d-0477-4901-ae43-86d0df621d10,City Music,Person,Male
 2017,48,25b75a66-ce83-4db3-b136-395a3c3784c4,The New Pornographers,f81fe6df-733a-42d7-9987-f0aded301b3c,Whiteout Conditions,Group,
 2017,49,74963434-dcb6-4b14-98cc-99873b06db66,Future Islands,3a2976c4-e944-467f-9b2b-a2d1a5d2639b,The Far Field,Group,
-2017,50,857c2983-0a33-466f-8607-28504ba8a6c0,Jason Isbell and the 400 Unit,b0dada6a-8874-4b48-961f-2a9b022ffdb0,The Nashville Sound,Group,
+2017,50,4c501a41-5f23-41c9-a36a-5b86e894e08d,Jason Isbell,b0dada6a-8874-4b48-961f-2a9b022ffdb0,The Nashville Sound,Person,Male
 2017,51,3cb3928a-526c-4a3d-93c5-53315fa9bde0,Elbow,d4bea9d0-1cf1-4cb5-a823-f30e4722de88,Little Fictions,Group,
 2017,52,2feb192c-2363-46d6-b476-1c88a25cb294,The Afghan Whigs,0d1d34bf-c1b3-4069-8198-2f80897d00e6,In Spades,Group,
 2017,53,34557d8f-ee4a-44ab-ae6e-49bb8ac604d0,Cigarettes After Sex,90a85020-515c-427e-9a59-5cc4dbcac0e3,Cigarettes After Sex,Group,
@@ -1648,7 +1648,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2018,71,6bbb3983-ce8a-4971-96e0-7cae73268fc4,Jungle,6cac3a96-2661-4d2b-a253-bef16a559616,For Ever,Group,
 2018,72,3a605eba-b6a1-4298-855d-b3033df0bf8b,幾何学模様,fe815acc-e833-46e1-a995-6d0a2a62dc80,Masana Temples,Group,
 2018,73,0b183251-c4a7-47ab-87b4-4cc0e50dfe95,Naked Giants,b68ea581-3f07-425f-8ff4-3fc6fdbfb849,SLUFF,Group,
-2018,74,98e4bf9e-9e33-4f07-9962-f7c1c2d773ba,Stephen Malkmus and the Jicks,494fdd85-d552-472c-992f-a3e8e72607ea,Sparkle Hard,Group,
+2018,74,eaefd603-84c1-4db4-a72b-0cb718a0cc07,Stephen Malkmus,494fdd85-d552-472c-992f-a3e8e72607ea,Sparkle Hard,Person,Male
 2018,75,8ed2e0b3-aa4c-4e13-bec3-dc7393ed4d6b,Thom Yorke,a529e027-d547-44d8-924b-a66da87e6330,Suspiria: Music for the Luca Guadagnino Film,Person,Male
 2018,76,a1221205-1526-4474-9f10-caa822779fe2,Kyle Craft,0991b7e4-0065-4ebe-96cc-fb68a53912a6,Full Circle Nightmare,Person,Male
 2018,77,3944b36f-0ec2-4972-bab4-c45477b7b8f1,Left at London,53a25af4-8c22-4b3f-a78e-eeb9f49af718,"Transgender Street Legend, Vol. 1",Person,Female
@@ -1662,7 +1662,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2018,85,a66cc38c-e6cd-4725-a8fd-7d32b998347f,DeVotchKa,914d17f1-175a-4efa-9935-0aec39ce9ef3,This Night Falls Forever,Group,
 2018,86,c118bc97-11a7-41dc-a55e-48c3bcf22ac2,Belly,88ed1d80-32a9-4fe4-83a3-7478bdf3e664,Dove,Group,
 2018,87,b574bfea-2359-4e9d-93f6-71c3c9a2a4f0,All Them Witches,0d1e495c-f25f-4792-bb20-00a6f58e0e56,ATW,Group,
-2018,88,a3e6fa6e-32de-4152-ae38-81291597a10c,Elvis Costello & The Imposters,ccb7c7cf-361e-4439-87ba-56c1f540ae29,Look Now,Group,
+2018,88,8a338e06-d182-46f2-bd16-30a09bc840ba,Elvis Costello,ccb7c7cf-361e-4439-87ba-56c1f540ae29,Look Now,Person,Male
 2018,89,b2595e56-5e19-43e1-8e6a-3e27fc7f7476,NAVVI,a9508029-ad3e-4aec-a665-ecb26f1ef8cd,Ultra,Group,
 2018,90,7e01053e-e701-4e55-8a29-b8cfdcdee205,Iceage,0fcbf1b0-1740-40cd-9a63-6e9f6def5dd2,Beyondless,Group,
 2018,91,1822e292-b283-451c-9ba5-c38132dfda63,Thunderpussy,52df5701-ab1f-401d-b0e6-bedfe26f9a1f,Greatest Tits,Group,
@@ -1676,7 +1676,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2019,8,11f570ff-44d9-4e9c-8812-e6d56103c5c1,Michael Kiwanuka,042fe94f-5846-469c-a739-38a9e0574d5c,KIWANUKA,Person,Male
 2019,9,9f81247f-7f57-42f3-a8ba-75bef554e591,Big Thief,f480ab60-a5c1-4472-8789-393d0b0e4a7a,U.F.O.F.,Group,
 2019,10,2ade52c8-bb0d-469a-ad97-030c90dcb414,Rudy Willingham,8be7cc79-6468-48bd-8599-9ab0a972c619,Dunk Reactions,Person,Male
-2019,11,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,99fc75a4-3ff2-4248-9ae2-65d7026c7296,Ghosteen,Group,
+2019,11,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,99fc75a4-3ff2-4248-9ae2-65d7026c7296,Ghosteen,Person,Male
 2019,12,664c3e0e-42d8-48c1-b209-1efca19c0325,The National,ed8d7c1d-10aa-4b9a-9e86-2ad12be38a83,I Am Easy to Find,Group,
 2019,13,e36e78eb-3ace-4acd-882c-16789e700ab7,Sleater‐Kinney,474906cf-88cc-414e-9b50-e8112dd44431,The Center Won’t Hold,Group,
 2019,14,437b356d-88f1-4dde-af5e-dec1c9d7dde4,Orville Peck,62e8d6c6-876c-4fe5-a557-05787adbb70a,Pony,Person,Male
@@ -1789,7 +1789,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2020,30,763cb144-afdb-471e-bd86-d4f5b9b58641,Adrianne Lenker,5ff627e4-b8a0-43af-8ee2-4d84adf4541f,songs,Person,Female
 2020,31,f8bc2114-691d-48c7-bc19-41c7126896a8,Chong the Nomad,a688abd0-f778-431f-9aa1-44215116637f,A Long Walk,Person,Female
 2020,32,185527bf-c293-4c24-8213-ed98fb8976be,Angel Olsen,66175261-11e1-497b-a958-cf6fad9d3fad,Whole New Mess,Person,Female
-2020,33,857c2983-0a33-466f-8607-28504ba8a6c0,Jason Isbell and the 400 Unit,8cf356af-da3f-4725-925e-d86ed11838bf,Reunions,Group,
+2020,33,4c501a41-5f23-41c9-a36a-5b86e894e08d,Jason Isbell,8cf356af-da3f-4725-925e-d86ed11838bf,Reunions,Person,Male
 2020,34,2cef242c-86e3-4631-9669-7d96aca66b09,Tomo Nakayama,4fcceeb8-a2e9-4625-a343-4c28a14b1eba,Melonday,Person,Male
 2020,35,044fd265-79dd-43eb-afc4-8b20becf7e17,Thundercat,9ffdc0f1-6683-44f1-9194-a247ecb9b297,It Is What It Is,Person,Male
 2020,36,84ca8fa4-7cca-4948-a90a-cb44db29853d,clipping.,8e5a1df1-2cb8-4a7e-985c-f78919c2c9b2,Visions of Bodies Being Burned,Group,
@@ -1934,7 +1934,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2021,84,aba64937-3334-4c65-90a1-4e6b9d4d7ada,Aesop Rock,842eeeec-6aab-4e62-acc1-5a3504327844,Garbology,Person,Male
 2021,85,d3149a8a-6854-45ce-8b91-9f327be22c3f,Bachelor,1f5a4827-580f-45db-92e7-8bfcf71623e9,Doomin’ Sun,Group,
 2021,86,1b8a634e-9fa2-4ddb-bdcf-50bc7e4b167c,Celeste,07a41871-12aa-4b90-ac94-9beac1854de2,Not Your Muse,Person,Female
-2021,87,857c2983-0a33-466f-8607-28504ba8a6c0,Jason Isbell and the 400 Unit,f8392165-0556-4725-ba5c-bad182c777c0,Georgia Blue,Group,
+2021,87,4c501a41-5f23-41c9-a36a-5b86e894e08d,Jason Isbell,f8392165-0556-4725-ba5c-bad182c777c0,Georgia Blue,Person,Male
 2021,88,185527bf-c293-4c24-8213-ed98fb8976be,Angel Olsen,35e94238-b7b3-4cc0-854a-17cd0d5c309e,Aisles,Person,Female
 2021,89,dbf0a5c5-3665-4495-b13b-99438a6a0900,El Michels Affair,a04b849a-81ee-4a9d-b419-7eb39c8212ef,Yeti Season,Group,
 2021,90,2c02eece-9832-4850-9150-b0e269f65d8b,Middle Kids,2bdb12aa-4ade-4558-8120-65c05d52a7bb,Today We’re the Greatest,Group,
@@ -2063,7 +2063,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2023,31,9833b455-0da2-40b5-8e63-37816c910604,Wednesday,a0ad316d-89a2-4f49-b439-8296ca98be01,Rat Saw God,Group,
 2023,32,f6621a8d-5644-460a-b0a8-9171cb2c595d,Blondshell,66393333-3e8a-4a18-ade5-007934ec1ad4,Blondshell,Person,Female
 2023,33,64a0c404-58af-4083-8fc6-a6725ef02ecb,Cherry Glazerr,f6c25a67-00f3-4192-af43-fbca52c4c035,I Don’t Want You Anymore,Group,
-2023,34,857c2983-0a33-466f-8607-28504ba8a6c0,Jason Isbell and the 400 Unit,930e72ce-e852-4ab6-91c8-db4cf26c0e2c,Weathervanes,Group,
+2023,34,4c501a41-5f23-41c9-a36a-5b86e894e08d,Jason Isbell,930e72ce-e852-4ab6-91c8-db4cf26c0e2c,Weathervanes,Person,Male
 2023,35,cd5799f6-e6cf-4322-a659-96f5de4a2f6c,Altın Gün,c328d0b5-ef7c-4c2f-a920-17a03631100c,Aşk,Group,
 2023,36,f6f2326f-6b25-4170-b89d-e235b25508e8,Sigur Rós,7a6e4394-1bbe-434c-a8e0-679d5d58e649,ÁTTA,Group,
 2023,37,d5cc67b8-1cc4-453b-96e8-44487acdebea,Beach House,f814482c-32c5-41cc-9481-266a271a1c1e,Become,Group,
@@ -2130,7 +2130,7 @@ list_year,rank,artist_id,artist_name,release_group_id,release_group_name,artist_
 2024,7,4f52595e-652d-4894-95ea-f925234629fc,MJ Lenderman,0c308741-7b98-4a36-b44e-1ba437b4e2c4,Manning Fireworks,Person,Male
 2024,8,859d0860-d480-4efd-970c-c05d5f1776b8,Beyoncé,fa566e7b-254a-4fab-8aa5-ebcb7592d7f2,COWBOY CARTER,Person,Female
 2024,9,e160f589-dbe6-4b8f-88b5-f528ff4443b4,Mannequin Pussy,ed0dba28-0154-4a2f-8d4c-830dfe340ed4,I Got Heaven,Group,
-2024,10,172e1f1a-504d-4488-b053-6344ba63e6d0,Nick Cave & the Bad Seeds,cbe390d1-88b3-4ff2-8f53-b3b9d8a0e25c,Wild God,Group,
+2024,10,4aae17a7-9f0c-487b-b60e-f8eafb410b1d,Nick Cave,cbe390d1-88b3-4ff2-8f53-b3b9d8a0e25c,Wild God,Person,Male
 2024,11,3ae2fb37-8a23-429d-9920-bac811c4fc22,Jack White,5ef2a512-3680-4661-bfea-870cb8bf6507,No Name,Person,Male
 2024,12,af37c51c-0790-4a29-b995-456f98a6b8c9,Vampire Weekend,91ee3856-0ee6-467d-b01d-9d529affc9f4,Only God Was Above Us,Group,
 2024,13,8389ff77-a7a4-4ba4-bf1b-17ded47d41a1,Suki Waterhouse,05de6349-e348-4d32-a46e-9f23f6cb3b15,Memoir of a Sparklemuffin,Person,Female
