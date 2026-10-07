@@ -642,6 +642,15 @@ The answer is new names. About ${newPerYear("Solo women", 2011, 2015).toFixed(0)
 
 ## The names behind the numbers
 
+```js
+const womenSince2016 = rows.filter((d) => d.list_year >= 2016 && category(d) === "Solo women");
+const womenListed = new Set(womenSince2016.map((d) => d.artist_id)).size;
+const coreWomen = repeatNames("Solo women");
+const coreEntries = d3.sum(coreWomen, (a) => a.items.length);
+```
+
+New names are only half of the story, though. Once they arrive, many of them stay. By 2021&ndash;2025, ${returningShare("Solo women", 2021, 2025).toFixed(0)}% of the solo women on each year's list had been listed before, up from ${returningShare("Solo women", 2011, 2015).toFixed(0)}% in 2011&ndash;2015. And a small core does a lot of the work: the ${coreWomen.length} solo women with three or more albums on the lists since 2016 are only ${(100 * coreWomen.length / womenListed).toFixed(0)}% of the ${womenListed} different solo women listed in that stretch, but they account for ${(100 * coreEntries / womenSince2016.length).toFixed(0)}% of the entries. So the rise has two parts: a wider front door, and a group of artists who keep coming back through it.
+
 Here are the solo artists who landed three or more albums on the lists since 2016: ${repeatNames("Solo women").length} women and ${repeatNames("Solo men").length} men. Each dot is an album, placed in the year it made the list. Hover to see which one.
 
 ```js
