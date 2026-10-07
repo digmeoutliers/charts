@@ -72,6 +72,10 @@ function bucketCounts(items, mode, filter) {
 function statTiles(defs) {
   const wrap = document.createElement("div");
   wrap.className = "dmo-tiles";
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.cssText = "background:#1a1a19;padding:1.75rem 1.5rem;max-width:920px;margin:0 auto;";
+  card.append(wrap);
   defs.forEach((t) => {
     const tile = document.createElement("div");
     tile.className = "dmo-tile";
@@ -87,7 +91,7 @@ function statTiles(defs) {
     tile.append(label, value, caption);
     wrap.append(tile);
   });
-  return wrap;
+  return card;
 }
 ```
 
@@ -101,6 +105,11 @@ const perYear = (r, c, nYears) => r.filter((d) => category(d) === c).length / nY
 const ones = rows.filter((d) => d.rank === 1);
 const top10 = (r) => r.filter((d) => d.rank <= 10);
 ```
+
+<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
+  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Whether an artist counts as a band or a solo act, and the gender recorded for solo artists, comes straight from <a href="https://musicbrainz.org/" target="_top" style="color:inherit; text-decoration:underline;">MusicBrainz</a>, a free music database that volunteers around the world add to and correct. That crowd-sourcing is why it's so thorough, and also why it's never complete or perfectly accurate. In my own saved copy I found a year typo that MusicBrainz's editors had already fixed by the time I looked, and another date that I had to correct myself. If an artist is misgendered or mislabeled here, that comes directly from the source; I haven't changed those fields, and the fix belongs there. When I catch an error that matters to a chart, I note it on the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page. And if you spot something wrong or missing, I'd encourage you to <a href="https://musicbrainz.org/register" target="_top" style="color:inherit; text-decoration:underline;">register at MusicBrainz</a> and fix it. A better MusicBrainz makes the data behind this blog richer and more accurate, and it helps everyone else who uses it too.</div>
+</div>
 
 ## Every album, by who made it
 
@@ -399,12 +408,18 @@ function numberOneLanes() {
     svg.append("text").attr("x", m.l - 14).attr("y", laneY[l]).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", catColor[l]).attr("font-size", 12).attr("font-weight", 600).text(l);
   });
   years.forEach((yr, i) => { if (i % 2 === 0) svg.append("text").attr("x", x(yr)).attr("y", height - 10).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 10).text(yr); });
-  ones.forEach((d) => {
+  const prev = {};   // last labeled #1 in each lane, so neighbors can alternate above/below
+  ones.slice().sort((a, b) => a.list_year - b.list_year).forEach((d) => {
     const c = category(d), cx = x(d.list_year), cy = laneY[c];
     svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 10).attr("fill", catColor[c])
       .on("pointerenter pointermove", (event) => showTip(event, `<b>${d.list_year}</b> &middot; ${d.artist_name}<br><i>${d.release_group_name}</i>`))
       .on("pointerleave", hideTip);
-    if (c !== "Groups") svg.append("text").attr("x", cx).attr("y", cy + 24).attr("text-anchor", "middle").attr("fill", "#c9c8c3").attr("font-size", 10).text(d.artist_name);
+    if (c !== "Groups") {
+      const near = prev[c] && d.list_year - prev[c].year <= 3;
+      const side = near && prev[c].side === "below" ? "above" : "below";
+      prev[c] = {year: d.list_year, side};
+      svg.append("text").attr("x", cx).attr("y", side === "below" ? cy + 24 : cy - 17).attr("text-anchor", "middle").attr("fill", "#c9c8c3").attr("font-size", 10).text(d.artist_name);
+    }
   });
   return svg.node();
 }
@@ -442,14 +457,20 @@ function soloCounts(mode) {
   years.filter((yr) => (yr - 2001) % 4 === 0).forEach((yr) => g.append("text").attr("x", x(yr)).attr("y", ph + 20).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text(yr));
   // era averages (dashed)
   const avg = (k, lo, hi) => d3.mean(data.filter((d) => d.yr >= lo && d.yr <= hi), (d) => d.c[k] || 0);
-  cats.forEach((k) => {
+  const endYs = cats.map((k) => y(data[data.length - 1].c[k] || 0));
+  if (Math.abs(endYs[0] - endYs[1]) < 36) {   // push the two labels apart around their midpoint
+    const mid = (endYs[0] + endYs[1]) / 2, lowFirst = endYs[0] < endYs[1];
+    endYs[0] = mid + (lowFirst ? -18 : 18);
+    endYs[1] = mid + (lowFirst ? 18 : -18);
+  }
+  cats.forEach((k, ci) => {
     [[2001, 2010], [2021, 2025]].forEach(([lo, hi]) => {
       const a = avg(k, lo, hi);
       g.append("line").attr("x1", x(lo)).attr("x2", x(hi)).attr("y1", y(a)).attr("y2", y(a)).attr("stroke", catColor[k]).attr("stroke-width", 1.5).attr("stroke-dasharray", "5 4").attr("opacity", 0.9);
     });
     g.append("path").attr("d", d3.line().x((d) => x(d.yr)).y((d) => y(d.c[k] || 0)).curve(d3.curveMonotoneX)(data)).attr("fill", "none").attr("stroke", catColor[k]).attr("stroke-width", 2.5);
     data.forEach((d) => g.append("circle").attr("cx", x(d.yr)).attr("cy", y(d.c[k] || 0)).attr("r", 3.4).attr("fill", catColor[k]));
-    const endY = y(data[data.length - 1].c[k] || 0);
+    const endY = endYs[ci];
     g.append("text").attr("x", pw + 10).attr("y", endY).attr("dominant-baseline", "middle").attr("fill", catColor[k]).attr("font-size", 12).attr("font-weight", 600).text(k);
     g.append("text").attr("x", pw + 10).attr("y", endY + 14).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 10)
       .text(`${avg(k, 2001, 2010).toFixed(1)} → ${avg(k, 2021, 2025).toFixed(1)} a year`);
@@ -530,50 +551,261 @@ albumsVsArtists()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Solid bars count albums on the lists. Faded bars count each artist once.</p>
 
-## Do they come back?
+## Who's behind the rise?
 
-Back to the question from the first post: who sticks around? Counting artists here makes sense, because the question is about people, not albums.
+So where did all those solo women come from? One possibility is a handful of stars returning year after year. The other is a steady stream of new names. This chart counts the artists on each year's list and splits them in two: those appearing on a list for the first time (solid), and those who had been on an earlier year's list (faded).
+
+```js
+// ---- first appearance vs. returning, counted by artist (each artist once per year) ----
+const firstYear = d3.rollup(rows, (v) => d3.min(v, (d) => d.list_year), (d) => d.artist_id);
+const yearsOf = d3.rollup(rows, (v) => d3.sort(new Set(v.map((d) => d.list_year))), (d) => d.artist_id);
+const catOfArtist = new Map(rows.map((d) => [d.artist_id, category(d)]));
+const artistYear = (() => {
+  const out = new Map(), seen = new Set();
+  for (const d of rows) {
+    const key = d.artist_id + "|" + d.list_year;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const k = category(d) + "|" + d.list_year;
+    const o = out.get(k) ?? {nNew: 0, nRet: 0};
+    if (d.list_year === firstYear.get(d.artist_id)) o.nNew++; else o.nRet++;
+    out.set(k, o);
+  }
+  return out;
+})();
+const ay = (c, yr) => artistYear.get(c + "|" + yr) ?? {nNew: 0, nRet: 0};
+const newPerYear = (c, lo, hi) => d3.sum(d3.range(lo, hi + 1), (yr) => ay(c, yr).nNew) / (hi - lo + 1);
+const returningShare = (c, lo, hi) => {
+  const n = d3.sum(d3.range(lo, hi + 1), (yr) => ay(c, yr).nNew), r = d3.sum(d3.range(lo, hi + 1), (yr) => ay(c, yr).nRet);
+  return 100 * r / (n + r);
+};
+```
+
+```js
+function newVsReturning() {
+  const panels = ["Solo women", "Solo men"];
+  const width = 880, m = {l: 34, r: 12, t: 40, b: 30}, gap = 40;
+  const pw = (width - m.l - m.r - gap) / 2, ph = 250, height = m.t + ph + m.b;
+  const ymax = d3.max(panels, (c) => d3.max(years, (yr) => ay(c, yr).nNew + ay(c, yr).nRet));
+  const y = d3.scaleLinear().domain([0, Math.ceil(ymax / 5) * 5]).range([ph, 0]);
+  const x = d3.scaleBand().domain(years).range([0, pw]).padding(0.18);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
+  panels.forEach((c, pi) => {
+    const g = svg.append("g").attr("transform", `translate(${m.l + pi * (pw + gap)},${m.t})`);
+    g.append("text").attr("x", 0).attr("y", -18).attr("fill", catColor[c]).attr("font-size", 13).attr("font-weight", 600).text(c);
+    y.ticks(5).forEach((t) => {
+      g.append("line").attr("x1", 0).attr("x2", pw).attr("y1", y(t)).attr("y2", y(t)).attr("stroke", "#33322f");
+      g.append("text").attr("x", -8).attr("y", y(t)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 10).text(t);
+    });
+    years.forEach((yr) => {
+      const a = ay(c, yr);
+      g.append("rect").attr("x", x(yr)).attr("width", x.bandwidth()).attr("y", y(a.nNew)).attr("height", ph - y(a.nNew)).attr("fill", catColor[c]);
+      g.append("rect").attr("x", x(yr)).attr("width", x.bandwidth()).attr("y", y(a.nNew + a.nRet)).attr("height", y(a.nNew) - y(a.nNew + a.nRet)).attr("fill", catColor[c]).attr("opacity", 0.38);
+      g.append("rect").attr("x", x(yr) - 1).attr("width", x.bandwidth() + 2).attr("y", 0).attr("height", ph).attr("fill", "transparent")
+        .on("pointerenter pointermove", (event) => showTip(event, `<b>${yr}</b> &middot; ${c}<br>${a.nNew} first-time artist${a.nNew === 1 ? "" : "s"}<br>${a.nRet} returning`))
+        .on("pointerleave", hideTip);
+      if ((yr - 2001) % 4 === 0) g.append("text").attr("x", x(yr) + x.bandwidth() / 2).attr("y", ph + 20).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text(yr);
+    });
+  });
+  const legend = document.createElement("div");
+  legend.style.cssText = "display:flex;gap:20px;flex-wrap:wrap;margin:0.75rem 0 0.25rem;justify-content:center;";
+  legend.innerHTML = [["#c9c8c3", 1, "First time on a list"], ["#c9c8c3", 0.38, "On an earlier list too"]].map(([c, o, t]) =>
+    `<span style="display:flex;align-items:center;gap:6px;font-size:13px;color:#c9c8c3"><span style="width:12px;height:12px;border-radius:3px;background:${c};opacity:${o};display:inline-block"></span>${t}</span>`).join("");
+  const wrap = document.createElement("div");
+  wrap.append(svg.node(), legend);
+  return wrap;
+}
+```
+
+<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+
+```js
+newVsReturning()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Each artist counts once per year. The lists start in 2001, so the earliest bars treat everyone as new, including veterans who had been recording for years. That's why the comparisons here start in 2011.</p>
+
+```js
+statTiles([
+  {label: "New solo women per year", value: `${newPerYear("Solo women", 2011, 2015).toFixed(1)} → ${newPerYear("Solo women", 2021, 2025).toFixed(1)}`,
+   caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025."},
+  {label: "New solo men per year", value: `${newPerYear("Solo men", 2011, 2015).toFixed(1)} → ${newPerYear("Solo men", 2021, 2025).toFixed(1)}`,
+   caption: "The same two periods. The door narrowed for men as it widened for women."},
+  {label: "Returning solo women", value: `${returningShare("Solo women", 2011, 2015).toFixed(0)}% → ${returningShare("Solo women", 2021, 2025).toFixed(0)}%`,
+   caption: `Share of each year's solo women who had been listed before. For solo men: ${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%.`}
+])
+```
+
+The answer is new names. About ${newPerYear("Solo women", 2011, 2015).toFixed(0)} solo women a year made a list for the first time in 2011&ndash;2015, and about ${newPerYear("Solo women", 2021, 2025).toFixed(0)} a year did in 2021&ndash;2025. For solo men it went the other way, from about ${newPerYear("Solo men", 2011, 2015).toFixed(0)} a year to about ${newPerYear("Solo men", 2021, 2025).toFixed(0)}. Once artists are in, women and men come back at about the same rate (more on that below), so the change is in who gets through the door, not in who stays.
+
+## The names behind the numbers
+
+Here are the solo artists who landed three or more albums on the lists since 2016: ${repeatNames("Solo women").length} women and ${repeatNames("Solo men").length} men. Each dot is an album, placed in the year it made the list. Hover to see which one.
+
+```js
+function repeatNames(c) {
+  const by = d3.group(rows.filter((d) => d.list_year >= 2016 && category(d) === c), (d) => d.artist_id);
+  return [...by].filter(([id, v]) => v.length >= 3)
+    .map(([id, v]) => ({name: v[0].artist_name, items: v.slice().sort((a, b) => a.list_year - b.list_year)}))
+    .sort((a, b) => b.items.length - a.items.length || a.items[0].list_year - b.items[0].list_year || a.name.localeCompare(b.name));
+}
+```
+
+```js
+function repeatArtists() {
+  const panels = ["Solo women", "Solo men"].map((c) => ({c, list: repeatNames(c)}));
+  const yrs = d3.range(2016, 2026);
+  const rowH = 23, m = {l: 150, r: 96, t: 8, b: 8}, headH = 58;
+  const width = 880, pw = width - m.l - m.r;
+  const x = d3.scalePoint(yrs, [0, pw]).padding(0.5);
+  const height = m.t + m.b + d3.sum(panels, (p) => headH + p.list.length * rowH);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
+  let top = m.t;
+  panels.forEach(({c, list}) => {
+    svg.append("text").attr("x", 20).attr("y", top + 18).attr("fill", catColor[c]).attr("font-size", 13).attr("font-weight", 600).text(c);
+    svg.append("text").attr("x", 20 + 90).attr("y", top + 18).attr("fill", "#898781").attr("font-size", 12).text(`${list.length} artists with three or more albums on the lists, 2016–2025`);
+    yrs.forEach((yr) => svg.append("text").attr("x", m.l + x(yr)).attr("y", top + 46).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 10).text(yr));
+    const g = svg.append("g").attr("transform", `translate(0,${top + headH})`);
+    yrs.forEach((yr) => g.append("line").attr("x1", m.l + x(yr)).attr("x2", m.l + x(yr)).attr("y1", -4).attr("y2", list.length * rowH - 6).attr("stroke", "#2a2a27"));
+    list.forEach((a, i) => {
+      const cy = i * rowH + 8;
+      g.append("text").attr("x", m.l - 14).attr("y", cy).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(a.name);
+      g.append("line").attr("x1", m.l + x(a.items[0].list_year)).attr("x2", m.l + x(a.items[a.items.length - 1].list_year)).attr("y1", cy).attr("y2", cy).attr("stroke", catColor[c]).attr("stroke-width", 2).attr("opacity", 0.3);
+      a.items.forEach((d) => g.append("circle").attr("cx", m.l + x(d.list_year)).attr("cy", cy).attr("r", 6).attr("fill", catColor[c])
+        .on("pointerenter pointermove", (event) => showTip(event, `<b>${a.name}</b><br>${d.list_year} &middot; #${d.rank}<br><i>${d.release_group_name}</i>`))
+        .on("pointerleave", hideTip));
+      g.append("text").attr("x", m.l + pw + 18).attr("y", cy).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 11).text(`${a.items.length} albums`);
+    });
+    top += headH + list.length * rowH;
+  });
+  return svg.node();
+}
+```
+
+<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+
+```js
+repeatArtists()
+```
+
+</div>
+
+```js
+// how bumpy each line is: the average change from one year to the next, 2011–2025
+const countIn = (c, yr) => (byYear.get(yr) ?? []).filter((d) => category(d) === c).length;
+const swing = (c) => d3.mean(d3.range(2012, 2026), (yr) => Math.abs(countIn(c, yr) - countIn(c, yr - 1)));
+```
+
+Soccer Mommy landed an album in 2018, 2020, 2022, and 2024, and Little Simz in 2019, 2021, 2023, and 2025, a new album every other year. Mitski and Beyonc&eacute; landed four each, and Angel Olsen landed five between 2016 and 2022. On the men's side, Ty Segall landed three years running (2016&ndash;2018) and then again in 2021, 2024, and 2025. Kevin Morby landed five times between 2016 and 2022 and hasn't since. In general the men's line is the bumpier one: from one year to the next, the number of solo men on the list moves by about ${swing("Solo men").toFixed(0)} albums on average since 2011, against about ${swing("Solo women").toFixed(0)} for solo women.
+
+That raises a question about the men. Did they stop making albums, or did their albums stop landing?
+
+## Did solo men stop making albums?
+
+To find out, I took the solo artists who were already established, meaning first listed in 2015 or earlier, and looked up every studio album MusicBrainz has for them from 2016 to 2025, whether or not it made a list.
+
+```js
+const studio = FileAttachment("data/studio_albums_2016_2025.csv").csv({typed: true});
+```
+
+```js
+const activity = Object.fromEntries(["Solo women", "Solo men", "Groups"].map((c) => {
+  const ids = new Set([...firstYear].filter(([id, fy]) => fy <= 2015 && catOfArtist.get(id) === c).map(([id]) => id));
+  const al = studio.filter((d) => ids.has(d.artist_id));
+  const releasers = new Set(al.map((d) => d.artist_id)).size;
+  const listed = d3.sum(al, (d) => d.on_list);
+  return [c, {c, n: ids.size, releasers, albums: al.length, listed, pct: 100 * listed / al.length}];
+}));
+const albumsOf = (name) => {
+  const id = rows.find((d) => d.artist_name === name)?.artist_id;
+  const al = studio.filter((d) => d.artist_id === id);
+  return {n: al.length, listed: d3.sum(al, (d) => d.on_list)};
+};
+```
+
+```js
+statTiles([
+  {label: "Established solo women still releasing", value: `${activity["Solo women"].releasers} of ${activity["Solo women"].n}`,
+   caption: `Put out at least one studio album in 2016–2025 (${(100 * activity["Solo women"].releasers / activity["Solo women"].n).toFixed(0)}%).`},
+  {label: "Established solo men still releasing", value: `${activity["Solo men"].releasers} of ${activity["Solo men"].n}`,
+   caption: `The same test (${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}%). They didn't go quiet.`},
+  {label: "Albums that made a list", value: `${activity["Solo women"].pct.toFixed(0)}% vs ${activity["Solo men"].pct.toFixed(0)}%`,
+   caption: `Solo women's albums compared with solo men's, 2016–2025.`}
+])
+```
+
+```js
+function releaseVsListed() {
+  const cats = ["Solo women", "Solo men", "Groups"];
+  const width = 880, m = {l: 150, r: 250, t: 14, b: 14}, rowH = 46, height = m.t + cats.length * rowH + m.b;
+  const pw = width - m.l - m.r;
+  const x = d3.scaleLinear().domain([0, 50]).range([0, pw]);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
+  const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
+  cats.forEach((c, i) => {
+    const a = activity[c], cy = i * rowH + 20;
+    g.append("text").attr("x", -14).attr("y", cy).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 13).text(c);
+    g.append("rect").attr("x", 0).attr("y", cy - 10).attr("width", pw).attr("height", 20).attr("rx", 3).attr("fill", "#232321");
+    g.append("rect").attr("x", 0).attr("y", cy - 10).attr("width", x(a.pct)).attr("height", 20).attr("rx", 3).attr("fill", catColor[c])
+      .on("pointerenter pointermove", (event) => showTip(event, `<b>${c}</b><br>${a.listed} of ${a.albums} albums made a list`))
+      .on("pointerleave", hideTip);
+    g.append("text").attr("x", pw + 14).attr("y", cy - 1).attr("dominant-baseline", "middle").attr("fill", "#f0efec").attr("font-size", 14).attr("font-weight", 600).text(`${a.pct.toFixed(0)}% made a list`);
+    g.append("text").attr("x", pw + 14).attr("y", cy + 15).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 11).text(`${a.listed} of ${a.albums} albums · ${a.releasers} of ${a.n} artists`);
+  });
+  return svg.node();
+}
+```
+
+<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+
+```js
+releaseVsListed()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums released 2016&ndash;2025 by artists first listed in 2015 or earlier, as MusicBrainz records them. Reissues and unusual releases can slip in, so treat the percentages as approximate.</p>
+
+So the men didn't go quiet. ${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}% of established solo men put out at least one studio album, about the same as the women, and together they released ${activity["Solo men"].albums} of them. Damien Jurado put out ${albumsOf("Damien Jurado").n} studio albums in that stretch and ${albumsOf("Damien Jurado").listed} made a list. Andrew Bird: ${albumsOf("Andrew Bird").n} and ${albumsOf("Andrew Bird").listed}. Neil Young: ${albumsOf("Neil Young").n} and ${albumsOf("Neil Young").listed}. Ty Segall shows the other outcome: ${albumsOf("Ty Segall").n} albums, ${albumsOf("Ty Segall").listed} of them on lists.
+
+What changed is the odds. About ${activity["Solo men"].pct.toFixed(0)}% of those men's albums made a list, compared with ${activity["Solo women"].pct.toFixed(0)}% of the women's. I can't tell from this whether that is listener taste, what KEXP championed, or both. How much those albums were actually played is a separate question for a later post.
+
+## Once they're in, do they come back?
+
+The first post asked who sticks around, and this is the same question for these groups. Of the artists first listed from 2011 to 2020, how many came back to a later list within five years?
 
 ```js
 // how long it takes returning artists to come back (artists first listed by 2015, so 10+ years are observable)
-const _first = d3.rollup(rows, (v) => d3.min(v, (d) => d.list_year), (d) => d.artist_id);
-const _all = d3.rollup(rows, (v) => d3.sort(new Set(v.map((d) => d.list_year))), (d) => d.artist_id);
-const _gaps = [..._first].filter(([id, fy]) => fy <= 2015).map(([id]) => _all.get(id)).filter((ys) => ys.length >= 2).map((ys) => ys[1] - ys[0]);
+const _gaps = [...firstYear].filter(([id, fy]) => fy <= 2015).map(([id]) => yearsOf.get(id)).filter((ys) => ys.length >= 2).map((ys) => ys[1] - ys[0]);
 const within = (k) => Math.round(100 * _gaps.filter((g) => g <= k).length / _gaps.length);
 ```
 
-```js
-(() => {
-  const p = document.createElement("p");
-  p.innerHTML = `Why only artists first listed by 2015? An artist who debuts on a list in 2024 hasn't had time to come back, so for them "one and done" mostly means "not yet." And when artists do come back, they do it quickly: of those who returned, ${within(3)}% were back within three years and ${within(10)}% within ten. Giving every artist at least ten years to return catches nearly all of the comebacks, and keeps the comparison fair between artists who debuted in 2003 and ones who debuted in 2013.`;
-  return p;
-})()
-```
+Why five years, and why start in 2011? Of the artists who ever came back, ${within(3)}% were back within three years and ${within(5)}% within five, so five years catches the large majority of comebacks and still lets me include artists who debuted as recently as 2020, just as the solo women's rise was taking off. Starting in 2011 skips the early years, when the lists had no history and almost every artist looked like a newcomer.
 
 ```js
 function wilson(k, n, z = 1.96) {
   const p = k / n, d = 1 + z * z / n, c = p + z * z / (2 * n), a = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n));
   return [100 * (c - a) / d, 100 * (c + a) / d];
 }
-const firstYear = d3.rollup(rows, (v) => d3.min(v, (d) => d.list_year), (d) => d.artist_id);
-const yearsListed = d3.rollup(rows, (v) => new Set(v.map((d) => d.list_year)).size, (d) => d.artist_id);
-const catOfArtist = new Map(rows.map((d) => [d.artist_id, category(d)]));
-const cohort = [...firstYear].filter(([id, fy]) => fy <= 2015).map(([id]) => id);
+const backWithin = (id, k) => yearsOf.get(id).some((y) => y > firstYear.get(id) && y <= firstYear.get(id) + k);
 const retention = ["Groups", "Solo women", "Solo men"].map((c) => {
-  const ids = cohort.filter((id) => catOfArtist.get(id) === c);
-  const back = ids.filter((id) => yearsListed.get(id) >= 2).length;
+  const ids = [...firstYear].filter(([id, fy]) => fy >= 2011 && fy <= 2020 && catOfArtist.get(id) === c).map(([id]) => id);
+  const back = ids.filter((id) => backWithin(id, 5)).length;
   const [lo, hi] = wilson(back, ids.length);
   return {c, n: ids.length, back, p: 100 * back / ids.length, lo, hi};
 });
+const retOf = Object.fromEntries(retention.map((r) => [r.c, r]));
 
 function retentionChart() {
   const width = 880, height = 250, m = {l: 120, r: 190, t: 20, b: 40};
   const pw = width - m.l - m.r;
-  const x = d3.scaleLinear().domain([30, 80]).range([0, pw]);
+  const x = d3.scaleLinear().domain([20, 80]).range([0, pw]);
   const rowH = 58;
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
   const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
-  [30, 40, 50, 60, 70, 80].forEach((t) => {
+  [20, 30, 40, 50, 60, 70, 80].forEach((t) => {
     g.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 0).attr("y2", retention.length * rowH - 10).attr("stroke", "#33322f");
     g.append("text").attr("x", x(t)).attr("y", retention.length * rowH + 6).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 10).text(t + "%");
   });
@@ -599,16 +831,11 @@ retentionChart()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share who appeared on more than one year's list. The line is the range the true figure could plausibly fall in, given how many artists there are. Where the lines overlap, the data can't tell the groups apart.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share of artists first listed in 2011&ndash;2020 who appeared on another year's list within five years. The line is the range the true figure could plausibly fall in, given how many artists there are. Where the lines overlap, the data can't tell the groups apart.</p>
 
-About half of every kind of artist came back. The solo women look a little higher, and they stay a bit higher when I move the cutoff earlier or later, but with only 57 of them in this group, their range overlaps with everyone else's. I'd call it a tie, and a good one to revisit as more years come in.
-
-<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
-  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Whether an artist counts as a band or a solo act, and the gender recorded for solo artists, comes straight from <a href="https://musicbrainz.org/" target="_top" style="color:inherit; text-decoration:underline;">MusicBrainz</a>, a free music database that volunteers around the world add to and correct. That crowd-sourcing is why it's so thorough, and also why it's never complete or perfectly accurate. In my own saved copy I found a year typo that MusicBrainz's editors had already fixed by the time I looked, and another date that I had to correct myself. If an artist is misgendered or mislabeled here, that comes directly from the source; I haven't changed those fields, and the fix belongs there. When I catch an error that matters to a chart, I note it on the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page. And if you spot something wrong or missing, I'd encourage you to <a href="https://musicbrainz.org/register" target="_top" style="color:inherit; text-decoration:underline;">register at MusicBrainz</a> and fix it. A better MusicBrainz makes the data behind this blog richer and more accurate, and it helps everyone else who uses it too.</div>
-</div>
+About ${retOf["Solo women"].p.toFixed(0)}% of the solo women came back, compared with ${retOf["Solo men"].p.toFixed(0)}% of the solo men and ${retOf["Groups"].p.toFixed(0)}% of the bands. The solo women's dot sits a little higher, but the ranges overlap, so the data can't separate the three. That is the point. If the women's rise came from a few favorites returning far more often than anyone else, they would stand out clearly here. They don't. More women got on the lists, and once they did, they came back at a similar rate to everyone else.
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Gender is only recorded for individual artists, so every gender figure here covers solo artists, about a third of everyone on the lists. I don't assign one to bands: lineups change from album to album, and MusicBrainz counts some solo-led projects as bands. Five non-binary solo artists are too few to chart on their own, so they're left out of the gender percentages.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Gender is only recorded for individual artists, so every gender figure here covers solo artists, about a third of everyone on the lists. I don't assign one to bands: lineups change from album to album, and MusicBrainz counts some solo-led projects, like Japanese Breakfast, as bands, so they show up as purple here. Five non-binary solo artists are too few to chart on their own, so they're left out of the gender percentages. &ldquo;New&rdquo; means new to these lists, which start in 2001, and the album counts in the last two sections come from MusicBrainz's studio album listings, so a few odd releases can slip in.</div>
 </div>
