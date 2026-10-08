@@ -332,7 +332,11 @@ statTiles([
 
 The first thing you notice is the purple. The second is the gold: a few scattered dots in the early years, then whole rows of it by the 2020s.
 
-## The share, year by year
+## Interesting observations
+
+The grid above shows every album on every list. The charts below pull back to ask what they add up to.
+
+### The share, year by year
 
 The same story, as a share of each year's list. Every album counts once.
 
@@ -392,7 +396,7 @@ shareArea("Entries")
 
 Bands start near three-quarters of every list and settle at roughly three in five. The teal barely moves. Nearly all of the change is gold.
 
-## Who gets to #1?
+### Who gets to #1?
 
 The top spot tells the same story, only more starkly.
 
@@ -435,7 +439,7 @@ numberOneLanes()
 
 Bands took the top spot every year from 2001 to 2004. Sufjan Stevens broke the run in 2005, and then bands won it nine years straight. Since 2015, solo artists have hit #1 four times: Courtney Barnett twice, David Bowie, and Lizzo.
 
-## Solo artists: counts, not just shares
+### Solo artists: counts, not just shares
 
 A rising share can mean one group is growing or another is shrinking, so here are the actual numbers: how many albums by solo women and by solo men made each year's list.
 
@@ -511,7 +515,7 @@ statTiles([
 
 Solo women went from five or six albums a year to more than twenty. Solo men didn't change. The lists didn't get any bigger, so the new room came from bands, not from solo men.
 
-## Counting albums or counting artists?
+### Counting albums or counting artists?
 
 So far every chart has counted albums, so an artist with three albums on the lists counts three times. Counting each artist once instead barely changes the picture:
 
@@ -551,7 +555,7 @@ albumsVsArtists()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Solid bars count albums on the lists. Faded bars count each artist once.</p>
 
-## Who's behind the rise?
+### Who's behind the rise?
 
 So where did all those solo women come from? One possibility is a handful of stars returning year after year. The other is a steady stream of new names. This chart counts the artists on each year's list and splits them in two: those appearing on a list for the first time (solid), and those who had been on an earlier year's list (faded).
 
@@ -640,7 +644,7 @@ statTiles([
 
 The answer is new names. About ${newPerYear("Solo women", 2011, 2015).toFixed(0)} solo women a year made a list for the first time in 2011&ndash;2015, and about ${newPerYear("Solo women", 2021, 2025).toFixed(0)} a year did in 2021&ndash;2025. For solo men it went the other way, from about ${newPerYear("Solo men", 2011, 2015).toFixed(0)} a year to about ${newPerYear("Solo men", 2021, 2025).toFixed(0)}. Once artists are in, women and men come back at about the same rate (more on that below), so the change is mostly in who gets through the door, not in who stays.
 
-## The names behind the numbers
+### The names behind the numbers
 
 ```js
 const womenSince2016 = rows.filter((d) => d.list_year >= 2016 && category(d) === "Solo women");
@@ -711,7 +715,7 @@ Soccer Mommy landed an album in 2018, 2020, 2022, and 2024, and Little Simz in 2
 
 That raises a question about the men. Did they stop making albums, or did their albums stop landing?
 
-## Did solo men stop making albums?
+### Did solo men stop making albums?
 
 To find out, I took the solo artists who were already established, meaning first listed in 2015 or earlier, and looked up every studio album MusicBrainz has for them from 2016 to 2025, whether or not it made a list.
 
@@ -781,7 +785,7 @@ So the men didn't go quiet. ${(100 * activity["Solo men"].releasers / activity["
 
 What changed is the odds. About ${activity["Solo men"].pct.toFixed(0)}% of those men's albums made a list, compared with ${activity["Solo women"].pct.toFixed(0)}% of the women's. I can't tell from this whether that is listener taste, what KEXP championed, or both. How much those albums were actually played is a separate question for a later post.
 
-## Once they're in, do they come back?
+### Once they're in, do they come back?
 
 The first post asked who sticks around, and this is the same question for these groups. Of the artists first listed from 2011 to 2020, how many came back to a later list within five years?
 
