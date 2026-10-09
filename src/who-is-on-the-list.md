@@ -299,14 +299,6 @@ function waffleChart(yearsSel, artistSel) {
   });
   apply();
   wrap.append(svg.node(), key);
-  if (artistSel) {
-    const mine = rows.filter((d) => d.artist_id === artistSel).sort((a, b) => a.list_year - b.list_year);
-    const t = document.createElement("div");
-    t.style.cssText = "margin:0.9rem 0 0.25rem;font-size:13px;color:#c9c8c3;line-height:1.7;";
-    t.innerHTML = `<b style="color:#f0efec">${mine[0].artist_name}</b> &middot; ${category(mine[0])} &middot; ${mine.length} album${mine.length === 1 ? "" : "s"} on the lists<br>` +
-      mine.map((d) => `${d.list_year} &middot; #${d.rank} &middot; <i>${d.release_group_name}</i>`).join("<br>");
-    wrap.append(t);
-  }
   return wrap;
 }
 ```
@@ -318,6 +310,65 @@ waffleChart(selectedYears, selectedArtist)
 ```
 
 </div>
+
+```js
+function artistTable(artistId, data) {
+  const container = document.createElement("div");
+  container.style.cssText = "margin:1rem 0 1.5rem;";
+
+  if (!artistId) {
+    container.style.cssText += "color:var(--theme-foreground-muted);font-size:14px;";
+    container.textContent = "Search for an artist above to see every year they made the list, highlighted in the grid too.";
+    return container;
+  }
+
+  const entries = data.filter((d) => d.artist_id === artistId).sort((a, b) => a.list_year - b.list_year);
+
+  const heading = document.createElement("div");
+  heading.style.cssText = "font-weight:600;font-size:15px;margin-bottom:0.5rem;";
+  heading.textContent = `${entries[0].artist_name} — ${entries.length} appearance${entries.length === 1 ? "" : "s"} (${category(entries[0])})`;
+
+  const tableWrap = document.createElement("div");
+  tableWrap.style.cssText = "overflow-x:auto;";
+
+  const table = document.createElement("table");
+  table.style.cssText = "width:100%;max-width:520px;border-collapse:collapse;font-size:14px;";
+
+  const thead = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  for (const label of ["Year", "Rank", "Album"]) {
+    const th = document.createElement("th");
+    th.textContent = label;
+    th.style.cssText = "text-align:left;padding:6px 12px 6px 0;border-bottom:1px solid var(--theme-foreground-faint);color:var(--theme-foreground-muted);font-weight:600;";
+    headRow.append(th);
+  }
+  thead.append(headRow);
+
+  const tbody = document.createElement("tbody");
+  for (const d of entries) {
+    const tr = document.createElement("tr");
+    const tdYear = document.createElement("td");
+    tdYear.textContent = d.list_year;
+    tdYear.style.cssText = "padding:6px 12px 6px 0;border-bottom:1px solid var(--theme-foreground-faint);";
+    const tdRank = document.createElement("td");
+    tdRank.textContent = `#${d.rank}`;
+    tdRank.style.cssText = "padding:6px 12px;border-bottom:1px solid var(--theme-foreground-faint);";
+    const tdAlbum = document.createElement("td");
+    tdAlbum.textContent = d.release_group_name;
+    tdAlbum.style.cssText = "padding:6px 12px;border-bottom:1px solid var(--theme-foreground-faint);";
+    tr.append(tdYear, tdRank, tdAlbum);
+    tbody.append(tr);
+  }
+  table.append(thead, tbody);
+  tableWrap.append(table);
+  container.append(heading, tableWrap);
+  return container;
+}
+```
+
+```js
+artistTable(selectedArtist, rows)
+```
 
 ```js
 statTiles([
