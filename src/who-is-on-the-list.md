@@ -1,12 +1,55 @@
 ---
 title: Who's on the list? (draft)
 toc: false
-head: '<link rel="icon" href="favicon.png" type="image/png" sizes="32x32"><script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js"></script><script>if (window.self !== window.top) { document.documentElement.classList.add("embedded"); }</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><style>.embedded { --serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; } .embedded body { font-size: 17px; line-height: 1.6; color: #15171a; } .embedded main { margin-top: 0 !important; } .embedded main > p { margin: 28px 0; } .embedded main > h2 { margin-top: 56px; } .embedded main > h3 { margin-top: 44px; } .embedded .standalone-only + p { margin-top: 0; } .embedded #observablehq-footer { display: none; } p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; } .embedded #observablehq-center { margin: 0 !important; } .embedded main > h1, .embedded .standalone-only { display: none; } .dmo-tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; } .dmo-tile { padding: 0 0.25rem; } .dmo-tile + .dmo-tile { border-top: 1px solid #33322f; padding-top: 1.25rem; } @media (min-width: 760px) { .dmo-tiles { grid-template-columns: repeat(3, 1fr); gap: 0; } .dmo-tile { padding: 0 1.5rem; } .dmo-tile + .dmo-tile { border-top: 0; padding-top: 0; border-left: 1px solid #33322f; } }</style>'
+head: |
+  <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+  <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js">
+  </script>
+  <script>if (window.self !== window.top) { document.documentElement.classList.add("embedded"); }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>.embedded { --serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; } html.embedded body { font-size: 17px; line-height: 1.6; color: var(--dmo-fg); } .embedded main { margin-top: 0 !important; } .embedded main > p { margin: 28px 0; } .embedded main > h2 { margin-top: 56px; } .embedded main > h3 { margin-top: 44px; } .embedded .standalone-only + p { margin-top: 0; } .embedded #observablehq-footer { display: none; } p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; } .embedded #observablehq-center { margin: 0 !important; } .embedded main > h1, .embedded .standalone-only { display: none; } .dmo-tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; } .dmo-tile { padding: 0 0.25rem; } .dmo-tile + .dmo-tile { border-top: 1px solid #33322f; padding-top: 1.25rem; } @media (min-width: 760px) { .dmo-tiles { grid-template-columns: repeat(3, 1fr); gap: 0; } .dmo-tile { padding: 0 1.5rem; } .dmo-tile + .dmo-tile { border-top: 0; padding-top: 0; border-left: 1px solid #33322f; } } html.embedded { --dmo-fg: #15171a; --dmo-bg-solid: #ffffff; --theme-foreground: var(--dmo-fg); --theme-background: var(--dmo-bg-solid); --theme-foreground-muted: color-mix(in srgb, var(--dmo-fg) 68%, var(--dmo-bg-solid)); --theme-foreground-faint: color-mix(in srgb, var(--dmo-fg) 38%, var(--dmo-bg-solid)); --theme-foreground-fainter: color-mix(in srgb, var(--dmo-fg) 18%, var(--dmo-bg-solid)); --theme-foreground-faintest: color-mix(in srgb, var(--dmo-fg) 8%, var(--dmo-bg-solid)); } @media (prefers-color-scheme: dark) { html.embedded { --dmo-fg: #dcdcd6; --dmo-bg-solid: #15171a; } } html.embedded, html.embedded body { background: var(--dmo-bg-solid); } </style>
+  <script>
+  (function () {
+    var d = document.documentElement, embedded = window.self !== window.top;
+    // match the blog page this chart sits in (its light or dark colors) once it tells us what they are
+    function ok(v) { return typeof v === "string" && /^rgba?\([0-9., %\/]+\)$/.test(v); }
+    window.addEventListener("message", function (e) {
+      var t = e.data && e.data.dmoTheme;
+      if (!t || e.source !== window.parent) return;
+      if (ok(t.fg)) d.style.setProperty("--dmo-fg", t.fg);
+      if (ok(t.bg)) d.style.setProperty("--dmo-bg-solid", t.bg);
+    });
+    if (embedded) { try { window.parent.postMessage({dmoHello: 1}, "*"); } catch (e) {} }
+    // links to other sites open in a new tab; links to the blog itself replace the whole page
+    function fixLinks() {
+      document.querySelectorAll("a[href]").forEach(function (a) {
+        try {
+          var u = new URL(a.href, location.href);
+          if (u.protocol.indexOf("http") !== 0) return;
+          if (/(^|\.)digmeoutliers\.com$/.test(u.hostname)) { a.target = "_top"; }
+          else if (u.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+        } catch (e) {}
+      });
+    }
+    var timer;
+    function later() { clearTimeout(timer); timer = setTimeout(fixLinks, 100); }
+    document.addEventListener("DOMContentLoaded", function () {
+      fixLinks();
+      new MutationObserver(later).observe(document.body, {childList: true, subtree: true});
+    });
+  })();
+  </script>
 ---
 
 # Who's on the list?
 
 <p class="standalone-only"><strong>Draft</strong> &mdash; unlisted page for the next post. Not linked from anywhere.</p>
+
+```js
+import {makeTooltip, enableTap} from "./components/tooltip.js";
+```
 
 ```js
 const rows = FileAttachment("data/who_is_on_the_list_2001_2025.csv").csv({typed: true});
@@ -30,20 +73,10 @@ const years = d3.sort(new Set(rows.map((d) => d.list_year)));
 const byYear = d3.group(rows, (d) => d.list_year);
 const CARD = "background:#1a1a19;border-radius:12px;max-width:100%;height:auto;font-family:var(--sans-serif);";
 
-// one shared tooltip
-const tipEl = (() => {
-  const t = document.createElement("div");
-  t.style.cssText = "position:fixed;pointer-events:none;background:#1a1a19;color:#f0efec;border:1px solid #383835;border-radius:8px;padding:8px 10px;font-size:12px;font-family:var(--sans-serif);opacity:0;transition:opacity 0.1s;z-index:10;min-width:150px;max-width:260px;";
-  document.body.appendChild(t);
-  return t;
-})();
-function showTip(event, html) {
-  tipEl.innerHTML = html;
-  tipEl.style.opacity = 1;
-  tipEl.style.left = Math.min(event.clientX + 14, window.innerWidth - 270) + "px";
-  tipEl.style.top = event.clientY + 14 + "px";
-}
-function hideTip() { tipEl.style.opacity = 0; }
+// one shared tooltip (stays on screen near the edges, works with taps)
+const tip = makeTooltip({minWidth: 150, maxWidth: 260});
+const showTip = (event, html) => tip.show(event, html);
+const hideTip = (event) => tip.hide(event);
 const swatch = (c) => `<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${catColor[c]};margin-right:6px"></span>`;
 
 function legendEl(cats) {
@@ -256,6 +289,7 @@ function waffleChart(yearsSel, artistSel) {
   const wrap = document.createElement("div");
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
   const yearOn = new Set(yearsSel);
+  const tapPts = [];
 
   years.forEach((yr, yi) => {
     const px = x0 + (yi % perRow) * (panelW + gapX), py = 14 + Math.floor(yi / perRow) * (panelH + gapY + labelH);
@@ -264,12 +298,16 @@ function waffleChart(yearsSel, artistSel) {
     list.forEach((d, i) => {
       const cx = px + (i % cols) * pitch + pitch / 2, cy = py + labelH + Math.floor(i / cols) * pitch + pitch / 2;
       const c = category(d);
+      const html = `<b>${yr} &middot; #${d.rank}</b><br>${d.artist_name}<br><i>${d.release_group_name}</i><br><span style="color:#898781">${swatch(c)}${c}</span>`;
+      tapPts.push({x: cx, y: cy, html});
       svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", catColor[c]).attr("data-cat", c).attr("data-year", yr).attr("data-artist", d.artist_id)
         .style("transition", "opacity 0.15s")
-        .on("pointerenter pointermove", (event) => showTip(event, `<b>${yr} &middot; #${d.rank}</b><br>${d.artist_name}<br><i>${d.release_group_name}</i><br><span style="color:#898781">${swatch(c)}${c}</span>`))
+        .on("pointerenter pointermove", (event) => showTip(event, html))
         .on("pointerleave", hideTip);
     });
   });
+
+  enableTap(svg, tip, tapPts, 9);
 
   const key = document.createElement("div");
   key.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin:0.9rem 0 0.25rem;justify-content:center;";
@@ -421,14 +459,14 @@ function shareArea(mode) {
 
   const cursor = g.append("line").attr("y1", 0).attr("y2", ph).attr("stroke", "#f0efec").attr("stroke-width", 1).attr("opacity", 0);
   g.append("rect").attr("width", pw).attr("height", ph).attr("fill", "transparent")
-    .on("pointermove pointerenter", (event) => {
+    .on("pointerdown pointermove pointerenter", (event) => {
       const [mx] = d3.pointer(event);
       const i = Math.max(0, Math.min(years.length - 1, Math.round(((mx / pw) * (years[years.length - 1] - years[0])))));
       cursor.attr("x1", x(years[i])).attr("x2", x(years[i])).attr("opacity", 0.8);
       const lines = [...catOrder].reverse().map((k) => `<div style="display:flex;justify-content:space-between;gap:12px"><span>${swatch(k)}${k}</span><b>${(100 * (shares[i][k])).toFixed(0)}% <span style="font-weight:400;color:#898781">(${raw[i][k] || 0})</span></b></div>`);
       showTip(event, `<b>${years[i]}</b> &middot; ${tot[i]}<br>${lines.join("")}`);
     })
-    .on("pointerleave", () => { cursor.attr("opacity", 0); hideTip(); });
+    .on("pointerleave", (event) => { cursor.attr("opacity", 0); hideTip(event); });
   const wrap = document.createElement("div");
   wrap.append(svg.node(), legendEl([...catOrder].reverse()));
   return wrap;
@@ -463,11 +501,14 @@ function numberOneLanes() {
     svg.append("text").attr("x", m.l - 14).attr("y", laneY[l]).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", catColor[l]).attr("font-size", 12).attr("font-weight", 600).text(l);
   });
   years.forEach((yr, i) => { if (i % 2 === 0) svg.append("text").attr("x", x(yr)).attr("y", height - 10).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 10).text(yr); });
+  const tapPts = [];
   const prev = {};   // last labeled #1 in each lane, so neighbors can alternate above/below
   ones.slice().sort((a, b) => a.list_year - b.list_year).forEach((d) => {
     const c = category(d), cx = x(d.list_year), cy = laneY[c];
+    const html = `<b>${d.list_year}</b> &middot; ${d.artist_name}<br><i>${d.release_group_name}</i>`;
+    tapPts.push({x: cx, y: cy, html});
     svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 10).attr("fill", catColor[c])
-      .on("pointerenter pointermove", (event) => showTip(event, `<b>${d.list_year}</b> &middot; ${d.artist_name}<br><i>${d.release_group_name}</i>`))
+      .on("pointerenter pointermove", (event) => showTip(event, html))
       .on("pointerleave", hideTip);
     if (c !== "Groups") {
       const near = prev[c] && d.list_year - prev[c].year <= 3;
@@ -476,6 +517,7 @@ function numberOneLanes() {
       svg.append("text").attr("x", cx).attr("y", side === "below" ? cy + 24 : cy - 17).attr("text-anchor", "middle").attr("fill", "#c9c8c3").attr("font-size", 10).text(d.artist_name);
     }
   });
+  enableTap(svg, tip, tapPts, 26);
   return svg.node();
 }
 ```
@@ -532,13 +574,13 @@ function soloCounts(mode) {
   });
   const cursor = g.append("line").attr("y1", 0).attr("y2", ph).attr("stroke", "#f0efec").attr("opacity", 0);
   g.append("rect").attr("width", pw).attr("height", ph).attr("fill", "transparent")
-    .on("pointermove pointerenter", (event) => {
+    .on("pointerdown pointermove pointerenter", (event) => {
       const [mx] = d3.pointer(event);
       const i = Math.max(0, Math.min(years.length - 1, Math.round((mx / pw) * (years[years.length - 1] - years[0]))));
       cursor.attr("x1", x(years[i])).attr("x2", x(years[i])).attr("opacity", 0.7);
       showTip(event, `<b>${years[i]}</b><br>${cats.map((k) => `<div style="display:flex;justify-content:space-between;gap:12px"><span>${swatch(k)}${k}</span><b>${data[i].c[k] || 0}</b></div>`).join("")}`);
     })
-    .on("pointerleave", () => { cursor.attr("opacity", 0); hideTip(); });
+    .on("pointerleave", (event) => { cursor.attr("opacity", 0); hideTip(event); });
   return svg.node();
 }
 ```
@@ -726,6 +768,7 @@ function repeatArtists() {
   const x = d3.scalePoint(yrs, [0, pw]).padding(0.5);
   const height = m.t + m.b + d3.sum(panels, (p) => headH + p.list.length * rowH);
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
+  const tapPts = [];
   let top = m.t;
   panels.forEach(({c, list}) => {
     svg.append("text").attr("x", 20).attr("y", top + 18).attr("fill", catColor[c]).attr("font-size", 13).attr("font-weight", 600).text(c);
@@ -737,13 +780,18 @@ function repeatArtists() {
       const cy = i * rowH + 8;
       g.append("text").attr("x", m.l - 14).attr("y", cy).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(a.name);
       g.append("line").attr("x1", m.l + x(a.items[0].list_year)).attr("x2", m.l + x(a.items[a.items.length - 1].list_year)).attr("y1", cy).attr("y2", cy).attr("stroke", catColor[c]).attr("stroke-width", 2).attr("opacity", 0.3);
-      a.items.forEach((d) => g.append("circle").attr("cx", m.l + x(d.list_year)).attr("cy", cy).attr("r", 6).attr("fill", catColor[c])
-        .on("pointerenter pointermove", (event) => showTip(event, `<b>${a.name}</b><br>${d.list_year} &middot; #${d.rank}<br><i>${d.release_group_name}</i>`))
-        .on("pointerleave", hideTip));
+      a.items.forEach((d) => {
+        const html = `<b>${a.name}</b><br>${d.list_year} &middot; #${d.rank}<br><i>${d.release_group_name}</i>`;
+        tapPts.push({x: m.l + x(d.list_year), y: top + headH + cy, html});
+        g.append("circle").attr("cx", m.l + x(d.list_year)).attr("cy", cy).attr("r", 6).attr("fill", catColor[c])
+          .on("pointerenter pointermove", (event) => showTip(event, html))
+          .on("pointerleave", hideTip);
+      });
       g.append("text").attr("x", m.l + pw + 18).attr("y", cy).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 11).text(`${a.items.length} albums`);
     });
     top += headH + list.length * rowH;
   });
+  enableTap(svg, tip, tapPts, 14);
   return svg.node();
 }
 ```
@@ -867,6 +915,7 @@ function retentionChart() {
   const pw = width - m.l - m.r;
   const x = d3.scaleLinear().domain([20, 80]).range([0, pw]);
   const rowH = 58;
+  const tapPts = [];
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
   const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
   [20, 30, 40, 50, 60, 70, 80].forEach((t) => {
@@ -877,12 +926,15 @@ function retentionChart() {
     const cy = i * rowH + 20;
     g.append("text").attr("x", -14).attr("y", cy).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 13).text(r.c);
     g.append("line").attr("x1", x(r.lo)).attr("x2", x(r.hi)).attr("y1", cy).attr("y2", cy).attr("stroke", catColor[r.c]).attr("stroke-width", 6).attr("stroke-linecap", "round").attr("opacity", 0.45);
+    const html = `<b>${r.c}</b><br>${r.back} of ${r.n} came back<br><span style="color:#898781">plausible range ${r.lo.toFixed(0)}–${r.hi.toFixed(0)}%</span>`;
+    tapPts.push({x: m.l + x(r.p), y: m.t + cy, html});
     g.append("circle").attr("cx", x(r.p)).attr("cy", cy).attr("r", 9).attr("fill", catColor[r.c])
-      .on("pointerenter pointermove", (event) => showTip(event, `<b>${r.c}</b><br>${r.back} of ${r.n} came back<br><span style="color:#898781">plausible range ${r.lo.toFixed(0)}–${r.hi.toFixed(0)}%</span>`))
+      .on("pointerenter pointermove", (event) => showTip(event, html))
       .on("pointerleave", hideTip);
     g.append("text").attr("x", pw + 16).attr("y", cy - 7).attr("dominant-baseline", "middle").attr("fill", "#f0efec").attr("font-size", 14).attr("font-weight", 600).text(`${r.p.toFixed(0)}% came back`);
     g.append("text").attr("x", pw + 16).attr("y", cy + 10).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 11).text(`range ${r.lo.toFixed(0)}–${r.hi.toFixed(0)}% · ${r.n} artists`);
   });
+  enableTap(svg, tip, tapPts, 30);
   return svg.node();
 }
 ```

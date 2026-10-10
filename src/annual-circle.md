@@ -1,7 +1,46 @@
 ---
 title: 25 years of KEXP annual Listeners' Favorite lists
 toc: false
-head: '<link rel="icon" href="favicon.png" type="image/png" sizes="32x32"><script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js"></script><script>if (window.self !== window.top) { document.documentElement.classList.add("embedded"); }</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><style>.embedded { --serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; } .embedded body { font-size: 17px; line-height: 1.6; color: #15171a; } .embedded main { margin-top: 0 !important; } .embedded main > p { margin: 28px 0; } .embedded main > h2 { margin-top: 56px; } .embedded main > h3 { margin-top: 44px; } .embedded .standalone-only + p { margin-top: 0; } .embedded #observablehq-footer { display: none; } p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; } .embedded #observablehq-center { margin: 0 !important; } .embedded main > h1, .embedded .standalone-only { display: none; } .dmo-tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; } .dmo-tile { padding: 0 0.25rem; } .dmo-tile + .dmo-tile { border-top: 1px solid #33322f; padding-top: 1.25rem; } @media (min-width: 760px) { .dmo-tiles { grid-template-columns: repeat(3, 1fr); gap: 0; } .dmo-tile { padding: 0 1.5rem; } .dmo-tile + .dmo-tile { border-top: 0; padding-top: 0; border-left: 1px solid #33322f; } }</style>'
+head: |
+  <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+  <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@5.5.9/js/iframeResizer.contentWindow.min.js">
+  </script>
+  <script>if (window.self !== window.top) { document.documentElement.classList.add("embedded"); }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>.embedded { --serif: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; } html.embedded body { font-size: 17px; line-height: 1.6; color: var(--dmo-fg); } .embedded main { margin-top: 0 !important; } .embedded main > p { margin: 28px 0; } .embedded main > h2 { margin-top: 56px; } .embedded main > h3 { margin-top: 44px; } .embedded .standalone-only + p { margin-top: 0; } .embedded #observablehq-footer { display: none; } p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display { max-width: 920px; } .embedded #observablehq-center { margin: 0 !important; } .embedded main > h1, .embedded .standalone-only { display: none; } .dmo-tiles { display: grid; grid-template-columns: 1fr; gap: 1.25rem; } .dmo-tile { padding: 0 0.25rem; } .dmo-tile + .dmo-tile { border-top: 1px solid #33322f; padding-top: 1.25rem; } @media (min-width: 760px) { .dmo-tiles { grid-template-columns: repeat(3, 1fr); gap: 0; } .dmo-tile { padding: 0 1.5rem; } .dmo-tile + .dmo-tile { border-top: 0; padding-top: 0; border-left: 1px solid #33322f; } } html.embedded { --dmo-fg: #15171a; --dmo-bg-solid: #ffffff; --theme-foreground: var(--dmo-fg); --theme-background: var(--dmo-bg-solid); --theme-foreground-muted: color-mix(in srgb, var(--dmo-fg) 68%, var(--dmo-bg-solid)); --theme-foreground-faint: color-mix(in srgb, var(--dmo-fg) 38%, var(--dmo-bg-solid)); --theme-foreground-fainter: color-mix(in srgb, var(--dmo-fg) 18%, var(--dmo-bg-solid)); --theme-foreground-faintest: color-mix(in srgb, var(--dmo-fg) 8%, var(--dmo-bg-solid)); } @media (prefers-color-scheme: dark) { html.embedded { --dmo-fg: #dcdcd6; --dmo-bg-solid: #15171a; } } html.embedded, html.embedded body { background: var(--dmo-bg-solid); } </style>
+  <script>
+  (function () {
+    var d = document.documentElement, embedded = window.self !== window.top;
+    // match the blog page this chart sits in (its light or dark colors) once it tells us what they are
+    function ok(v) { return typeof v === "string" && /^rgba?\([0-9., %\/]+\)$/.test(v); }
+    window.addEventListener("message", function (e) {
+      var t = e.data && e.data.dmoTheme;
+      if (!t || e.source !== window.parent) return;
+      if (ok(t.fg)) d.style.setProperty("--dmo-fg", t.fg);
+      if (ok(t.bg)) d.style.setProperty("--dmo-bg-solid", t.bg);
+    });
+    if (embedded) { try { window.parent.postMessage({dmoHello: 1}, "*"); } catch (e) {} }
+    // links to other sites open in a new tab; links to the blog itself replace the whole page
+    function fixLinks() {
+      document.querySelectorAll("a[href]").forEach(function (a) {
+        try {
+          var u = new URL(a.href, location.href);
+          if (u.protocol.indexOf("http") !== 0) return;
+          if (/(^|\.)digmeoutliers\.com$/.test(u.hostname)) { a.target = "_top"; }
+          else if (u.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+        } catch (e) {}
+      });
+    }
+    var timer;
+    function later() { clearTimeout(timer); timer = setTimeout(fixLinks, 100); }
+    document.addEventListener("DOMContentLoaded", function () {
+      fixLinks();
+      new MutationObserver(later).observe(document.body, {childList: true, subtree: true});
+    });
+  })();
+  </script>
 ---
 
 # 25 years of KEXP annual Listeners' Favorite lists
@@ -24,6 +63,10 @@ made the list.
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
   <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">KEXP itself has gone back and forth between &ldquo;Best Of&rdquo; and &ldquo;Listeners&rsquo; Favorite&rdquo; over the years. I&rsquo;m going with Listeners&rsquo; Favorite here &mdash; it&rsquo;s more consistent, and it better fits the spirit of what I&rsquo;m analyzing and presenting. These lists also go through some manual reconciliation before they end up here. I treat KEXP&rsquo;s own published lists as the record; anywhere I&rsquo;ve departed from them, it&rsquo;s noted in <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a>.</div>
 </div>
+
+```js
+import {makeTooltip, enableTap} from "./components/tooltip.js";
+```
 
 ```js
 const rows = FileAttachment("data/annual_circle_2001_2025.csv").csv({typed: true});
@@ -343,9 +386,8 @@ function annualCircle(data, selectedYears, selectedArtist) {
     .attr("opacity", (yr) => (selected.has(yr) ? 1 : dimOpacity))
     .text((yr) => yr);
 
-  const tooltip = d3.select(document.createElement("div"))
-    .attr("style", "position:fixed;pointer-events:none;background:#1a1a19;color:#f0efec;border:1px solid #383835;border-radius:8px;padding:6px 10px;font-size:12px;font-family:var(--sans-serif);opacity:0;transition:opacity 0.1s;z-index:10;max-width:220px;");
-  document.body.appendChild(tooltip.node());
+  const tooltip = makeTooltip({minWidth: 0, maxWidth: 220});
+  const wheelTip = (d) => `<b>${d.artist_name}</b><br>${d.release_group_name}<br>#${d.rank} on ${d.list_year} list`;
 
   svg.append("g")
     .selectAll("circle")
@@ -363,17 +405,14 @@ function annualCircle(data, selectedYears, selectedArtist) {
       }
       return selected.has(d.list_year) ? 1 : dimOpacity;
     })
-    .on("pointerenter", (event, d) => {
-      tooltip
-        .style("opacity", 1)
-        .html(`<b>${d.artist_name}</b><br>${d.release_group_name}<br>#${d.rank} on ${d.list_year} list`)
-        .style("left", event.clientX + 14 + "px")
-        .style("top", event.clientY + 14 + "px");
-    })
-    .on("pointermove", (event) => {
-      tooltip.style("left", event.clientX + 14 + "px").style("top", event.clientY + 14 + "px");
-    })
-    .on("pointerleave", () => tooltip.style("opacity", 0));
+    .on("pointerenter", (event, d) => tooltip.show(event, wheelTip(d)))
+    .on("pointermove", (event) => tooltip.move(event))
+    .on("pointerleave", (event) => tooltip.hide(event));
+
+  enableTap(svg, tooltip, data.map((d) => {
+    const [x, y] = xy(d.list_year, d.rank);
+    return {x, y, html: wheelTip(d)};
+  }));
 
   // Reading-order key, grouped in the top-right corner as one "how to read
   // this" cluster: two stacked rows of dummy dots showing how rank snakes
@@ -510,7 +549,7 @@ back to ask what those entries add up to.
 
 ### How rare is a repeat appearance?
 
-Start with the simplest question: once an artist makes the list, how often do they make it again?
+The wheel counts list spots: every dot is one album on one year's list. This chart switches to counting artists, each one once, however many albums they have. The colors mean the same thing, but the question is different: once an artist makes the list, how often do they make it again?
 
 ```js
 const artistTier = new Map();
@@ -594,6 +633,17 @@ tierCohortChart(totalArtists, tierArtistCounts)
 })()
 ```
 
+```js
+(() => {
+  const entriesByTier = d3.rollup(rows, (v) => v.length, (d) => d.tier);
+  const pctEntries = (t) => (100 * entriesByTier.get(t) / rows.length).toFixed(1);
+  const pctArtists = (t) => (100 * tierArtistCounts.get(t) / totalArtists).toFixed(1);
+  const p = document.createElement("p");
+  p.innerHTML = `So why does the wheel look so purple when most artists are gold? Because the two views count different things. A gold artist has one album, so they fill one dot on the wheel. A purple artist has three to nine albums, so they fill several. Gold is ${pctArtists(1)}% of the artists but only ${pctEntries(1)}% of the dots; purple is ${pctArtists(3)}% of the artists but ${pctEntries(3)}% of the dots.`;
+  return p;
+})()
+```
+
 That three-artist top tier isn't a round number I picked — it's a real cliff in the data. Going from 9 albums to 10 is where the population actually falls off; every cutoff near it is a gentle, steady slope by comparison.
 
 ### Does it matter *when* an artist first shows up?
@@ -662,9 +712,7 @@ function tierTrendChart(yearStats) {
     .attr("transform", (d) => `rotate(-55,${x(d.year) + x.bandwidth() / 2},${plotH + 10})`)
     .text((d) => d.year);
 
-  const tooltip = d3.select(document.createElement("div"))
-    .attr("style", "position:fixed;pointer-events:none;background:#1a1a19;color:#f0efec;border:1px solid #383835;border-radius:8px;padding:8px 10px;font-size:12px;font-family:var(--sans-serif);opacity:0;transition:opacity 0.1s;z-index:10;min-width:150px;");
-  document.body.appendChild(tooltip.node());
+  const tooltip = makeTooltip({minWidth: 150, maxWidth: 260});
   const tierLabel = {1: "1 album", 2: "2 albums", 3: "3–9 albums", 4: "10+ albums"};
 
   const bars = g.selectAll("g.bar").data(yearStats).join("g")
@@ -704,15 +752,11 @@ function tierTrendChart(yearStats) {
         const pct = ((100 * c) / d.total).toFixed(1);
         return `<div style="display:flex;justify-content:space-between;gap:12px"><span>${tierLabel[t]}</span><b>${pct}%</b></div>`;
       });
-      tooltip
-        .style("opacity", 1)
-        .html(`<b>${d.year}</b> · ${d.total} entries<br>${lines.join("")}`)
-        .style("left", event.clientX + 14 + "px")
-        .style("top", event.clientY + 14 + "px");
+      tooltip.show(event, `<b>${d.year}</b> · ${d.total} entries<br>${lines.join("")}`);
     })
-    .on("pointerleave", function () {
+    .on("pointerleave", function (event) {
       d3.select(this.parentNode).selectAll("path").style("opacity", 1);
-      tooltip.style("opacity", 0);
+      tooltip.hide(event);
     });
 
   return svg.node();
@@ -835,30 +879,24 @@ function turnoverLineChart(stats) {
     .attr("stroke", "#454440").attr("stroke-width", 1)
     .style("opacity", 0);
 
-  const tooltip = d3.select(document.createElement("div"))
-    .attr("style", "position:fixed;pointer-events:none;background:#1a1a19;color:#f0efec;border:1px solid #383835;border-radius:8px;padding:8px 10px;font-size:12px;font-family:var(--sans-serif);opacity:0;transition:opacity 0.1s;z-index:10;min-width:150px;");
-  document.body.appendChild(tooltip.node());
+  const tooltip = makeTooltip({minWidth: 150, maxWidth: 260});
 
   g.append("rect")
     .attr("x", 0).attr("y", 0)
     .attr("width", plotW).attr("height", plotH)
     .attr("fill", "transparent")
-    .on("pointermove", function (event) {
+    .on("pointerdown pointermove", function (event) {
       const [mx] = d3.pointer(event, this);
       const i = Math.round((mx / plotW) * (stats.length - 1));
       const d = stats[Math.max(0, Math.min(stats.length - 1, i))];
       crosshair.attr("x1", x(d.year)).attr("x2", x(d.year)).style("opacity", 1);
       points.select("circle:last-child").attr("r", (p) => (p === d ? 6 : 4));
-      tooltip
-        .style("opacity", 1)
-        .html(`<b>${d.year}</b><br>${d.debuts} of ${d.total} entries were a first appearance<br><b>${d.pct.toFixed(1)}%</b> turnover`)
-        .style("left", event.clientX + 14 + "px")
-        .style("top", event.clientY + 14 + "px");
+      tooltip.show(event, `<b>${d.year}</b><br>${d.debuts} of ${d.total} entries were a first appearance<br><b>${d.pct.toFixed(1)}%</b> turnover`);
     })
-    .on("pointerleave", function () {
+    .on("pointerleave", function (event) {
       crosshair.style("opacity", 0);
       points.select("circle:last-child").attr("r", 4);
-      tooltip.style("opacity", 0);
+      tooltip.hide(event);
     });
 
   return svg.node();
@@ -997,9 +1035,7 @@ function rankTrendChart(bandStats) {
     .attr("font-size", 10)
     .text("Rank on that year's list (1 = best)");
 
-  const tooltip = d3.select(document.createElement("div"))
-    .attr("style", "position:fixed;pointer-events:none;background:#1a1a19;color:#f0efec;border:1px solid #383835;border-radius:8px;padding:8px 10px;font-size:12px;font-family:var(--sans-serif);opacity:0;transition:opacity 0.1s;z-index:10;min-width:170px;");
-  document.body.appendChild(tooltip.node());
+  const tooltip = makeTooltip({minWidth: 170, maxWidth: 260});
 
   const bars = g.selectAll("g.bar").data(bandStats).join("g")
     .attr("transform", (d) => `translate(${x(d.label)},0)`);
@@ -1039,15 +1075,11 @@ function rankTrendChart(bandStats) {
         const pct = ((100 * c) / d.total).toFixed(1);
         return `<div style="display:flex;justify-content:space-between;gap:12px"><span>${bucketLabel[t]}</span><b>${pct}%</b></div>`;
       });
-      tooltip
-        .style("opacity", 1)
-        .html(`<b>Rank ${d.label}</b> · ${d.total} entries<br>${lines.join("")}`)
-        .style("left", event.clientX + 14 + "px")
-        .style("top", event.clientY + 14 + "px");
+      tooltip.show(event, `<b>Rank ${d.label}</b> · ${d.total} entries<br>${lines.join("")}`);
     })
-    .on("pointerleave", function () {
+    .on("pointerleave", function (event) {
       d3.select(this.parentNode).selectAll("path").style("opacity", 1);
-      tooltip.style("opacity", 0);
+      tooltip.hide(event);
     });
 
   return svg.node();
