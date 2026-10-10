@@ -19,9 +19,10 @@ function element() {
   return el;
 }
 
-export function makeTooltip({minWidth = 0, maxWidth = 260} = {}) {
+export function makeTooltip({minWidth = 0, maxWidth = 260, gap: defaultGap = 14} = {}) {
+  let gap = defaultGap;   // distance from the pointer; charts with a magnifying lens use a larger one
   function place(event) {
-    const t = element(), gap = 14, pad = 8;
+    const t = element(), pad = 8;
     const w = t.offsetWidth, h = t.offsetHeight;
     let x = event.clientX + gap, y = event.clientY + gap;
     if (x + w + pad > window.innerWidth) x = event.clientX - w - gap;
@@ -31,7 +32,8 @@ export function makeTooltip({minWidth = 0, maxWidth = 260} = {}) {
   }
   function hideNow() { element().style.opacity = 0; }
   return {
-    show(event, html) {
+    show(event, html, customGap) {
+      gap = customGap ?? defaultGap;
       const t = element();
       t.style.minWidth = minWidth + "px";
       t.style.maxWidth = maxWidth + "px";

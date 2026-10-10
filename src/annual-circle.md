@@ -69,6 +69,7 @@ made the list.
 
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
+import {addLens} from "./components/lens.js";
 ```
 
 ```js
@@ -389,7 +390,7 @@ function annualCircle(data, selectedYears, selectedArtist) {
     .attr("opacity", (yr) => (selected.has(yr) ? 1 : dimOpacity))
     .text((yr) => yr);
 
-  const tooltip = makeTooltip({minWidth: 0, maxWidth: 220});
+  const tooltip = makeTooltip({minWidth: 0, maxWidth: 220, gap: 100});   // clear of the magnifying lens
   const wheelTip = (d) => `<b>${d.artist_name}</b><br>${d.release_group_name}<br>#${d.rank} on ${d.list_year} list`;
 
   svg.append("g")
@@ -466,6 +467,7 @@ function annualCircle(data, selectedYears, selectedArtist) {
       .attr("fill", "#c9c8c3");
   }
 
+  addLens(svg, {radius: 90, zoom: 3});
   return svg.node();
 }
 ```

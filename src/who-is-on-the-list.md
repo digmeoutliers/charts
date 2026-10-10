@@ -49,6 +49,7 @@ head: |
 
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
+import {addLens} from "./components/lens.js";
 ```
 
 ```js
@@ -304,19 +305,20 @@ function waffleChart(yearsSel, artistSel) {
       tapPts.push({x: cx, y: cy, html});
       svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", catColor[c]).attr("data-cat", c).attr("data-year", yr).attr("data-artist", d.artist_id)
         .style("transition", "opacity 0.15s")
-        .on("pointerenter pointermove", (event) => showTip(event, html))
+        .on("pointerenter pointermove", (event) => tip.show(event, html, 92))
         .on("pointerleave", hideTip);
     });
   });
 
   enableTap(svg, tip, tapPts, 9);
+  addLens(svg, {radius: 76, zoom: 3});
 
   const key = document.createElement("div");
   key.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin:0.9rem 0 0.25rem;justify-content:center;";
   const buttons = new Map();
   function apply() {
     const sel = gridState.cat;
-    svg.selectAll("circle")
+    svg.selectAll("circle[data-cat]")
       .style("opacity", function () {
         const okCat = !sel || this.getAttribute("data-cat") === sel;
         const okYear = yearOn.has(+this.getAttribute("data-year"));
