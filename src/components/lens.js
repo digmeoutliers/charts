@@ -1,4 +1,5 @@
 import * as d3 from "npm:d3";
+import {isPinned, unpin} from "./tooltip.js";
 
 // A magnifying lens for a dense SVG chart, like the zoom preview on a ticket site's seat map.
 // Call it last, after everything else is drawn: it moves the chart's drawing into one group,
@@ -19,10 +20,15 @@ export function addLens(svg, {radius = 64, zoom = 4, touchLift = 1.6} = {}) {
   const use = lens.append("g").attr("clip-path", `url(#${id}-clip)`).append("use").attr("href", `#${id}-content`);
   lens.append("path").attr("d", "M-7,0H7M0,-7V7").attr("stroke", "#f0efec").attr("stroke-width", 0.8).attr("opacity", 0.55);
 
+  // a ring that marks the dot a click pinned (drawn with the chart, so it scrolls and scales with it)
+  const ring = content.append("path").attr("fill", "none").attr("stroke", "#f0efec").attr("stroke-width", 1.6).style("display", "none");
+  unpin();   // a redraw (new filter, new search) clears any card left from the old drawing
+
   const vb = node.viewBox.baseVal;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   let frame = 0;
   function show(px, py, lift) {
+    if (isPinned()) return;
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {
       const lx = clamp(px, radius + 2, vb.width - radius - 2);
@@ -50,4 +56,10 @@ export function addLens(svg, {radius = 64, zoom = 4, touchLift = 1.6} = {}) {
     if (event.pointerType === "touch" && !node.contains(event.target)) hide();
   };
   document.addEventListener("pointerdown", away);
+
+  return {
+    hide,
+    mark(x, y, r = 8) { ring.attr("d", disc(r)).attr("transform", `translate(${x},${y})`).style("display", null); },
+    clearMark() { ring.style("display", "none"); }
+  };
 }

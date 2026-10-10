@@ -310,8 +310,8 @@ function waffleChart(yearsSel, artistSel) {
     });
   });
 
-  enableTap(svg, tip, tapPts, 9);
-  addLens(svg, {radius: 76, zoom: 3});
+  const lens = addLens(svg, {radius: 76, zoom: 3});
+  enableTap(svg, tip, tapPts, 9, lens);
 
   const key = document.createElement("div");
   key.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin:0.9rem 0 0.25rem;justify-content:center;";

@@ -413,10 +413,6 @@ function annualCircle(data, selectedYears, selectedArtist) {
     .on("pointermove", (event) => tooltip.move(event))
     .on("pointerleave", (event) => tooltip.hide(event));
 
-  enableTap(svg, tooltip, data.map((d) => {
-    const [x, y] = xy(d.list_year, d.rank);
-    return {x, y, html: wheelTip(d)};
-  }));
 
   // Reading-order key, grouped in the top-right corner as one "how to read
   // this" cluster: two stacked rows of dummy dots showing how rank snakes
@@ -467,7 +463,11 @@ function annualCircle(data, selectedYears, selectedArtist) {
       .attr("fill", "#c9c8c3");
   }
 
-  addLens(svg, {radius: 90, zoom: 3});
+  const lens = addLens(svg, {radius: 90, zoom: 3});
+  enableTap(svg, tooltip, data.map((d) => {
+    const [x, y] = xy(d.list_year, d.rank);
+    return {x, y, html: wheelTip(d)};
+  }), 18, lens);
   return svg.node();
 }
 ```
