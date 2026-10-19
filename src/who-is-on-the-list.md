@@ -45,7 +45,7 @@ head: |
 
 # Who's on the list?
 
-<p class="standalone-only"><strong>Draft</strong> &mdash; unlisted page for the next post. Not linked from anywhere.</p>
+<p class="standalone-only"><strong>Draft</strong>: unlisted page for the next post. Not linked from anywhere.</p>
 
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
@@ -368,7 +368,7 @@ function artistTable(artistId, data) {
 
   const heading = document.createElement("div");
   heading.style.cssText = "font-weight:600;font-size:15px;margin-bottom:0.5rem;";
-  heading.textContent = `${entries[0].artist_name} — ${entries.length} appearance${entries.length === 1 ? "" : "s"} (${category(entries[0])})`;
+  heading.textContent = `${entries[0].artist_name}: ${entries.length} appearance${entries.length === 1 ? "" : "s"} (${category(entries[0])})`;
 
   const tableWrap = document.createElement("div");
   tableWrap.style.cssText = "overflow-x:auto;";

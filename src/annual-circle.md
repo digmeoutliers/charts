@@ -53,7 +53,7 @@ Each spoke is one year of KEXP's Annual "Favorite Albums of the Year" list, 2001
 (top, running clockwise) through 2025. Rank 1 sits nearest the center; longer
 spokes are years with more entries (most years have 91, but 2012 has 120 and
 2024/2025 have 100). Dot color and size both encode the same thing: how many
-distinct albums that artist has had across *all 25 years combined* — darker
+distinct albums that artist has had across *all 25 years combined*, so darker
 and bigger means a more consistently list-worthy artist over the full
 quarter-century, not just this one year. Use the dropdown above the chart to
 highlight specific years, or search for an artist to see every year they
@@ -61,7 +61,7 @@ made the list.
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">KEXP itself has gone back and forth between &ldquo;Best Of&rdquo; and &ldquo;Listeners&rsquo; Favorite&rdquo; over the years. I&rsquo;m going with Listeners&rsquo; Favorite here &mdash; it&rsquo;s more consistent, and it better fits the spirit of what I&rsquo;m analyzing and presenting. These lists also go through some manual reconciliation before they end up here. I treat KEXP&rsquo;s own published lists as the record; anywhere I&rsquo;ve departed from them, it&rsquo;s noted in <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a>.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">KEXP itself has gone back and forth between &ldquo;Best Of&rdquo; and &ldquo;Listeners&rsquo; Favorite&rdquo; over the years. I&rsquo;m going with Listeners&rsquo; Favorite here because it&rsquo;s more consistent, and it better fits the spirit of what I&rsquo;m analyzing and presenting. These lists also go through some manual reconciliation before they end up here. I treat KEXP&rsquo;s own published lists as the record; anywhere I&rsquo;ve departed from them, it&rsquo;s noted in <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a>.</div>
 </div>
 
 <p class="phone-note">On a phone? Tap a dot or bar to see its details. These charts have more room on a laptop or tablet.</p>
@@ -503,7 +503,7 @@ function artistTable(artistId, data) {
 
   const heading = document.createElement("div");
   heading.style.cssText = "font-weight:600;font-size:15px;margin-bottom:0.5rem;";
-  heading.textContent = `${entries[0].artist_name} — ${entries.length} appearance${entries.length === 1 ? "" : "s"} (${tierLabel[entries[0].tier]} across all 25 years)`;
+  heading.textContent = `${entries[0].artist_name}: ${entries.length} appearance${entries.length === 1 ? "" : "s"} (${tierLabel[entries[0].tier]} across all 25 years)`;
 
   const tableWrap = document.createElement("div");
   tableWrap.style.cssText = "overflow-x:auto;";
@@ -633,7 +633,7 @@ tierCohortChart(totalArtists, tierArtistCounts)
 ```js
 (() => {
   const p = document.createElement("p");
-  p.innerHTML = `Of the ${totalArtists.toLocaleString()} distinct artists who have ever made an Annual list, ${((100 * tierArtistCounts.get(1)) / totalArtists).toFixed(1)}% have exactly <em>one</em> album on it, ever. &ldquo;One and done&rdquo; is the majority case, not the exception &mdash; and only ${tierArtistCounts.get(4)} artists in 25 years have cracked double digits.`;
+  p.innerHTML = `Of the ${totalArtists.toLocaleString()} distinct artists who have ever made an Annual list, ${((100 * tierArtistCounts.get(1)) / totalArtists).toFixed(1)}% have exactly <em>one</em> album on it, ever. &ldquo;One and done&rdquo; is the majority case, not the exception, and only ${tierArtistCounts.get(4)} artists in 25 years have cracked double digits.`;
   return p;
 })()
 ```
@@ -649,7 +649,7 @@ tierCohortChart(totalArtists, tierArtistCounts)
 })()
 ```
 
-That three-artist top tier isn't a round number I picked — it's a real cliff in the data. Going from 9 albums to 10 is where the population actually falls off; every cutoff near it is a gentle, steady slope by comparison.
+That three-artist top tier isn't a round number I picked. It's a real cliff in the data. Going from 9 albums to 10 is where the population actually falls off; every cutoff near it is a gentle, steady slope by comparison.
 
 ### Does it matter *when* an artist first shows up?
 
@@ -783,8 +783,8 @@ tierTrendChart(yearStats)
 
 </div>
 
-The pattern isn't a steady climb toward higher tiers as the wheel turns —
-it's a **U-shape**. The "1 album" share is highest right at both edges of
+The pattern isn't a steady climb toward higher tiers as the wheel turns.
+It's a **U-shape**. The "1 album" share is highest right at both edges of
 the 25-year window (2001&ndash;2004 and 2024&ndash;2025, each above 30%) and
 lowest in the middle stretch (down near 12&ndash;14% around 2008, 2017, and
 2019&ndash;2020).
@@ -792,9 +792,9 @@ lowest in the middle stretch (down near 12&ndash;14% around 2008, 2017, and
 That matches a real, well-known effect from cohort analysis, cutting
 from both directions rather than just one: near **2001**, any artist whose prolific run was
 already mostly behind them before the list existed gets none of that
-earlier history counted — a **left-truncation** effect. Near **2025**, a
+earlier history counted. That's a **left-truncation** effect. Near **2025**, a
 brand-new artist simply hasn't had the calendar time yet to earn a second
-appearance — the mirror-image **right-censoring** effect. Even artists
+appearance. That's the mirror-image **right-censoring** effect. Even artists
 who've clearly won listeners over, like IDLES and Fontaines D.C. (four
 albums on the lists each so far, represented by the purple 3–9 albums
 tier), are still years from the 10+ tier. They
@@ -916,16 +916,16 @@ turnoverLineChart(turnoverStats)
 
 </div>
 
-2001 opens at a trivial 100% — there's no prior list anyone *could* have
+2001 opens at a trivial 100%, because there's no prior list anyone *could* have
 already been on, so that point isn't a real finding, just the starting
 condition. From 2002 on it's a real, steady decline: 89% turnover in 2002
 falling to a floor around 30&ndash;34% by the mid-2010s, where it's stayed
-ever since (with some noise — 2021 and 2024 both tick back up over 40%).
+ever since (with some noise: 2021 and 2024 both tick back up over 40%).
 Read together with the U-shape chart above, the story is consistent: the
 list *matures* over its first decade as a growing pool of past artists
 becomes available to return, then settles into a steady state where
 roughly a third of any given year's list is a name that's never appeared
-before — not shrinking further, just holding.
+before, not shrinking further, just holding.
 
 That third isn't a free pass for established names, either. The National has
 made the list with every album since 2005's *Alligator* (eight in a row),
@@ -944,17 +944,17 @@ ten-album ballot to artists it's never voted onto a list before.
 
 A third of every list is new names. But newcomers could be filling the bottom of the list while the top stays familiar. Is that what's happening?
 
-The tiering used above is a 25-year *total* — it includes albums an
+The tiering used above is a 25-year *total*, so it includes albums an
 artist hadn't released yet at the time of a given appearance. That's fine
 for "how prolific did this artist turn out to be in the 25-year window,"
 but it's the wrong measure for "was this artist already known *at the
-time* they got this rank" — an artist's first-ever appearance would get
+time* they got this rank," because an artist's first-ever appearance would get
 credit for albums still years in their future. So this chart uses a
 different count: how many times this artist had appeared on an Annual
 list **up to and including this one**. For example, the wheel shows
 Sleater-Kinney in the purple 3&ndash;9 tier, with 6 albums across the full
 25-year span. But their 2005 album *The Woods* was only their second
-Annual-list appearance up to that point — this chart is what shows that
+Annual-list appearance up to that point, and this chart is what shows that
 distinction. Here, *The Woods* is captured in the teal box (second
 appearance) in the 11–20 rank column (representing the #16 ranking in 2005).
 
@@ -1108,11 +1108,11 @@ rankTrendChart(rankBandStats)
 
 The gradient is real but softer than it looked in the original view: first-timers make up
 25.6% of rank 1&ndash;5 entries, climbing steadily to 54.1% by rank 51 and
-below. The top of the list does skew toward familiar names — just not as
+below. The top of the list does skew toward familiar names, just not as
 absolutely as counting every artist's eventual career total implied. One
 specific number worth sitting with: of the 25 albums that have ever hit
 **#1**, 7 of them (28%) were that artist's first-ever appearance on an
-Annual list. Debuting at the top isn't rare — those artists just tend to
+Annual list. Debuting at the top isn't rare. Those artists just tend to
 come back.
 
 ### When artists come back, how long is the wait?
@@ -1155,7 +1155,7 @@ function gapStatTiles(stats) {
     {
       label: "Median gap between an artist's appearances",
       value: `${stats.median} years`,
-      caption: `Only ${stats.backToBackPct.toFixed(1)}% of comebacks are back-to-back (a 1-year gap) — most repeat artists take a break first.`,
+      caption: `Only ${stats.backToBackPct.toFixed(1)}% of comebacks are back-to-back (a 1-year gap). Most repeat artists take a break first.`,
     },
     {
       label: "Longest gap between two appearances",
@@ -1165,7 +1165,7 @@ function gapStatTiles(stats) {
     {
       label: "Longest span, first appearance to last",
       value: `${stats.maxSpan.span} years`,
-      caption: `${stats.maxSpan.name}, ${stats.maxSpan.first}–${stats.maxSpan.last} — with ${stats.maxSpan.appearances} appearances across the whole span.`,
+      caption: `${stats.maxSpan.name}, ${stats.maxSpan.first}–${stats.maxSpan.last}, with ${stats.maxSpan.appearances} appearances across the whole span.`,
     },
   ];
 
@@ -1209,7 +1209,7 @@ gapStatTiles(gapStats)
 And when they do come back, do they land in the same spot?
 
 Appearing on the list once says something about an artist. Appearing
-several times says something else — how *reliably* an artist keeps
+several times says something else: how *reliably* an artist keeps
 landing in listeners' favor, or how much their standing swings from one
 appearance to the next.
 
@@ -1271,12 +1271,12 @@ function consistencyStatTiles(stats) {
     {
       label: "Steadiest repeat artist",
       value: steady.name,
-      caption: `${steady.appearances.length} appearances, ranked #${steadyBest}–#${steadyWorst} every time — the tightest spread of any repeat artist.`,
+      caption: `${steady.appearances.length} appearances, ranked #${steadyBest}–#${steadyWorst} every time. That's the tightest spread of any repeat artist.`,
     },
     {
       label: "Least predictable ranking (5+ appearances)",
       value: swing1.name,
-      caption: `${swing1Sequence} across ${swing1.appearances.length} appearances — the widest rank swings of anyone with 5+ trips to the list. ${swing2.name} shows the same pattern.`,
+      caption: `${swing1Sequence} across ${swing1.appearances.length} appearances. Those are the widest rank swings of anyone with 5+ trips to the list. ${swing2.name} shows the same pattern.`,
     },
   ];
 
