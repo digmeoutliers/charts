@@ -1266,7 +1266,7 @@ function consistencyStatTiles(stats) {
     {
       label: "Artists with 4+ appearances, always in the top 15",
       value: `${top.length} artists`,
-      caption: `${namesJoined(top)} have never once fallen out of the top 15.`,
+      caption: `${namesJoined(top)} have never once had one of their ranked releases fall out of the top 15.`,
     },
     {
       label: "Steadiest repeat artist",
