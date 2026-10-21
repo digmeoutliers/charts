@@ -12,3 +12,6 @@ dev.bat
 # Private project docs (kept locally, not published)
 PROJECT_BRIEF.md
 DESIGN_DECISIONS.md
+
+# Private working copies of unpublished drafts (never publish)
+content-drafts/*FULL-DRAFT*
