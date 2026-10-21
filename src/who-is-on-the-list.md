@@ -1,5 +1,5 @@
 ---
-title: Who's on the list? (draft)
+title: Who's on the list?
 toc: false
 head: |
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
@@ -44,8 +44,6 @@ head: |
 ---
 
 # Who's on the list?
-
-<p class="standalone-only"><strong>Draft</strong>: unlisted page for the next post. Not linked from anywhere.</p>
 
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
