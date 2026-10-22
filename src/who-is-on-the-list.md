@@ -410,6 +410,10 @@ function artistTable(artistId, data) {
 artistTable(selectedArtist, rows)
 ```
 
+## Interesting observations
+
+The first thing you notice is the purple. The second is the gold: a few scattered dots in the early years, then whole rows of it by the 2020s.
+
 ```js
 statTiles([
   {label: "#1 albums made by a band", value: `${ones.filter((d) => category(d) === "Groups").length} of ${ones.length}`,
@@ -421,11 +425,7 @@ statTiles([
 ])
 ```
 
-The first thing you notice is the purple. The second is the gold: a few scattered dots in the early years, then whole rows of it by the 2020s.
-
-## Interesting observations
-
-The grid above shows every album on every list. The charts below pull back to ask how we arrived at those totals and what trends might be observed if we unpack things a bit.
+The grid and tiles above speak to every album on every list. The charts below pull back to ask how we arrived at these totals and what trends might be observed if we unpack things a bit.
 
 ### The share, year by year
 
