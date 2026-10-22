@@ -97,6 +97,23 @@ function keyButtons(cats, counts, state, apply) {
   return key;
 }
 
+// a small two-button switch for use with view()
+function segmented(options, initial) {
+  const el = document.createElement("div");
+  el.style.cssText = "display:inline-flex;border:1px solid #383835;border-radius:999px;overflow:hidden;background:#232321;margin:0.25rem 0 1rem;font-family:var(--sans-serif);";
+  const buttons = options.map(([label, value]) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = label;
+    b.style.cssText = "border:0;background:transparent;color:#c9c8c3;font-size:13px;padding:6px 16px;cursor:pointer;font-family:var(--sans-serif);";
+    b.onclick = () => { el.value = value; paint(); el.dispatchEvent(new Event("input", {bubbles: true})); };
+    el.append(b);
+    return [b, value];
+  });
+  function paint() { buttons.forEach(([b, v]) => { b.style.background = el.value === v ? "#f0efec" : "transparent"; b.style.color = el.value === v ? "#1a1a19" : "#c9c8c3"; }); }
+  el.value = initial; paint();
+  return el;
+}
+
 function statTiles(defs) {
   const wrap = document.createElement("div");
   wrap.className = "dmo-tiles";
@@ -132,15 +149,7 @@ const medYears = (lo, hi) => d3.median(careerIn(lo, hi), (d) => d.career_years);
 const longest = d3.greatest(withCareer, (d) => d.career_years);
 const longestBand = d3.greatest(withCareer.filter((d) => d.artist_type === "Group"), (d) => d.career_years);
 
-const numbered = rows.filter((d) => d.studio_album_number != null);
-const numberedIn = (lo, hi) => numbered.filter((d) => d.list_year >= lo && d.list_year <= hi);
 const shareWhere = (r, test) => 100 * r.filter(test).length / r.length;
-
-// each artist's first appearance on any list (earliest year, then best rank)
-const firsts = [...d3.group(rows.filter((d) => d.artist_type !== "Other"), (d) => d.artist_id).values()]
-  .map((v) => v.slice().sort((a, b) => a.list_year - b.list_year || a.rank - b.rank)[0]);
-const firstsNumbered = firsts.filter((d) => d.studio_album_number != null);
-const lateBloomers = firstsNumbered.slice().sort((a, b) => b.studio_album_number - a.studio_album_number).slice(0, 3);
 
 const soloAges = rows.filter((d) => d.age_at_release != null);
 const agesIn = (lo, hi, c) => soloAges.filter((d) => d.list_year >= lo && d.list_year <= hi && (!c || category(d) === c));
@@ -251,17 +260,33 @@ The bottom of every column is crowded: in any year, plenty of artists are in the
 
 ## Interesting observations
 
-The dots above show every album on every list. The charts below break career stage into pieces and look at what else it's tied to: which album it is in an artist's catalog, how old the solo artists are, and who has stayed on the lists the longest.
+The dots above show every album on every list. The charts below break career stage into pieces and look at what else it's tied to: which record it is in an artist's catalog, how old the solo artists are, and who has stayed on the lists the longest.
 
 ### Debut or deep catalog?
 
-Years are one way to measure career stage. Another is to count albums: is this an artist's first studio album, or their fifth? Each cell below is the share of a year's numbered albums that were that artist's 1st, 2nd, 3rd, and so on. Only studio albums get a number, so EPs, live albums, and compilations are left out (${rows.length - numbered.length} of ${rows.length} entries). Hover a cell to see which artists it holds.
+Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. Switch to studio albums only if you'd rather not count them. Hover a cell to see which artists it holds.
+
+```js
+const countMode = view(segmented([["Albums and EPs", "both"], ["Studio albums only", "albums"]], "both"));
+```
+
+```js
+const noun = countMode === "albums" ? "album" : "release";
+const numOf = (d) => countMode === "albums" ? d.studio_album_number : d.studio_release_number;
+const numbered = rows.filter((d) => numOf(d) != null);
+const numberedIn = (lo, hi) => numbered.filter((d) => d.list_year >= lo && d.list_year <= hi);
+// each artist's first appearance on any list (earliest year, then best rank)
+const firsts = [...d3.group(rows.filter((d) => d.artist_type !== "Other"), (d) => d.artist_id).values()]
+  .map((v) => v.slice().sort((a, b) => a.list_year - b.list_year || a.rank - b.rank)[0]);
+const firstsNumbered = firsts.filter((d) => numOf(d) != null);
+const lateBloomers = firstsNumbered.slice().sort((a, b) => numOf(b) - numOf(a)).slice(0, 3);
+```
 
 ```js
 const buckets = [
-  {label: "1st album", test: (n) => n === 1},
-  {label: "2nd album", test: (n) => n === 2},
-  {label: "3rd album", test: (n) => n === 3},
+  {label: `1st ${noun}`, test: (n) => n === 1},
+  {label: `2nd ${noun}`, test: (n) => n === 2},
+  {label: `3rd ${noun}`, test: (n) => n === 3},
   {label: "4th or 5th", test: (n) => n >= 4 && n <= 5},
   {label: "6th to 9th", test: (n) => n >= 6 && n <= 9},
   {label: "10th or later", test: (n) => n >= 10}
@@ -278,11 +303,11 @@ function albumNumberHeat() {
     svg.append("text").attr("x", m.l - 10).attr("y", m.t + (bi + 0.5) * cellH).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(b.label);
     years.forEach((yr, xi) => {
       const pool = numbered.filter((d) => d.list_year === yr);
-      const hit = pool.filter((d) => b.test(d.studio_album_number));
+      const hit = pool.filter((d) => b.test(numOf(d)));
       const share = hit.length / pool.length;
       const cx = m.l + (xi + 0.5) * cellW, cy = m.t + (bi + 0.5) * cellH;
       const who = hit.slice().sort((a, c) => a.rank - c.rank).map((d) => d.artist_name);
-      const html = `<b>${yr} &middot; ${b.label}</b><br>${hit.length} of ${pool.length} albums (${(100 * share).toFixed(0)}%)` + (who.length ? `<br><span style="color:#898781">${who.slice(0, 6).join(", ")}${who.length > 6 ? `, and ${who.length - 6} more` : ""}</span>` : "");
+      const html = `<b>${yr} &middot; ${b.label}</b><br>${hit.length} of ${pool.length} ${noun}s (${(100 * share).toFixed(0)}%)` + (who.length ? `<br><span style="color:#898781">${who.slice(0, 6).join(", ")}${who.length > 6 ? `, and ${who.length - 6} more` : ""}</span>` : "");
       tapPts.push({x: cx, y: cy, html});
       svg.append("rect").attr("x", m.l + xi * cellW + 1).attr("y", m.t + bi * cellH + 1).attr("width", cellW - 2).attr("height", cellH - 2).attr("rx", 3)
         .attr("fill", color(share))
@@ -305,24 +330,24 @@ albumNumberHeat()
 
 </div>
 
-Numbers in the cells are percentages of that year's numbered albums. A brighter cell means a bigger share.
+Numbers in the cells are percentages of that year's numbered ${noun}s. A brighter cell means a bigger share.
 
 ```js
 statTiles([
-  {label: "Albums that were a debut", value: `${shareWhere(numberedIn(2001, 2010), (d) => d.studio_album_number === 1).toFixed(0)}% → ${shareWhere(numberedIn(2016, 2025), (d) => d.studio_album_number === 1).toFixed(0)}%`,
-   caption: "Share of numbered albums that were the artist's first studio album, 2001–2010 compared with 2016–2025."},
-  {label: "Fourth album or later", value: `${shareWhere(numberedIn(2001, 2010), (d) => d.studio_album_number >= 4).toFixed(0)}% → ${shareWhere(numberedIn(2016, 2025), (d) => d.studio_album_number >= 4).toFixed(0)}%`,
+  {label: `${noun === "album" ? "Albums" : "Releases"} that were a debut`, value: `${shareWhere(numberedIn(2001, 2010), (d) => numOf(d) === 1).toFixed(0)}% → ${shareWhere(numberedIn(2016, 2025), (d) => numOf(d) === 1).toFixed(0)}%`,
+   caption: `Share of numbered ${noun}s that were the artist's first, 2001–2010 compared with 2016–2025.`},
+  {label: `Fourth ${noun} or later`, value: `${shareWhere(numberedIn(2001, 2010), (d) => numOf(d) >= 4).toFixed(0)}% → ${shareWhere(numberedIn(2016, 2025), (d) => numOf(d) >= 4).toFixed(0)}%`,
    caption: "The same two periods. The top of the chart is thinning and the bottom is filling in."},
-  {label: "First list, first album", value: `${shareWhere(firstsNumbered, (d) => d.studio_album_number === 1).toFixed(0)}%`,
-   caption: `Share of artists whose first appearance on any list was their debut album (${firstsNumbered.length.toLocaleString()} artists).`}
+  {label: `First list, first ${noun}`, value: `${shareWhere(firstsNumbered, (d) => numOf(d) === 1).toFixed(0)}%`,
+   caption: `Share of artists whose first appearance on any list was their debut ${noun} (${firstsNumbered.length.toLocaleString()} artists).`}
 ])
 ```
 
-Debut albums fell from about a quarter of the numbered albums in the early years to around one in ten more recently, while albums from the fourth record onward grew. Some of that is the same artists coming back, as the earlier posts showed. But the next chart asks a different question: for each artist, how far into their catalog were they the first time they made a list?
+Debuts fell from ${shareWhere(numberedIn(2001, 2010), (d) => numOf(d) === 1).toFixed(0)}% of the numbered ${noun}s in 2001&ndash;2010 to ${shareWhere(numberedIn(2016, 2025), (d) => numOf(d) === 1).toFixed(0)}% in 2016&ndash;2025, while records from the fourth onward grew from ${shareWhere(numberedIn(2001, 2010), (d) => numOf(d) >= 4).toFixed(0)}% to ${shareWhere(numberedIn(2016, 2025), (d) => numOf(d) >= 4).toFixed(0)}%. Some of that is the same artists coming back, as the earlier posts showed. But the next chart asks a different question: for each artist, how far into their catalog were they the first time they made a list?
 
 ### When do artists first make a list?
 
-Each bar counts artists by which studio album first put them on a list. Colors are the same as above.
+Each bar counts artists by which ${noun} first put them on a list. Colors are the same as above.
 
 ```js
 function firstListBars() {
@@ -330,7 +355,7 @@ function firstListBars() {
   const labels = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th or later"];
   const bucketOf = (n) => Math.min(n, 9) - 1;
   const total = firstsNumbered.length;
-  const counts = labels.map((_, i) => Object.fromEntries(catOrder.map((c) => [c, firstsNumbered.filter((d) => bucketOf(d.studio_album_number) === i && category(d) === c).length])));
+  const counts = labels.map((_, i) => Object.fromEntries(catOrder.map((c) => [c, firstsNumbered.filter((d) => bucketOf(numOf(d)) === i && category(d) === c).length])));
   const x = d3.scaleBand(labels, [m.l, width - m.r]).padding(0.25);
   const y = d3.scaleLinear([0, d3.max(counts, (c) => d3.sum(Object.values(c)))], [height - m.b, m.t]).nice();
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
@@ -345,7 +370,7 @@ function firstListBars() {
     catOrder.forEach((c) => {
       const v = counts[i][c];
       if (!v) return;
-      const html = `<b>Artist's ${lab} album</b><br>${swatch(c)}${c}: ${v} artist${v === 1 ? "" : "s"}<br><span style="color:#898781">${n} in all (${(100 * n / total).toFixed(0)}% of artists)</span>`;
+      const html = `<b>Artist's ${lab} ${noun}</b><br>${swatch(c)}${c}: ${v} artist${v === 1 ? "" : "s"}<br><span style="color:#898781">${n} in all (${(100 * n / total).toFixed(0)}% of artists)</span>`;
       tapPts.push({x: x(lab) + x.bandwidth() / 2, y: y(base + v / 2), html});
       svg.append("rect").attr("x", x(lab)).attr("width", x.bandwidth()).attr("y", y(base + v)).attr("height", y(base) - y(base + v)).attr("fill", catColor[c])
         .on("pointerenter pointermove", (event) => tip.show(event, html))
@@ -355,7 +380,7 @@ function firstListBars() {
     svg.append("text").attr("x", x(lab) + x.bandwidth() / 2).attr("y", y(n) - 7).attr("text-anchor", "middle").attr("fill", "#f0efec").attr("font-size", 12).attr("font-weight", 600).text(`${(100 * n / total).toFixed(0)}%`);
     svg.append("text").attr("x", x(lab) + x.bandwidth() / 2).attr("y", height - m.b + 20).attr("text-anchor", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(lab);
   });
-  svg.append("text").attr("x", (m.l + width - m.r) / 2).attr("y", height - 10).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text("Studio album that first put the artist on a list");
+  svg.append("text").attr("x", (m.l + width - m.r) / 2).attr("y", height - 10).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text(`Studio ${noun} that first put the artist on a list`);
   enableTap(svg, tip, tapPts, 40);
   return svg.node();
 }
@@ -369,7 +394,7 @@ firstListBars()
 
 </div>
 
-Most artists don't wait. About ${shareWhere(firstsNumbered, (d) => d.studio_album_number === 1).toFixed(0)}% first made a list with their debut and ${shareWhere(firstsNumbered, (d) => d.studio_album_number <= 2).toFixed(0)}% by their second album. But a long tail waits much longer. ${lateBloomers.map((d) => `${d.artist_name} (album ${d.studio_album_number}, ${d.list_year})`).join(", ")} all arrived late.
+Most artists don't wait. About ${shareWhere(firstsNumbered, (d) => numOf(d) === 1).toFixed(0)}% first made a list with their debut and ${shareWhere(firstsNumbered, (d) => numOf(d) <= 2).toFixed(0)}% by their second ${noun}. But a long tail waits much longer. ${lateBloomers.map((d) => `${d.artist_name} (${noun} ${numOf(d)}, ${d.list_year})`).join(", ")} all arrived late.
 
 ### How old are the solo artists?
 
@@ -496,7 +521,34 @@ lifelines()
 
 The open circle marks each artist's start. The typical artist here got going around ${d3.median(lifeList(), (a) => a.start)} and has kept landing albums for about ${d3.median(lifeList(), (a) => a.items[a.items.length - 1].release_year - a.start)} years, which is part of why the middle of the first chart is so full.
 
+### A revolving door with a regular cast
+
+These long-haulers can look like they contradict the first post, which ended on the idea that the lists are less a fixed canon of favorites and more a constantly refreshing roster. Both are true. It depends on whether you count artists or spots on the list.
+
+```js
+const onList = rows.filter((d) => d.artist_type !== "Other");
+const appearances = d3.rollup(onList, (v) => v.length, (d) => d.artist_id);
+const firstSeen = d3.rollup(onList, (v) => d3.min(v, (d) => d.list_year), (d) => d.artist_id);
+const shareOfSpots = (k) => 100 * d3.sum([...appearances.values()].filter((n) => n >= k)) / onList.length;
+const shareOfArtists = (k) => 100 * [...appearances.values()].filter((n) => n >= k).length / appearances.size;
+const isFirst = (d) => d.list_year === firstSeen.get(d.artist_id);
+const firstTimers = (lo, hi) => onList.filter((d) => d.list_year >= lo && d.list_year <= hi);
+```
+
+```js
+statTiles([
+  {label: "Artists who made one list", value: `${(100 * [...appearances.values()].filter((n) => n === 1).length / appearances.size).toFixed(0)}%`,
+   caption: "Share of all artists who have appeared on exactly one list. Most artists come once and don't return."},
+  {label: "Spots held by regulars", value: `${shareOfSpots(5).toFixed(0)}%`,
+   caption: `The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums on the lists hold this share of all the spots.`},
+  {label: "Spots that go to first-timers", value: `${shareWhere(firstTimers(2011, 2015), isFirst).toFixed(0)}% → ${shareWhere(firstTimers(2016, 2025), isFirst).toFixed(0)}%`,
+   caption: "Share of each period's entries from an artist's first appearance on any list, 2011–2015 compared with 2016–2025."}
+])
+```
+
+Most artists do pass through once: ${(100 * [...appearances.values()].filter((n) => n === 1).length / appearances.size).toFixed(0)}% of everyone who has made a list made exactly one. But a small group of repeat artists holds far more than its share of the spots. The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums hold ${shareOfSpots(5).toFixed(0)}% of all the entries, and the ${lifeList().length} artists in the chart above are only ${shareOfArtists(7).toFixed(0)}% of artists but hold ${shareOfSpots(7).toFixed(0)}% of the spots. The door is still turning: about ${(firstTimers(2016, 2025).filter(isFirst).length / 10).toFixed(0)} artists a year make a list for the first time, or roughly one spot in three. It is turning a little more slowly than it used to, though, and that matches what the first chart showed. So the best way to put the two ideas together is a revolving door with a regular cast.
+
 <div style="border-left:3px solid #9c57f3; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">"Years in" counts from a start year I chose (see the note at the top), so it is a way to compare artists, not a measure of anyone's real career length. Solo artists who came out of a band start the clock again at their first solo release. Ages need a birth date, and MusicBrainz has one for ${(100 * rows.filter((d) => d.age_at_release != null).length / rows.filter((d) => d.artist_type === "Person" && !d.posthumous).length).toFixed(0)}% of the solo albums here, so the age charts cover those. Album numbers count only studio albums as MusicBrainz lists them, and ${rows.filter((d) => d.posthumous).length} albums released after an artist's death are left out of the career and age charts.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">"Years in" counts from a start year I chose (see the note at the top), so it is a way to compare artists, not a measure of anyone's real career length. Solo artists who came out of a band start the clock again at their first solo release. Ages need a birth date, and MusicBrainz has one for ${(100 * rows.filter((d) => d.age_at_release != null).length / rows.filter((d) => d.artist_type === "Person" && !d.posthumous).length).toFixed(0)}% of the solo albums here, so the age charts cover those. Release numbers count the studio albums and EPs MusicBrainz lists for an artist (or albums only, if you switch) and ${rows.filter((d) => d.posthumous).length} albums released after an artist's death are left out of the career and age charts.</div>
 </div>
