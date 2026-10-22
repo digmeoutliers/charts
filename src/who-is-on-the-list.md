@@ -140,7 +140,7 @@ const top10 = (r) => r.filter((d) => d.rank <= 10);
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Whether an artist counts as a band or a solo act, and the gender recorded for solo artists, comes straight from <a href="https://musicbrainz.org/" target="_top" style="color:inherit; text-decoration:underline;">MusicBrainz</a>, a free music database that volunteers around the world add to and correct. That crowd-sourcing is why it's so thorough, and also why it's never complete or perfectly accurate. In my own saved copy I found a year typo that MusicBrainz's editors had already fixed by the time I looked, and another date that I had to correct myself. If an artist is misgendered or mislabeled here, that comes directly from the source; I haven't changed those fields, and the fix belongs there. When I catch an error that matters to a chart, I note it on the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page. And if you spot something wrong or missing, I'd encourage you to <a href="https://musicbrainz.org/register" target="_top" style="color:inherit; text-decoration:underline;">register at MusicBrainz</a> and fix it. A better MusicBrainz makes the data behind this blog richer and more accurate, and it helps everyone else who uses it too.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">An artist's group or solo act designation, as well as solo artists' genders, come straight from <a href="https://musicbrainz.org/" target="_top" style="color:inherit; text-decoration:underline;">MusicBrainz</a>, a crowd-sourced music database that users around the world contribute to. That crowd-sourcing is why it's so thorough &mdash; and also why it can be incomplete or inaccurate in some cases. If an artist is misgendered or mislabeled here, that comes directly from the source; I haven't changed those fields, and the fix belongs there. When I catch an error that matters to a chart, I note it on the <a href="https://digmeoutliers.com/data-notes/" target="_top" style="color:inherit; text-decoration:underline;">Data Notes</a> page. And if you spot something wrong or missing, I'd encourage you to <a href="https://musicbrainz.org/register" target="_top" style="color:inherit; text-decoration:underline;">register at MusicBrainz</a> and fix it. A better MusicBrainz makes the data behind this blog richer and more accurate, and it helps everyone else who uses it too.</div>
 </div>
 
 <p class="phone-note">On a phone? Tap a dot or bar to see its details. These charts have more room on a laptop or tablet.</p>
@@ -425,7 +425,7 @@ The first thing you notice is the purple. The second is the gold: a few scattere
 
 ## Interesting observations
 
-The grid above shows every album on every list. The charts below pull back to ask what they add up to.
+The grid above shows every album on every list. The charts below pull back to ask how we arrived at those totals and what trends might be observed if we unpack things a bit.
 
 ### The share, year by year
 
@@ -608,7 +608,7 @@ statTiles([
 ])
 ```
 
-Solo women went from five or six albums a year to more than twenty. Solo men didn't change. The lists didn't get any bigger, so the new room came from bands, not from solo men.
+Solo women went from five or six albums a year to more than twenty in most recent years. Solo men didn't change. The lists didn't get any bigger, so the new room came from bands, not from solo men.
 
 ### Counting albums or counting artists?
 
@@ -818,7 +818,7 @@ That raises a question about the men. Did they stop making albums, or did their 
 
 ### Did solo men stop making albums?
 
-To find out, I took the solo artists who were already established, meaning first listed in 2015 or earlier, and looked up every studio album MusicBrainz has for them from 2016 to 2025, whether or not it made a list.
+To find out, I took the solo artists who were already established, meaning first listed in 2015 or earlier, and looked up every studio album they released from 2016 to 2025, whether or not it made a list.
 
 ```js
 const studio = FileAttachment("data/studio_albums_2016_2025.csv").csv({typed: true});
@@ -880,7 +880,7 @@ releaseVsListed()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums released 2016&ndash;2025 by artists first listed in 2015 or earlier, as MusicBrainz records them. Reissues and unusual releases can slip in, so treat the percentages as approximate.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums released 2016&ndash;2025 by artists first listed in 2015 or earlier, Reissues and unusual releases can slip in, so treat the percentages as approximate.</p>
 
 So the men didn't go quiet. ${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}% of established solo men put out at least one studio album, about the same as the women, and together they released ${activity["Solo men"].albums} of them. Damien Jurado put out ${albumsOf("Damien Jurado").n} studio albums in that stretch and ${albumsOf("Damien Jurado").listed} made a list. Andrew Bird: ${albumsOf("Andrew Bird").n} and ${albumsOf("Andrew Bird").listed}. Neil Young: ${albumsOf("Neil Young").n} and ${albumsOf("Neil Young").listed}. Ty Segall shows the other outcome: ${albumsOf("Ty Segall").n} albums, ${albumsOf("Ty Segall").listed} of them on lists.
 
