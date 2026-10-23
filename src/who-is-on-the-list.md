@@ -908,7 +908,7 @@ releaseVsListed()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums released 2016&ndash;2025 by artists first listed in 2015 or earlier, Reissues and unusual releases can slip in, so treat the percentages as approximate.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums released 2016&ndash;2025 by artists first listed in 2015 or earlier. Reissues and unusual releases can slip in, so treat the percentages as approximate.</p>
 
 So the men didn't go quiet. ${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}% of established solo men put out at least one studio album, about the same as the women, and together they released ${activity["Solo men"].albums} of them. Damien Jurado put out ${albumsOf("Damien Jurado").n} studio albums in that stretch and ${albumsOf("Damien Jurado").listed} made a list. Andrew Bird: ${albumsOf("Andrew Bird").n} and ${albumsOf("Andrew Bird").listed}. Neil Young: ${albumsOf("Neil Young").n} and ${albumsOf("Neil Young").listed}. Ty Segall shows the other outcome: ${albumsOf("Ty Segall").n} albums, ${albumsOf("Ty Segall").listed} of them on lists.
 
