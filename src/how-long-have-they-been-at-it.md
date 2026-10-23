@@ -41,6 +41,27 @@ head: |
     });
   })();
   </script>
+  <script>
+  // ?chart=<id>: show only that chart, scaled up (used by the Expand pop-up)
+  (function () {
+    var only = new URLSearchParams(location.search).get("chart");
+    if (!only || !/^[a-z0-9-]+$/.test(only)) return;
+    var d = document.documentElement;
+    d.setAttribute("data-only", only);
+    var keepSwitch = only === "heat" || only === "first";
+    var st = document.createElement("style");
+    st.textContent = 'html[data-only], html[data-only] body { background: #1a1a19 !important; }'
+      + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepSwitch ? ':not(:has(.dmo-seg))' : '') + ' { display: none !important; }'
+      + ' html[data-only] main { max-width: none !important; margin: 0 !important; padding: 14px 18px !important; }'
+      + ' html[data-only] #observablehq-center, html[data-only] #observablehq-main { margin: 0 !important; padding: 0 !important; }'
+      + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; }'
+      + ' html[data-only] main svg { width: 100% !important; height: auto !important; }'
+      + ' html[data-only] .dmo-expand, html[data-only] #observablehq-footer, html[data-only] .phone-note { display: none !important; }'
+      + ' html[data-only] .dmo-seg { margin: 0 0 0.5rem !important; }';
+    document.head.appendChild(st);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { try { window.parent.postMessage({dmoCollapse: 1}, "*"); } catch (err) {} } });
+  })();
+  </script>
 ---
 
 # How long have they been at it?
@@ -50,6 +71,7 @@ head: |
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
 import {addLens} from "./components/lens.js";
+import {addExpandButtons} from "./components/expand.js";
 ```
 
 ```js
@@ -100,6 +122,7 @@ function keyButtons(cats, counts, state, apply) {
 // a small two-button switch for use with view()
 function segmented(options, initial) {
   const el = document.createElement("div");
+  el.className = "dmo-seg";
   el.style.cssText = "display:inline-flex;border:1px solid #8a8985;border-radius:999px;overflow:hidden;background:#d9d8d3;margin:0.25rem 0 1rem;font-family:var(--sans-serif);";
   const buttons = options.map(([label, value]) => {
     const b = document.createElement("button");
@@ -237,7 +260,7 @@ function careerSwarm() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="hero" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 careerSwarm()
@@ -267,7 +290,7 @@ The dots above show every album on every list. The charts below break career sta
 Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. Switch to studio albums only if you'd rather not count them. Hover a cell to see which artists it holds.
 
 ```js
-const countMode = view(segmented([["Studio albums and EPs", "both"], ["Studio albums only", "albums"]], "both"));
+const countMode = view(segmented([["Studio albums and EPs", "both"], ["Studio albums only", "albums"]], new URLSearchParams(location.search).get("mode") === "albums" ? "albums" : "both"));
 ```
 
 ```js
@@ -322,7 +345,7 @@ function albumNumberHeat() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="heat" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 albumNumberHeat()
@@ -386,7 +409,7 @@ function firstListBars() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="first" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 firstListBars()
@@ -445,7 +468,7 @@ function ageSwarm() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="age" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 ageSwarm()
@@ -511,7 +534,7 @@ function lifelines() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="lives" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 lifelines()
@@ -552,3 +575,7 @@ Most artists do pass through once: ${(100 * [...appearances.values()].filter((n)
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
   <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">"Years in" counts from a start year I chose (see the note at the top), so it is a way to compare artists, not a measure of anyone's real career length. Solo artists who came out of a band start the clock again at their first solo release. Ages need a birth date, and MusicBrainz has one for ${(100 * rows.filter((d) => d.age_at_release != null).length / rows.filter((d) => d.artist_type === "Person" && !d.posthumous).length).toFixed(0)}% of the solo albums here, so the age charts cover those. Release numbers count the studio albums and EPs MusicBrainz lists for an artist (or albums only, if you switch) and ${rows.filter((d) => d.posthumous).length} albums released after an artist's death are left out of the career and age charts.</div>
 </div>
+
+```js
+addExpandButtons(() => document.querySelector(".dmo-seg")?.value);
+```
