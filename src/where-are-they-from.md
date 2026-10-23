@@ -715,9 +715,43 @@ statTiles([
 
 Brooklyn alone has nearly three times as many artists as Manhattan. London's artists are spread over more boroughs, but the details are thin: for most of them MusicBrainz only says London. Los Angeles is the same story in a smaller way: neighborhoods like Silver Lake and Hollywood are named for only a handful of its 59 artists, so they didn't get a chart.
 
+### Risers, fallers, and new arrivals
+
+Zooming out from any one city, three more numbers sum up how the map has shifted between the first decade of lists and the last ten years.
+
+```js
+const cKey = (d) => `${d.city}, ${d.region || d.country}`;
+const nFirst = era(2001, 2010).length, nLast = era(2016, 2025).length;
+const cityStats = [...d3.group(located, cKey)].map(([k, v]) => {
+  const a = v.filter((d) => d.list_year <= 2010).length, c = v.filter((d) => d.list_year >= 2016).length;
+  const sa = 100 * a / nFirst, sc = 100 * c / nLast;
+  return {k, name: k.split(",")[0], all: v.length, sa, sc, chg: sc - sa, ratio: sa > 0 ? sc / sa : Infinity};
+});
+const grower = d3.greatest(cityStats, (x) => x.chg), faller = d3.least(cityStats, (x) => x.chg);
+const nextFallers = cityStats.slice().sort((a, b) => a.chg - b.chg).slice(1, 3);
+const relGrower = d3.greatest(cityStats.filter((x) => x.all >= 15), (x) => x.ratio);
+const firstYearOf = d3.rollup(located, (v) => d3.min(v, (d) => d.list_year), (d) => d.country);
+const newcomers = [...firstYearOf].filter(([c, y]) => y >= 2020).sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
+const perList = d3.rollup(located, (v) => new Set(v.map((d) => d.country)).size, (d) => d.list_year);
+const perListRange = (lo, hi) => d3.extent(d3.range(lo, hi + 1), (y) => perList.get(y));
+```
+
+```js
+statTiles([
+  {label: "Fastest-growing city", value: grower.name,
+   caption: `From ${grower.sa.toFixed(0)}% of the list in 2001–2010 to ${grower.sc.toFixed(0)}% in 2016–2025, a gain of ${grower.chg.toFixed(0)} points.`},
+  {label: "Fastest-declining city", value: faller.name,
+   caption: `From ${faller.sa.toFixed(0)}% to ${faller.sc.toFixed(0)}%, a drop of ${Math.abs(faller.chg).toFixed(0)} points. ${nextFallers.map((x) => x.name).join(" and ")} slipped the most after it.`},
+  {label: "New countries since 2020", value: `${newcomers.length}`,
+   caption: `First-time home countries: ${newcomers.map(([c]) => c).join(", ")}.`}
+])
+```
+
+Growth and decline here are measured as a city's share of the whole list, so they show who gained room and who lost it. ${grower.name} gained the most and ${faller.name} lost the most, by almost the same amount. In relative terms, ${relGrower.name} grew fastest: its share went from ${relGrower.sa.toFixed(1)}% to ${relGrower.sc.toFixed(1)}%, more than ${Math.floor(relGrower.ratio)} times as large. The cities that faded are mostly ones that were once regulars. The newcomers are a different kind of change: the number of home countries on a single list was ${perListRange(2001, 2010)[0]} to ${perListRange(2001, 2010)[1]} in the 2000s and has been ${perListRange(2022, 2025)[0]} to ${perListRange(2022, 2025)[1]} in the last four years. Most of the newcomers each have one or two albums, but together they are why the map has more small dots at the edges than it used to. (Puerto Rico counts as its own country here because that is how MusicBrainz files it.)
+
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. An artist is counted in one place, so a band that formed in one city and moved to another shows up where it started. ${unlocated} of ${rows.length} entries (${(100 * unlocated / rows.length).toFixed(1)}%) have no usable place and are left out of every chart on this page. City coordinates come from a lookup against OpenStreetMap, so a few small places may sit slightly off. Borough detail exists only where MusicBrainz or my own research recorded it, so those bars undercount the real distribution inside a city.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. An artist is counted in one place, so a band that formed in one city and moved to another shows up where it started. ${unlocated} of ${rows.length} entries (${(100 * unlocated / rows.length).toFixed(1)}%) have no usable place (either no location on file, or only a country with no city) and are left out of every chart on this page. City coordinates come from a lookup against OpenStreetMap, so a few small places may sit slightly off. Borough detail exists only where MusicBrainz or my own research recorded it, so those bars undercount the real distribution inside a city.</div>
 </div>
 
 ```js
