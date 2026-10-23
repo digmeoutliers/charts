@@ -977,7 +977,7 @@ retentionChart()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share of artists first listed in 2011&ndash;2020 who appeared on another year's list within five years. The line is the range the true figure could plausibly fall in, given how many artists there are. Where the lines overlap, the data can't tell the groups apart.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share of artists first listed in 2011&ndash;2020 who appeared on another year's list within five years. The line is the range the true figure could plausibly fall in, given how many artists there are. It works like the margin of error in a poll: the fewer artists in a group, the wider the line. Where the lines overlap, the data can't tell the groups apart.</p>
 
 About ${retOf["Solo women"].p.toFixed(0)}% of the solo women came back, compared with ${retOf["Solo men"].p.toFixed(0)}% of the solo men and ${retOf["Groups"].p.toFixed(0)}% of the bands. The solo women's dot sits a little higher, but the ranges overlap, so the data can't separate the three. That is the point. If the women's rise came from a few favorites returning far more often than anyone else, they would stand out clearly here. They don't. More women got on the lists, and once they did, they came back at a similar rate to everyone else.
 
