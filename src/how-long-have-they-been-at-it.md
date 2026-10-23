@@ -100,16 +100,16 @@ function keyButtons(cats, counts, state, apply) {
 // a small two-button switch for use with view()
 function segmented(options, initial) {
   const el = document.createElement("div");
-  el.style.cssText = "display:inline-flex;border:1px solid #383835;border-radius:999px;overflow:hidden;background:#232321;margin:0.25rem 0 1rem;font-family:var(--sans-serif);";
+  el.style.cssText = "display:inline-flex;border:1px solid #8a8985;border-radius:999px;overflow:hidden;background:#d9d8d3;margin:0.25rem 0 1rem;font-family:var(--sans-serif);";
   const buttons = options.map(([label, value]) => {
     const b = document.createElement("button");
     b.type = "button"; b.textContent = label;
-    b.style.cssText = "border:0;background:transparent;color:#c9c8c3;font-size:13px;padding:6px 16px;cursor:pointer;font-family:var(--sans-serif);";
+    b.style.cssText = "border:0;background:#d9d8d3;color:#5f5e5a;font-size:13px;padding:6px 16px;cursor:pointer;font-family:var(--sans-serif);";
     b.onclick = () => { el.value = value; paint(); el.dispatchEvent(new Event("input", {bubbles: true})); };
     el.append(b);
     return [b, value];
   });
-  function paint() { buttons.forEach(([b, v]) => { b.style.background = el.value === v ? "#f0efec" : "transparent"; b.style.color = el.value === v ? "#1a1a19" : "#c9c8c3"; }); }
+  function paint() { buttons.forEach(([b, v]) => { b.style.background = el.value === v ? "#15171a" : "#d9d8d3"; b.style.color = el.value === v ? "#ffffff" : "#5f5e5a"; b.style.fontWeight = el.value === v ? 600 : 400; }); }
   el.value = initial; paint();
   return el;
 }
@@ -267,7 +267,7 @@ The dots above show every album on every list. The charts below break career sta
 Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. Switch to studio albums only if you'd rather not count them. Hover a cell to see which artists it holds.
 
 ```js
-const countMode = view(segmented([["Albums and EPs", "both"], ["Studio albums only", "albums"]], "both"));
+const countMode = view(segmented([["Studio albums and EPs", "both"], ["Studio albums only", "albums"]], "both"));
 ```
 
 ```js
