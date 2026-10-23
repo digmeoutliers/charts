@@ -54,7 +54,7 @@ head: |
       + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepSwitch ? ':not(:has(.dmo-seg))' : '') + ' { display: none !important; }'
       + ' html[data-only] main { max-width: none !important; margin: 0 !important; padding: 14px 18px !important; }'
       + ' html[data-only] #observablehq-center, html[data-only] #observablehq-main { margin: 0 !important; padding: 0 !important; }'
-      + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; }'
+      + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; border: 0 !important; }'
       + ' html[data-only] main svg { width: 100% !important; height: auto !important; }'
       + ' html[data-only] .dmo-expand, html[data-only] #observablehq-footer, html[data-only] .phone-note { display: none !important; }'
       + ' html[data-only] .dmo-seg { margin: 0 0 0.5rem !important; }';
