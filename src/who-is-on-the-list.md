@@ -41,6 +41,30 @@ head: |
     });
   })();
   </script>
+  <script>
+  // ?chart=<id>: show only that chart, scaled up (used by the Expand pop-up)
+  (function () {
+    var only = new URLSearchParams(location.search).get("chart");
+    if (!only || !/^[a-z0-9-]+$/.test(only)) return;
+    var d = document.documentElement;
+    d.setAttribute("data-only", only);
+    var keepControls = only === "grid";
+    var fit = false;
+    var st = document.createElement("style");
+    st.textContent = 'html[data-only] { --dmo-fg: #dcdcd6 !important; --dmo-bg-solid: #1a1a19 !important; }'
+      + ' html[data-only], html[data-only] body { background: #1a1a19 !important; }'
+      + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepControls ? ':not(:has(.dmo-ctl))' : '') + ' { display: none !important; }'
+      + ' html[data-only] main { max-width: none !important; margin: 0 !important; padding: 14px 18px !important; }'
+      + ' html[data-only] #observablehq-center, html[data-only] #observablehq-main { margin: 0 !important; padding: 0 !important; }'
+      + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; border: 0 !important; }'
+      + ' html[data-only] main svg { width: 100% !important; height: auto !important; }'
+      + (fit ? ' html[data-only] main svg { max-height: calc(100vh - 150px); }' : '')
+      + ' html[data-only] .dmo-expand, html[data-only] #observablehq-footer, html[data-only] .phone-note { display: none !important; }'
+      + ' html[data-only] .dmo-ctl { margin-bottom: 0.5rem !important; }';
+    document.head.appendChild(st);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { try { window.parent.postMessage({dmoCollapse: 1}, "*"); } catch (err) {} } });
+  })();
+  </script>
 ---
 
 # Who's on the list?
@@ -48,6 +72,7 @@ head: |
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
 import {addLens} from "./components/lens.js";
+import {addExpandButtons} from "./components/expand.js";
 ```
 
 ```js
@@ -152,6 +177,7 @@ Each dot is one album on one year's list, in rank order: #1 is the top left, and
 ```js
 function yearMultiSelect(allYears) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "position:relative;max-width:320px;margin:0 0 0.75rem;";
   const toggle = document.createElement("button");
   toggle.type = "button";
@@ -220,6 +246,7 @@ const artistList = (() => {
 
 function artistSearch(list) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "position:relative;max-width:320px;margin:0.25rem 0 0.75rem;";
   const row = document.createElement("div");
   row.style.cssText = "display:flex;align-items:center;gap:8px;";
@@ -343,7 +370,7 @@ function waffleChart(yearsSel, artistSel) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="grid" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 waffleChart(selectedYears, selectedArtist)
@@ -354,6 +381,7 @@ waffleChart(selectedYears, selectedArtist)
 ```js
 function artistTable(artistId, data) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "margin:1rem 0 1.5rem;";
 
   if (!artistId) {
@@ -475,7 +503,7 @@ function shareArea(mode) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="share" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 shareArea("Entries")
@@ -524,7 +552,7 @@ function numberOneLanes() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="top" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 numberOneLanes()
@@ -587,7 +615,7 @@ function soloCounts(mode) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="solo" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 soloCounts("Entries")
@@ -640,7 +668,7 @@ function albumsVsArtists() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="artists" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 albumsVsArtists()
@@ -716,7 +744,7 @@ function newVsReturning() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="newret" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 newVsReturning()
@@ -798,7 +826,7 @@ function repeatArtists() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="repeat" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 repeatArtists()
@@ -872,7 +900,7 @@ function releaseVsListed() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="released" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 releaseVsListed()
@@ -941,7 +969,7 @@ function retentionChart() {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="retention" style="background:#1a1a19;padding:1.5rem 1.5rem 0.75rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 retentionChart()
@@ -957,3 +985,7 @@ About ${retOf["Solo women"].p.toFixed(0)}% of the solo women came back, compared
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
   <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Gender is only recorded for individual artists, so every gender figure here covers solo artists, about a third of everyone on the lists. I don't assign one to bands: lineups change from album to album, and MusicBrainz counts some solo-led projects, like Japanese Breakfast, as bands, so they show up as purple here. Five non-binary solo artists are too few to chart on their own, so they're left out of the gender percentages. &ldquo;New&rdquo; means new to these lists, which start in 2001, and the album counts in the last two sections come from MusicBrainz's studio album listings, so a few odd releases can slip in.</div>
 </div>
+
+```js
+addExpandButtons();
+```

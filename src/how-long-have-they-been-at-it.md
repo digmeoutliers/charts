@@ -50,8 +50,9 @@ head: |
     d.setAttribute("data-only", only);
     var keepSwitch = only === "heat" || only === "first";
     var st = document.createElement("style");
-    st.textContent = 'html[data-only], html[data-only] body { background: #1a1a19 !important; }'
-      + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepSwitch ? ':not(:has(.dmo-seg))' : '') + ' { display: none !important; }'
+    st.textContent = 'html[data-only] { --dmo-fg: #dcdcd6 !important; --dmo-bg-solid: #1a1a19 !important; }'
+      + ' html[data-only], html[data-only] body { background: #1a1a19 !important; }'
+      + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepSwitch ? ':not(:has(.dmo-ctl))' : '') + ' { display: none !important; }'
       + ' html[data-only] main { max-width: none !important; margin: 0 !important; padding: 14px 18px !important; }'
       + ' html[data-only] #observablehq-center, html[data-only] #observablehq-main { margin: 0 !important; padding: 0 !important; }'
       + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; border: 0 !important; }'
@@ -122,7 +123,7 @@ function keyButtons(cats, counts, state, apply) {
 // a small two-button switch for use with view()
 function segmented(options, initial) {
   const el = document.createElement("div");
-  el.className = "dmo-seg";
+  el.className = "dmo-seg dmo-ctl";
   el.style.cssText = "display:inline-flex;border:1px solid #8a8985;border-radius:999px;overflow:hidden;background:#d9d8d3;margin:0.25rem 0 1rem;font-family:var(--sans-serif);";
   const buttons = options.map(([label, value]) => {
     const b = document.createElement("button");

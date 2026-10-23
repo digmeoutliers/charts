@@ -41,6 +41,30 @@ head: |
     });
   })();
   </script>
+  <script>
+  // ?chart=<id>: show only that chart, scaled up (used by the Expand pop-up)
+  (function () {
+    var only = new URLSearchParams(location.search).get("chart");
+    if (!only || !/^[a-z0-9-]+$/.test(only)) return;
+    var d = document.documentElement;
+    d.setAttribute("data-only", only);
+    var keepControls = only === "wheel";
+    var fit = false;
+    var st = document.createElement("style");
+    st.textContent = 'html[data-only] { --dmo-fg: #dcdcd6 !important; --dmo-bg-solid: #1a1a19 !important; }'
+      + ' html[data-only], html[data-only] body { background: #1a1a19 !important; }'
+      + ' html[data-only] main > *:not([data-chart="' + only + '"])' + (keepControls ? ':not(:has(.dmo-ctl))' : '') + ' { display: none !important; }'
+      + ' html[data-only] main { max-width: none !important; margin: 0 !important; padding: 14px 18px !important; }'
+      + ' html[data-only] #observablehq-center, html[data-only] #observablehq-main { margin: 0 !important; padding: 0 !important; }'
+      + ' html[data-only] .card { max-width: none !important; margin: 0 !important; padding: 1rem !important; border: 0 !important; }'
+      + ' html[data-only] main svg { width: 100% !important; height: auto !important; }'
+      + (fit ? ' html[data-only] main svg { max-height: calc(100vh - 150px); }' : '')
+      + ' html[data-only] .dmo-expand, html[data-only] #observablehq-footer, html[data-only] .phone-note { display: none !important; }'
+      + ' html[data-only] .dmo-ctl { margin-bottom: 0.5rem !important; }';
+    document.head.appendChild(st);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { try { window.parent.postMessage({dmoCollapse: 1}, "*"); } catch (err) {} } });
+  })();
+  </script>
 ---
 
 # 25 years of KEXP annual Listeners' Favorite lists
@@ -70,6 +94,7 @@ made the list.
 ```js
 import {makeTooltip, enableTap} from "./components/tooltip.js";
 import {addLens} from "./components/lens.js";
+import {addExpandButtons} from "./components/expand.js";
 ```
 
 ```js
@@ -83,6 +108,7 @@ const years = d3.sort(new Set(rows.map((d) => d.list_year)));
 ```js
 function yearMultiSelect(allYears) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "position:relative;max-width:320px;margin:0 0 0.75rem;";
 
   const toggle = document.createElement("button");
@@ -184,6 +210,7 @@ const artistList = (() => {
 ```js
 function artistSearch(list) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "position:relative;max-width:320px;margin:0.25rem 0 0.75rem;";
 
   const row = document.createElement("div");
@@ -472,7 +499,7 @@ function annualCircle(data, selectedYears, selectedArtist) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem;max-width:820px;margin:0 auto;">
+<div class="card" data-chart="wheel" style="background:#1a1a19;padding:1.5rem;max-width:820px;margin:0 auto;position:relative;">
 
 ```js
 annualCircle(rows, selectedYears, selectedArtist)
@@ -490,6 +517,7 @@ annualCircle(rows, selectedYears, selectedArtist)
 ```js
 function artistTable(artistId, data) {
   const container = document.createElement("div");
+  container.className = "dmo-ctl";
   container.style.cssText = "margin:1rem 0 1.5rem;";
 
   if (!artistId) {
@@ -622,7 +650,7 @@ function tierCohortChart(totalArtists, tierArtistCounts) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem;max-width:820px;margin:0 auto;">
+<div class="card" data-chart="cohort" style="background:#1a1a19;padding:1.5rem;max-width:820px;margin:0 auto;position:relative;">
 
 ```js
 tierCohortChart(totalArtists, tierArtistCounts)
@@ -768,7 +796,7 @@ function tierTrendChart(yearStats) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.5rem;max-width:900px;margin:0 auto;">
+<div class="card" data-chart="trend" style="background:#1a1a19;padding:1.5rem 1.5rem 0.5rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 tierTrendChart(yearStats)
@@ -908,7 +936,7 @@ function turnoverLineChart(stats) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem;max-width:920px;margin:0 auto;">
+<div class="card" data-chart="turnover" style="background:#1a1a19;padding:1.5rem;max-width:920px;margin:0 auto;position:relative;">
 
 ```js
 turnoverLineChart(turnoverStats)
@@ -1091,7 +1119,7 @@ function rankTrendChart(bandStats) {
 }
 ```
 
-<div class="card" style="background:#1a1a19;padding:1.5rem 1.5rem 0.5rem;max-width:700px;margin:0 auto;">
+<div class="card" data-chart="rank" style="background:#1a1a19;padding:1.5rem 1.5rem 0.5rem;max-width:700px;margin:0 auto;position:relative;">
 
 ```js
 rankTrendChart(rankBandStats)
@@ -1314,3 +1342,7 @@ consistencyStatTiles(consistencyStats)
 ```
 
 </div>
+
+```js
+addExpandButtons();
+```
