@@ -939,6 +939,7 @@ const retention = ["Groups", "Solo women", "Solo men"].map((c) => {
   return {c, n: ids.length, back, p: 100 * back / ids.length, lo, hi};
 });
 const retOf = Object.fromEntries(retention.map((r) => [r.c, r]));
+const overlapLo = d3.max(retention, (r) => r.lo), overlapHi = d3.min(retention, (r) => r.hi);
 
 function retentionChart() {
   const width = 880, height = 250, m = {l: 120, r: 190, t: 20, b: 40};
@@ -952,6 +953,10 @@ function retentionChart() {
     g.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 0).attr("y2", retention.length * rowH - 10).attr("stroke", "#33322f");
     g.append("text").attr("x", x(t)).attr("y", retention.length * rowH + 6).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 10).text(t + "%");
   });
+  if (overlapLo < overlapHi) {
+    g.append("rect").attr("x", x(overlapLo)).attr("width", x(overlapHi) - x(overlapLo)).attr("y", 0).attr("height", retention.length * rowH - 10).attr("fill", "#f0efec").attr("opacity", 0.1).attr("pointer-events", "none");
+    g.append("text").attr("x", (x(overlapLo) + x(overlapHi)) / 2).attr("y", -6).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text("All three could be here");
+  }
   retention.forEach((r, i) => {
     const cy = i * rowH + 20;
     g.append("text").attr("x", -14).attr("y", cy).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 13).text(r.c);
@@ -977,9 +982,9 @@ retentionChart()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share of artists first listed in 2011&ndash;2020 who appeared on another year's list within five years. The line is the range the true figure could plausibly fall in, given how many artists there are. It works like the margin of error in a poll: the fewer artists in a group, the wider the line. Where the lines overlap, the data can't tell the groups apart.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Dots are the share of artists first listed in 2011&ndash;2020 who appeared on another year's list within five years. The line is the range the true figure could plausibly fall in, given how many artists there are. It works like the margin of error in a poll: the fewer artists in a group, the wider the line. Read each line left to right along the percentage scale. Where lines cover the same stretch, the real rates for those groups could be the same. Here all three lines cover roughly ${overlapLo.toFixed(0)}% to ${overlapHi.toFixed(0)}% (the shaded band), so the data can't tell us that one group comes back more often than another.</p>
 
-About ${retOf["Solo women"].p.toFixed(0)}% of the solo women came back, compared with ${retOf["Solo men"].p.toFixed(0)}% of the solo men and ${retOf["Groups"].p.toFixed(0)}% of the bands. The solo women's dot sits a little higher, but the ranges overlap, so the data can't separate the three. That is the point. If the women's rise came from a few favorites returning far more often than anyone else, they would stand out clearly here. They don't. More women got on the lists, and once they did, they came back at a similar rate to everyone else.
+About ${retOf["Solo women"].p.toFixed(0)}% of the solo women came back, compared with ${retOf["Solo men"].p.toFixed(0)}% of the solo men and ${retOf["Groups"].p.toFixed(0)}% of the bands. The solo women's dot sits a little higher, but their lines cover much of the same stretch of the scale (the shaded band), so the data can't separate the three. That is the point. If the women's rise came from a few favorites returning far more often than anyone else, they would stand out clearly here. They don't. More women got on the lists, and once they did, they came back at a similar rate to everyone else.
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">What this can't tell us</div>
