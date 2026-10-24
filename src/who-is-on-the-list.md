@@ -451,8 +451,8 @@ statTiles([
    caption: `Only ${ones.filter((d) => d.artist_type === "Person").length} came from a solo artist, and ${ones.filter((d) => d.artist_type === "Person" && d.list_year > 2014).length} of those ${ones.filter((d) => d.artist_type === "Person").length} came after 2014.`},
   {label: "Share of list entries from bands", value: `${share(e0110, "Groups").toFixed(0)}% → ${share(e1625, "Groups").toFixed(0)}%`,
    caption: "2001–2010 compared with 2016–2025."},
-  {label: "Share from solo women", value: `${share(e0110, "Solo women").toFixed(0)}% → ${share(e1625, "Solo women").toFixed(0)}%`,
-   caption: `Same two periods. Solo men went from ${share(e0110, "Solo men").toFixed(0)}% to ${share(e1625, "Solo men").toFixed(0)}%.`}
+  {label: "Share from solo men", value: `${share(e0110, "Solo men").toFixed(0)}% → ${share(e1625, "Solo men").toFixed(0)}%`,
+   caption: `Same two periods. Solo women went from ${share(e0110, "Solo women").toFixed(0)}% to ${share(e1625, "Solo women").toFixed(0)}%.`}
 ])
 ```
 
@@ -630,10 +630,10 @@ soloCounts("Entries")
 
 ```js
 statTiles([
-  {label: "Solo women on each year's list", value: `${perYear(e0110, "Solo women", 10).toFixed(1)} → ${perYear(e2125, "Solo women", 5).toFixed(1)}`,
-   caption: "Average albums per year, 2001–2010 compared with 2021–2025."},
   {label: "Solo men on each year's list", value: `${perYear(e0110, "Solo men", 10).toFixed(1)} → ${perYear(e2125, "Solo men", 5).toFixed(1)}`,
-   caption: `Level at both ends, but not in between: ${perYear(e1120, "Solo men", 10).toFixed(1)} a year in 2011–2020.`},
+   caption: `Average albums per year, 2001–2010 compared with 2021–2025. Level at both ends, but not in between: ${perYear(e1120, "Solo men", 10).toFixed(1)} a year in 2011–2020.`},
+  {label: "Solo women on each year's list", value: `${perYear(e0110, "Solo women", 10).toFixed(1)} → ${perYear(e2125, "Solo women", 5).toFixed(1)}`,
+   caption: "The same two periods."},
   {label: "Top-10 spots held by solo women", value: `${share(top10(e0110), "Solo women").toFixed(0)}% → ${share(top10(e1625), "Solo women").toFixed(0)}%`,
    caption: "2001–2010 compared with 2016–2025."}
 ])
@@ -759,12 +759,12 @@ newVsReturning()
 
 ```js
 statTiles([
-  {label: "New solo women per year", value: `${newPerYear("Solo women", 2011, 2015).toFixed(1)} → ${newPerYear("Solo women", 2021, 2025).toFixed(1)}`,
-   caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025."},
   {label: "New solo men per year", value: `${newPerYear("Solo men", 2011, 2015).toFixed(1)} → ${newPerYear("Solo men", 2021, 2025).toFixed(1)}`,
+   caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025."},
+  {label: "New solo women per year", value: `${newPerYear("Solo women", 2011, 2015).toFixed(1)} → ${newPerYear("Solo women", 2021, 2025).toFixed(1)}`,
    caption: "The same two periods. The door narrowed for men as it widened for women."},
-  {label: "Returning solo women", value: `${returningShare("Solo women", 2011, 2015).toFixed(0)}% → ${returningShare("Solo women", 2021, 2025).toFixed(0)}%`,
-   caption: `Share of each year's solo women who had been listed before. For solo men: ${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%.`}
+  {label: "Returning solo men", value: `${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%`,
+   caption: `Share of each year's solo men who had been listed before. For solo women: ${returningShare("Solo women", 2011, 2015).toFixed(0)}% → ${returningShare("Solo women", 2021, 2025).toFixed(0)}%.`}
 ])
 ```
 
@@ -872,12 +872,12 @@ const albumsOf = (name) => {
 
 ```js
 statTiles([
-  {label: "Established solo women still releasing", value: `${activity["Solo women"].releasers} of ${activity["Solo women"].n}`,
-   caption: `Put out at least one studio album in 2016–2025 (${(100 * activity["Solo women"].releasers / activity["Solo women"].n).toFixed(0)}%).`},
   {label: "Established solo men still releasing", value: `${activity["Solo men"].releasers} of ${activity["Solo men"].n}`,
-   caption: `The same test (${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}%). They didn't go quiet.`},
-  {label: "Albums that made a list", value: `${activity["Solo women"].pct.toFixed(0)}% vs ${activity["Solo men"].pct.toFixed(0)}%`,
-   caption: `Solo women's albums compared with solo men's, 2016–2025.`}
+   caption: `Put out at least one studio album in 2016–2025 (${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}%). They didn't go quiet.`},
+  {label: "Established solo women still releasing", value: `${activity["Solo women"].releasers} of ${activity["Solo women"].n}`,
+   caption: `The same test (${(100 * activity["Solo women"].releasers / activity["Solo women"].n).toFixed(0)}%).`},
+  {label: "Albums that made a list", value: `${activity["Solo men"].pct.toFixed(0)}% vs ${activity["Solo women"].pct.toFixed(0)}%`,
+   caption: `Solo men's albums compared with solo women's, 2016–2025.`}
 ])
 ```
 
