@@ -875,7 +875,7 @@ statTiles([
   {label: "Established solo men still releasing", value: `${activity["Solo men"].releasers} of ${activity["Solo men"].n}`,
    caption: `Put out at least one studio album in 2016–2025 (${(100 * activity["Solo men"].releasers / activity["Solo men"].n).toFixed(0)}%). They didn't go quiet.`},
   {label: "Established solo women still releasing", value: `${activity["Solo women"].releasers} of ${activity["Solo women"].n}`,
-   caption: `The same test (${(100 * activity["Solo women"].releasers / activity["Solo women"].n).toFixed(0)}%).`},
+   caption: `Put out at least one studio album in 2016–2025 (${(100 * activity["Solo women"].releasers / activity["Solo women"].n).toFixed(0)}%).`},
   {label: "Albums that made a list", value: `${activity["Solo men"].pct.toFixed(0)}% vs ${activity["Solo women"].pct.toFixed(0)}%`,
    caption: `Solo men's albums compared with solo women's, 2016–2025.`}
 ])
