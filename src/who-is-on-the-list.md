@@ -516,7 +516,7 @@ shareArea("Entries")
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">The curves use a three-year average to smooth the bumps. Hover to see the actual numbers for any single year.</p>
 
-Bands start near three-quarters of every list and settle at roughly three in five. The teal barely moves. Nearly all of the change is gold.
+Bands start near three-quarters of every list and settle at roughly three in five. The teal swells through the 2010s and then settles back to where it began. Nearly all of the lasting change is gold.
 
 ### Who gets to #1?
 
