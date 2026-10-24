@@ -81,9 +81,9 @@ const rows = FileAttachment("data/who_is_on_the_list_2001_2025.csv").csv({typed:
 
 ```js
 // ---- Palette: the same four brand hues as the wheel post, used by category here (each chart has its own key). ----
-// To change a color or the stacking order, edit ONLY these two lines.
+// To change a color or the order used in every key, legend and tooltip, edit ONLY these two lines (the share chart stacks them in reverse, so it reads top to bottom in this order).
 const catColor = {"Solo women": "#d6b45b", "Solo men": "#58cec8", "Groups": "#9c57f3", "Other / not recorded": "#dcdad2"};
-const catOrder = ["Solo women", "Solo men", "Groups", "Other / not recorded"];
+const catOrder = ["Groups", "Solo men", "Solo women", "Other / not recorded"];
 
 function category(d) {
   if (d.artist_type === "Group") return "Groups";
@@ -172,7 +172,7 @@ const top10 = (r) => r.filter((d) => d.rank <= 10);
 
 ## Every album, by who made it
 
-Each dot is one album on one year's list, in rank order: #1 is the top left, and the list reads across and down like a page. Gold is a solo woman, teal is a solo man, and purple is a band. Click a color in the key to light up one kind of artist, pick years from the box, or search for an artist to see where all of their albums sit. Hover any dot to see who it is.
+Each dot is one album on one year's list, in rank order: #1 is the top left, and the list reads across and down like a page. Purple is a band, teal is a solo man, and gold is a solo woman. Click a color in the key to light up one kind of artist, pick years from the box, or search for an artist to see where all of their albums sit. Hover any dot to see who it is.
 
 ```js
 function yearMultiSelect(allYears) {
@@ -475,7 +475,7 @@ function shareArea(mode) {
   });
   const x = d3.scaleLinear().domain([years[0], years[years.length - 1]]).range([0, pw]);
   const y = d3.scaleLinear().domain([0, 1]).range([ph, 0]);
-  const series = d3.stack().keys(catOrder)(sm);
+  const series = d3.stack().keys([...catOrder].reverse())(sm);
   const area = d3.area().x((d, i) => x(years[i])).y0((d) => y(d[0])).y1((d) => y(d[1])).curve(d3.curveMonotoneX);
 
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", CARD);
@@ -493,12 +493,12 @@ function shareArea(mode) {
       const [mx] = d3.pointer(event);
       const i = Math.max(0, Math.min(years.length - 1, Math.round(((mx / pw) * (years[years.length - 1] - years[0])))));
       cursor.attr("x1", x(years[i])).attr("x2", x(years[i])).attr("opacity", 0.8);
-      const lines = [...catOrder].reverse().map((k) => `<div style="display:flex;justify-content:space-between;gap:12px"><span>${swatch(k)}${k}</span><b>${(100 * (shares[i][k])).toFixed(0)}% <span style="font-weight:400;color:#898781">(${raw[i][k] || 0})</span></b></div>`);
+      const lines = catOrder.map((k) => `<div style="display:flex;justify-content:space-between;gap:12px"><span>${swatch(k)}${k}</span><b>${(100 * (shares[i][k])).toFixed(0)}% <span style="font-weight:400;color:#898781">(${raw[i][k] || 0})</span></b></div>`);
       showTip(event, `<b>${years[i]}</b> &middot; ${tot[i]}<br>${lines.join("")}`);
     })
     .on("pointerleave", (event) => { cursor.attr("opacity", 0); hideTip(event); });
   const wrap = document.createElement("div");
-  wrap.append(svg.node(), legendEl([...catOrder].reverse()));
+  wrap.append(svg.node(), legendEl(catOrder));
   return wrap;
 }
 ```
@@ -521,7 +521,7 @@ The top spot tells the same story, only more starkly.
 
 ```js
 function numberOneLanes() {
-  const lanes = ["Groups", "Solo women", "Solo men"];
+  const lanes = ["Groups", "Solo men", "Solo women"];
   const width = 880, height = 270, m = {l: 96, r: 24, t: 20, b: 30};
   const x = d3.scalePoint(years, [m.l, width - m.r]).padding(0.5);
   const laneY = Object.fromEntries(lanes.map((l, i) => [l, m.t + 28 + i * 66]));
@@ -564,13 +564,13 @@ Bands took the top spot every year from 2001 to 2004. Sufjan Stevens broke the r
 
 ### Solo artists: counts, not just shares
 
-A rising share can mean one group is growing or another is shrinking, so here are the actual numbers: how many albums by solo women and by solo men made each year's list.
+A rising share can mean one group is growing or another is shrinking, so here are the actual numbers: how many albums by solo men and by solo women made each year's list.
 
 ```js
 function soloCounts(mode) {
   const width = 880, height = 380, m = {l: 44, r: 120, t: 16, b: 32};
   const pw = width - m.l - m.r, ph = height - m.t - m.b;
-  const cats = ["Solo women", "Solo men"];
+  const cats = ["Solo men", "Solo women"];
   const data = years.map((yr) => ({yr, c: bucketCounts(rows, mode, (d) => d.list_year === yr)}));
   const ymax = d3.max(data, (d) => d3.max(cats, (k) => d.c[k] || 0));
   const x = d3.scaleLinear().domain([years[0], years[years.length - 1]]).range([0, pw]);
@@ -710,7 +710,7 @@ const returningShare = (c, lo, hi) => {
 
 ```js
 function newVsReturning() {
-  const panels = ["Solo women", "Solo men"];
+  const panels = ["Solo men", "Solo women"];
   const width = 880, m = {l: 34, r: 12, t: 40, b: 30}, gap = 40;
   const pw = (width - m.l - m.r - gap) / 2, ph = 250, height = m.t + ph + m.b;
   const ymax = d3.max(panels, (c) => d3.max(years, (yr) => ay(c, yr).nNew + ay(c, yr).nRet));
@@ -791,7 +791,7 @@ function repeatNames(c) {
 
 ```js
 function repeatArtists() {
-  const panels = ["Solo women", "Solo men"].map((c) => ({c, list: repeatNames(c)}));
+  const panels = ["Solo men", "Solo women"].map((c) => ({c, list: repeatNames(c)}));
   const yrs = d3.range(2016, 2026);
   const rowH = 23, m = {l: 150, r: 96, t: 8, b: 8}, headH = 58;
   const width = 880, pw = width - m.l - m.r;
@@ -880,7 +880,7 @@ statTiles([
 
 ```js
 function releaseVsListed() {
-  const cats = ["Solo women", "Solo men", "Groups"];
+  const cats = ["Groups", "Solo men", "Solo women"];
   const width = 880, m = {l: 150, r: 250, t: 14, b: 14}, rowH = 46, height = m.t + cats.length * rowH + m.b;
   const pw = width - m.l - m.r;
   const x = d3.scaleLinear().domain([0, 50]).range([0, pw]);
@@ -932,7 +932,7 @@ function wilson(k, n, z = 1.96) {
   return [100 * (c - a) / d, 100 * (c + a) / d];
 }
 const backWithin = (id, k) => yearsOf.get(id).some((y) => y > firstYear.get(id) && y <= firstYear.get(id) + k);
-const retention = ["Groups", "Solo women", "Solo men"].map((c) => {
+const retention = ["Groups", "Solo men", "Solo women"].map((c) => {
   const ids = [...firstYear].filter(([id, fy]) => fy >= 2011 && fy <= 2020 && catOfArtist.get(id) === c).map(([id]) => id);
   const back = ids.filter((id) => backWithin(id, 5)).length;
   const [lo, hi] = wilson(back, ids.length);
