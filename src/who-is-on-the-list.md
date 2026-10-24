@@ -763,8 +763,8 @@ statTiles([
    caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025."},
   {label: "New solo women per year", value: `${newPerYear("Solo women", 2011, 2015).toFixed(1)} → ${newPerYear("Solo women", 2021, 2025).toFixed(1)}`,
    caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025. The door narrowed for men as it widened for women."},
-  {label: "Returning solo men", value: `${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%`,
-   caption: `Share of each year's solo men who had been listed before. For solo women: ${returningShare("Solo women", 2011, 2015).toFixed(0)}% → ${returningShare("Solo women", 2021, 2025).toFixed(0)}%.`}
+  {label: "Returning solo men & solo women", value: `${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%`,
+   caption: "Share of each year's solo men and solo women who had been listed before, 2011–2015 compared with 2021–2025. A near identical result for both."}
 ])
 ```
 
