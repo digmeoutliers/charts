@@ -569,12 +569,12 @@ statTiles([
    caption: "Share of all artists who have appeared on exactly one list. Most artists come once and don't return."},
   {label: "Spots held by regulars", value: `${shareOfSpots(5).toFixed(0)}%`,
    caption: `The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums on the lists hold this share of all the spots.`},
-  {label: "Spots that go to first-timers", value: `${shareWhere(firstTimers(2011, 2015), isFirst).toFixed(0)}% → ${shareWhere(firstTimers(2016, 2025), isFirst).toFixed(0)}%`,
-   caption: "Share of each period's entries from an artist's first appearance on any list, 2011–2015 compared with 2016–2025."}
+  {label: "Spots that go to first-timers", value: `${shareWhere(firstTimers(2011, 2015), isFirst).toFixed(0)}% → ${shareWhere(firstTimers(2021, 2025), isFirst).toFixed(0)}%`,
+   caption: "Share of each period's entries from an artist's first appearance on any list, 2011–2015 compared with 2021–2025."}
 ])
 ```
 
-Most artists do pass through once: ${(100 * [...appearances.values()].filter((n) => n === 1).length / appearances.size).toFixed(0)}% of everyone who has made a list made exactly one. But a small group of repeat artists holds far more than its share of the spots. The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums hold ${shareOfSpots(5).toFixed(0)}% of all the entries, and the ${lifeList().length} artists in the chart above are only ${shareOfArtists(7).toFixed(0)}% of artists but hold ${shareOfSpots(7).toFixed(0)}% of the spots. The door is still turning: about ${(firstTimers(2016, 2025).filter(isFirst).length / 10).toFixed(0)} artists a year make a list for the first time, or roughly one spot in three. It is turning a little more slowly than it used to, though, and that matches what the first chart showed. So the best way to put the two ideas together is a revolving door with a regular cast.
+Most artists do pass through once: ${(100 * [...appearances.values()].filter((n) => n === 1).length / appearances.size).toFixed(0)}% of everyone who has made a list made exactly one. But a small group of repeat artists holds far more than its share of the spots. The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums hold ${shareOfSpots(5).toFixed(0)}% of all the entries, and the ${lifeList().length} artists in the chart above are only ${shareOfArtists(7).toFixed(0)}% of artists but hold ${shareOfSpots(7).toFixed(0)}% of the spots. The door is still turning: about ${(firstTimers(2021, 2025).filter(isFirst).length / 5).toFixed(0)} artists a year make a list for the first time, or roughly one spot in three. It is turning a little more slowly than it used to, though, and that matches what the first chart showed. So the best way to put the two ideas together is a revolving door with a regular cast.
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
