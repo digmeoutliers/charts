@@ -269,6 +269,15 @@ careerSwarm()
 
 </div>
 
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Years in is the year an album came out minus the artist's start year, as described in the note at the top. The white line is the median for each year's list. Albums released after an artist's death are left out.</p>
+
+
+## Interesting observations
+
+The dots above show every album on every list. The charts below break career stage into pieces and look at what else it's tied to: which record it is in an artist's catalog, how old the solo artists are, and who has stayed on the lists the longest.
+
+The bottom of every column is crowded: in any year, plenty of artists are in their first few years. What changed is the middle of the chart. In the first decade, the typical artist on a list was ${medYears(2001, 2010).toFixed(0)} years in. In the last ten years it was ${medYears(2016, 2025).toFixed(0)}. The lists haven't stopped finding new names, but more of the room now goes to artists who have been around a while.
+
 ```js
 statTiles([
   {label: "Typical years in", value: `${medYears(2001, 2010).toFixed(0)} → ${medYears(2016, 2025).toFixed(0)}`,
@@ -280,11 +289,6 @@ statTiles([
 ])
 ```
 
-The bottom of every column is crowded: in any year, plenty of artists are in their first few years. What changed is the middle of the chart. In the first decade, the typical artist on a list was ${medYears(2001, 2010).toFixed(0)} years in. In the last ten years it was ${medYears(2016, 2025).toFixed(0)}. The lists haven't stopped finding new names, but more of the room now goes to artists who have been around a while.
-
-## Interesting observations
-
-The dots above show every album on every list. The charts below break career stage into pieces and look at what else it's tied to: which record it is in an artist's catalog, how old the solo artists are, and who has stayed on the lists the longest.
 
 ### Debut or deep catalog?
 
