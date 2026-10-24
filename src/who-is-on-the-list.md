@@ -452,7 +452,7 @@ statTiles([
   {label: "Share of list entries from bands", value: `${share(e0110, "Groups").toFixed(0)}% → ${share(e1625, "Groups").toFixed(0)}%`,
    caption: "2001–2010 compared with 2016–2025."},
   {label: "Share from solo men", value: `${share(e0110, "Solo men").toFixed(0)}% → ${share(e1625, "Solo men").toFixed(0)}%`,
-   caption: `Same two periods. Solo women went from ${share(e0110, "Solo women").toFixed(0)}% to ${share(e1625, "Solo women").toFixed(0)}%.`}
+   caption: `2001–2010 compared with 2016–2025. Solo women went from ${share(e0110, "Solo women").toFixed(0)}% to ${share(e1625, "Solo women").toFixed(0)}%.`}
 ])
 ```
 
@@ -633,7 +633,7 @@ statTiles([
   {label: "Solo men on each year's list", value: `${perYear(e0110, "Solo men", 10).toFixed(1)} → ${perYear(e2125, "Solo men", 5).toFixed(1)}`,
    caption: `Average albums per year, 2001–2010 compared with 2021–2025. Level at both ends, but not in between: ${perYear(e1120, "Solo men", 10).toFixed(1)} a year in 2011–2020.`},
   {label: "Solo women on each year's list", value: `${perYear(e0110, "Solo women", 10).toFixed(1)} → ${perYear(e2125, "Solo women", 5).toFixed(1)}`,
-   caption: "The same two periods."},
+   caption: "Average albums per year, 2001–2010 compared with 2021–2025."},
   {label: "Top-10 spots held by solo women", value: `${share(top10(e0110), "Solo women").toFixed(0)}% → ${share(top10(e1625), "Solo women").toFixed(0)}%`,
    caption: "2001–2010 compared with 2016–2025."}
 ])
@@ -762,7 +762,7 @@ statTiles([
   {label: "New solo men per year", value: `${newPerYear("Solo men", 2011, 2015).toFixed(1)} → ${newPerYear("Solo men", 2021, 2025).toFixed(1)}`,
    caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025."},
   {label: "New solo women per year", value: `${newPerYear("Solo women", 2011, 2015).toFixed(1)} → ${newPerYear("Solo women", 2021, 2025).toFixed(1)}`,
-   caption: "The same two periods. The door narrowed for men as it widened for women."},
+   caption: "Artists making a list for the first time, 2011–2015 compared with 2021–2025. The door narrowed for men as it widened for women."},
   {label: "Returning solo men", value: `${returningShare("Solo men", 2011, 2015).toFixed(0)}% → ${returningShare("Solo men", 2021, 2025).toFixed(0)}%`,
    caption: `Share of each year's solo men who had been listed before. For solo women: ${returningShare("Solo women", 2011, 2015).toFixed(0)}% → ${returningShare("Solo women", 2021, 2025).toFixed(0)}%.`}
 ])
