@@ -156,10 +156,13 @@ function statTiles(defs) {
 // numbers used in the tiles and text, computed from the data
 const pct = (n, d) => (100 * n / d);
 const era = (lo, hi) => rows.filter((d) => d.list_year >= lo && d.list_year <= hi);
-const e0110 = era(2001, 2010), e1625 = era(2016, 2025), e2125 = era(2021, 2025);
+const e0110 = era(2001, 2010), e1120 = era(2011, 2020), e1625 = era(2016, 2025), e2125 = era(2021, 2025);
 const share = (r, c) => pct(r.filter((d) => category(d) === c).length, r.length);
 const perYear = (r, c, nYears) => r.filter((d) => category(d) === c).length / nYears;
 const ones = rows.filter((d) => d.rank === 1);
+const soloCountIn = (c, yr) => (byYear.get(yr) ?? []).filter((d) => category(d) === c).length;
+const womenMax = d3.max(years, (yr) => soloCountIn("Solo women", yr));
+const menPeaks = ["none", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][d3.range(2011, 2021).filter((yr) => soloCountIn("Solo men", yr) > womenMax).length];
 const top10 = (r) => r.filter((d) => d.rank <= 10);
 ```
 
@@ -568,7 +571,7 @@ A rising share can mean one group is growing or another is shrinking, so here ar
 
 ```js
 function soloCounts(mode) {
-  const width = 880, height = 380, m = {l: 44, r: 120, t: 16, b: 32};
+  const width = 880, height = 380, m = {l: 44, r: 150, t: 16, b: 32};
   const pw = width - m.l - m.r, ph = height - m.t - m.b;
   const cats = ["Solo men", "Solo women"];
   const data = years.map((yr) => ({yr, c: bucketCounts(rows, mode, (d) => d.list_year === yr)}));
@@ -591,7 +594,7 @@ function soloCounts(mode) {
     endYs[1] = mid + (lowFirst ? 18 : -18);
   }
   cats.forEach((k, ci) => {
-    [[2001, 2010], [2021, 2025]].forEach(([lo, hi]) => {
+    [[2001, 2010], [2011, 2020], [2021, 2025]].forEach(([lo, hi]) => {
       const a = avg(k, lo, hi);
       g.append("line").attr("x1", x(lo)).attr("x2", x(hi)).attr("y1", y(a)).attr("y2", y(a)).attr("stroke", catColor[k]).attr("stroke-width", 1.5).attr("stroke-dasharray", "5 4").attr("opacity", 0.9);
     });
@@ -600,7 +603,7 @@ function soloCounts(mode) {
     const endY = endYs[ci];
     g.append("text").attr("x", pw + 10).attr("y", endY).attr("dominant-baseline", "middle").attr("fill", catColor[k]).attr("font-size", 12).attr("font-weight", 600).text(k);
     g.append("text").attr("x", pw + 10).attr("y", endY + 14).attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 10)
-      .text(`${avg(k, 2001, 2010).toFixed(1)} → ${avg(k, 2021, 2025).toFixed(1)} a year`);
+      .text(`${avg(k, 2001, 2010).toFixed(1)} → ${avg(k, 2011, 2020).toFixed(1)} → ${avg(k, 2021, 2025).toFixed(1)} a year`);
   });
   const cursor = g.append("line").attr("y1", 0).attr("y2", ph).attr("stroke", "#f0efec").attr("opacity", 0);
   g.append("rect").attr("width", pw).attr("height", ph).attr("fill", "transparent")
@@ -623,20 +626,20 @@ soloCounts("Entries")
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Dashed lines are the average for 2001&ndash;2010 and for 2021&ndash;2025. Only artists with a recorded gender are counted.</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Dashed lines are the average for 2001&ndash;2010, 2011&ndash;2020, and 2021&ndash;2025. Only artists with a recorded gender are counted.</p>
 
 ```js
 statTiles([
   {label: "Solo women on each year's list", value: `${perYear(e0110, "Solo women", 10).toFixed(1)} → ${perYear(e2125, "Solo women", 5).toFixed(1)}`,
    caption: "Average albums per year, 2001–2010 compared with 2021–2025."},
   {label: "Solo men on each year's list", value: `${perYear(e0110, "Solo men", 10).toFixed(1)} → ${perYear(e2125, "Solo men", 5).toFixed(1)}`,
-   caption: "Essentially unchanged. The rise is all on one side."},
+   caption: `Level at both ends, but not in between: ${perYear(e1120, "Solo men", 10).toFixed(1)} a year in 2011–2020.`},
   {label: "Top-10 spots held by solo women", value: `${share(top10(e0110), "Solo women").toFixed(0)}% → ${share(top10(e1625), "Solo women").toFixed(0)}%`,
    caption: "2001–2010 compared with 2016–2025."}
 ])
 ```
 
-Solo women went from five or six albums a year to more than twenty in most recent years. Solo men didn't change. The lists didn't get any bigger, so the new room came from bands, not from solo men.
+Solo women went from five or six albums a year to more than twenty in most recent years. Solo men took a different path. They rose from about ${perYear(e0110, "Solo men", 10).toFixed(0)} a year to about ${perYear(e1120, "Solo men", 10).toFixed(0)} through the 2010s, with ${menPeaks} of those ten years coming in above the most solo women have ever had in a year (${womenMax}), and then fell back to about ${perYear(e2125, "Solo men", 5).toFixed(0)} by 2021&ndash;2025. So the same starting and ending numbers hide a hump in the middle. Bands gave up the room: they went from about ${perYear(e0110, "Groups", 10).toFixed(0)} albums a year to about ${perYear(e1120, "Groups", 10).toFixed(0)} in the 2010s and about ${perYear(e2125, "Groups", 5).toFixed(0)} now. Most lists have 91 albums, so more room for one kind of artist means less for another. (The 2012 list was longer, at 120, which is part of why that year stands out for solo men.)
 
 ### Counting albums or counting artists?
 
