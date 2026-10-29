@@ -1,425 +1,257 @@
 place,lat,lon,osm_type
-"Wien, Austria",48.2084,16.3725,administrative
-"Canberra, Australian Capital Territory, Australia",-35.2976,149.1013,city
-"Blue Mountains, New South Wales, Australia",-33.6097,150.4052,mountain_range
-"Sydney, New South Wales, Australia",-33.8698,151.2083,city
-"Brisbane, Queensland, Australia",-27.469,153.0235,city
-"Ballarat, Victoria, Australia",-37.5623,143.8606,city
-"Geelong, Victoria, Australia",-38.1493,144.3598,city
-"Melbourne, Victoria, Australia",-37.8142,144.9632,city
-"Warracknabeal, Victoria, Australia",-36.251,142.3954,administrative
-"Perth, Western Australia, Australia",-31.9559,115.8606,city
-"Rio de Janeiro, Brazil",-22.911,-43.2094,administrative
-"São Paulo, Brazil",-23.5507,-46.6334,administrative
-"Calgary, Alberta, Canada",51.0456,-114.0575,administrative
-"Edmonton, Alberta, Canada",53.5462,-113.4912,administrative
-"Fort Macleod, Alberta, Canada",49.7267,-113.4076,fort
-"Campbell River, British Columbia, Canada",50.0231,-125.2442,administrative
-"Duncan, British Columbia, Canada",48.7787,-123.708,administrative
-"Vancouver, British Columbia, Canada",49.2609,-123.114,administrative
-"Victoria, British Columbia, Canada",48.4283,-123.365,administrative
-"Winnipeg, Manitoba, Canada",49.8955,-97.1385,administrative
-"Amherst, Nova Scotia, Canada",45.8193,-64.2334,bus_station
-"Halifax, Nova Scotia, Canada",44.6486,-63.5859,administrative
-"Guelph, Ontario, Canada",43.5461,-80.2493,administrative
-"Hamilton, Ontario, Canada",43.2561,-79.8729,administrative
-"Kingston, Ontario, Canada",44.3054,-76.4284,administrative
-"Lanark Highlands, Ontario, Canada",45.0876,-76.4856,administrative
-"Newmarket, Ontario, Canada",44.0563,-79.4617,administrative
-"Ottawa, Ontario, Canada",45.4209,-75.6901,administrative
-"Toronto, Ontario, Canada",43.6535,-79.3839,administrative
-"Montréal, Quebec, Canada",45.5032,-73.5698,administrative
-"Westmount, Quebec, Canada",45.4857,-73.5966,administrative
-"Zurich, Switzerland",47.3744,8.541,administrative
-"La Habana, Cuba",23.1353,-82.359,city
-"Berlin, Germany",52.5174,13.3951,administrative
-"Düsseldorf, Germany",51.2254,6.7763,administrative
-"Köln, Germany",50.9384,6.96,administrative
-"Weilheim in Oberbayern, Germany",47.8395,11.1416,administrative
-"Copenhagen, Denmark",55.6867,12.5701,city
-"Hellerup, Denmark",55.7337,12.5655,suburb
-"Vordingborg, Denmark",55.0103,11.9097,town
-"Barcelona, Spain",41.3826,2.1771,administrative
-"Madrid, Spain",40.4168,-3.7035,administrative
-"Sant Cugat del Vallès, Spain",41.4708,2.0849,administrative
-"Antibes, France",43.5814,7.1237,administrative
-"Nantes, France",47.2186,-1.5541,administrative
-"Paris, France",48.8535,2.3484,administrative
-"Rouen, France",49.4405,1.094,administrative
-"Vernon, France",49.0932,1.4857,administrative
-"Versailles, France",48.8035,2.1267,administrative
-"Reading, England, United Kingdom",51.4564,-0.9701,administrative
-"Bristol, England, United Kingdom",51.443,-2.5817,administrative
-"Cambridge, England, United Kingdom",52.1976,0.1392,administrative
-"Huntingdon, England, United Kingdom",52.3305,-0.1844,administrative
-"Handforth, England, United Kingdom",53.3502,-2.2158,administrative
-"Exeter, England, United Kingdom",50.7256,-3.5269,administrative
-"Teignmouth, England, United Kingdom",50.5463,-3.4958,administrative
-"Totnes, England, United Kingdom",50.4323,-3.6872,administrative
-"Hull, England, United Kingdom",53.7624,-0.3301,administrative
-"Battle, England, United Kingdom",50.9265,0.4757,administrative
-"Brighton, England, United Kingdom",50.8215,-0.1401,city
-"Basildon, England, United Kingdom",51.5702,0.4584,town
-"Clacton-on-Sea, England, United Kingdom",51.7884,1.1528,town
-"Southend-on-Sea, England, United Kingdom",51.5388,0.7128,administrative
-"Cheltenham, England, United Kingdom",51.8996,-2.0712,town
-"London, England, United Kingdom",51.5074,-0.1278,administrative
-"Twickenham, England, United Kingdom",51.4467,-0.3282,town
-"Westminster, England, United Kingdom",51.5004,-0.1265,quarter
-"Bolton, England, United Kingdom",53.5783,-2.43,town
-"Manchester, England, United Kingdom",53.4425,-2.2325,administrative
-"Middleton, England, United Kingdom",54.2576,-0.8002,administrative
-"Prestwich, England, United Kingdom",53.5304,-2.296,town
-"Ramsbottom, England, United Kingdom",53.6484,-2.3157,town
-"Sale, England, United Kingdom",53.4245,-2.3184,town
-"Salford, England, United Kingdom",53.4877,-2.2892,city
-"Trafford, England, United Kingdom",53.4189,-2.3593,administrative
-"Eversley, England, United Kingdom",51.3533,-0.8881,village
-"Southampton, England, United Kingdom",50.9025,-1.4042,administrative
-"Hereford, England, United Kingdom",52.0554,-2.7152,administrative
-"Dover, England, United Kingdom",51.1251,1.3134,town
-"Wigan, England, United Kingdom",53.5462,-2.6319,town
-"Leicester, England, United Kingdom",52.6362,-1.1332,city
-"Crosby, England, United Kingdom",54.3019,-1.3699,administrative
-"Liverpool, England, United Kingdom",53.3933,-2.9166,administrative
-"Southport, England, United Kingdom",53.6487,-3.0045,town
-"Dereham, England, United Kingdom",52.6802,0.9386,administrative
-"Great Yarmouth, England, United Kingdom",52.6072,1.7315,town
-"Norwich, England, United Kingdom",52.6286,1.2924,administrative
-"Kettering, England, United Kingdom",52.3994,-0.728,administrative
-"Northampton, England, United Kingdom",52.2343,-0.9028,historic
-"Wellingborough, England, United Kingdom",52.3019,-0.6937,town
-"Nottingham, England, United Kingdom",52.9534,-1.1496,administrative
-"Abingdon-on-Thames, England, United Kingdom",51.6715,-1.278,town
 "Oxford, England, United Kingdom",51.752,-1.2578,administrative
-"Bath, England, United Kingdom",51.3814,-2.3597,city
-"Yeovil, England, United Kingdom",50.942,-2.6319,administrative
-"Sheffield, England, United Kingdom",53.3807,-1.4702,administrative
-"Burton upon Trent, England, United Kingdom",52.8027,-1.6299,town
-"Woodbridge, England, United Kingdom",52.0941,1.3199,administrative
-"Cobham, England, United Kingdom",51.33,-0.4121,town
-"Reigate, England, United Kingdom",51.2377,-0.2057,town
-"Woking, England, United Kingdom",51.3202,-0.5565,town
-"Newcastle upon Tyne, England, United Kingdom",54.9738,-1.6132,administrative
-"Sunderland, England, United Kingdom",54.9059,-1.3829,city
-"Rugby, England, United Kingdom",52.3727,-1.262,administrative
-"Tanworth-in-Arden, England, United Kingdom",52.3337,-1.8383,administrative
-"Birmingham, England, United Kingdom",52.4949,-1.8518,administrative
-"Coventry, England, United Kingdom",52.4082,-1.5105,city
-"Stourbridge, England, United Kingdom",52.4578,-2.1474,town
-"Wolverhampton, England, United Kingdom",52.5848,-2.1276,administrative
-"Chichester, England, United Kingdom",50.8365,-0.7792,administrative
-"Crawley, England, United Kingdom",51.1103,-0.1801,administrative
-"Kippax, England, United Kingdom",53.7701,-1.3702,administrative
-"Leeds, England, United Kingdom",53.7974,-1.5438,city
-"Swindon, England, United Kingdom",51.5615,-1.7854,town
-"Bangor, Northern Ireland, United Kingdom",54.6626,-5.6679,city
-"Belfast, Northern Ireland, United Kingdom",54.5964,-5.9302,administrative
-"Bellshill, Scotland, United Kingdom",55.8189,-4.0226,town
-"Dundee, Scotland, United Kingdom",56.4606,-2.9702,city
-"East Kilbride, Scotland, United Kingdom",55.7606,-4.1777,town
-"Edinburgh, Scotland, United Kingdom",55.9533,-3.1884,administrative
-"Falkirk, Scotland, United Kingdom",55.9992,-3.7844,town
-"Glasgow, Scotland, United Kingdom",55.8612,-4.2502,city
-"Kilsyth, Scotland, United Kingdom",55.9765,-4.056,town
-"Motherwell, Scotland, United Kingdom",55.7894,-3.9904,town
-"Selkirk, Scotland, United Kingdom",55.5471,-2.8415,town
-"Caldicot, Wales, United Kingdom",51.5912,-2.7518,town
-"Cardiff, Wales, United Kingdom",51.4817,-3.1792,city
-"Mold, Wales, United Kingdom",53.1666,-3.1414,town
-"Penarth, Wales, United Kingdom",51.4357,-3.1751,administrative
-"Rhuddlan, Wales, United Kingdom",53.2915,-3.4656,village
-"Swansea, Wales, United Kingdom",51.6196,-3.9459,city
-"Koforidua, Ghana",6.1003,-0.2615,city
-"Port-au-Prince, Haiti",18.5473,-72.3396,administrative
-"Barrow-in-Furness, Ireland",54.1108,-3.2261,manual
-"Celbridge, Ireland",53.3383,-6.5396,town
-"Dublin, Ireland",53.3494,-6.2606,administrative
-"Dundalk, Ireland",54.0046,-6.4009,town
-"Glenageary, Ireland",53.2813,-6.1285,administrative
-"Limerick, Ireland",52.6613,-8.6301,administrative
-"HaMerkaz, Israel",32.223,34.9987,residential
-"Keflavík, Iceland",63.9998,-22.5565,town
-"Reykjavík, Iceland",64.146,-21.9422,administrative
-"Vestmannaeyjar, Iceland",63.4267,-20.2699,archipelago
-"Roma, Italy",41.8933,12.4829,administrative
-"Turin, Italy",45.0678,7.6825,administrative
-"Milan, Italy",45.4642,9.1896,administrative
-"Adelphi, Jamaica",18.5039,-77.8941,residential
-"Kingston, Jamaica",17.9712,-76.7928,city
-"Saint Catherine, Jamaica",18.0472,-77.0334,administrative
-"Spanish Town, Jamaica",17.9957,-76.9541,city
-"Mie, Japan",34.734,136.5154,administrative
-"Tokyo, Japan",35.6769,139.7639,administrative
-Mali,16.37,-2.29,administrative
-"Tombouctou, Mali",16.7719,-3.0087,city
-"Ciudad de México, Mexico",19.3208,-99.1515,administrative
-"Monterrey, Mexico",25.6802,-100.3153,city
-"Agadez, Niger",16.9726,7.9907,city
-"Amsterdam, Netherlands",52.3731,4.8925,administrative
-"Bergen, Norway",60.3943,5.3259,administrative
-"Buskerud, Norway",60.2498,8.9628,administrative
-"Horten, Norway",59.4102,10.4437,administrative
-"Oslo, Norway",59.9133,10.739,administrative
-"Stavanger, Norway",58.97,5.7318,administrative
-"Tromsø, Norway",69.6516,18.9559,administrative
-"Auckland, New Zealand",-36.8521,174.7632,city
-"Lyttelton, New Zealand",-43.6025,172.7206,suburb
-"Takapuna, New Zealand",-36.7878,174.773,suburb
-"Te Awamutu, New Zealand",-38.0102,175.3258,town
-"Wellington, New Zealand",-41.2888,174.7772,city
-"Moscow, Russia",55.6256,37.6064,administrative
-"Angered, Sweden",57.797,12.0495,suburb
-"Fagersta, Sweden",59.9667,15.8333,administrative
-"Gothenburg, Sweden",57.7072,11.967,city
-"Leksand, Sweden",60.7329,14.9968,town
-"Nacka, Sweden",59.3121,18.2074,administrative
-"Pajala Municipality, Sweden",59.363,17.8736,pedestrian
-"Stockholm, Sweden",59.3251,18.0711,city
-"Ystad, Sweden",55.4295,13.8201,town
-"Wasilla, Alaska, United States",61.5824,-149.4426,administrative
-"Birmingham, Alabama, United States",33.5207,-86.8024,administrative
-"Green Hill, Alabama, United States",34.9731,-87.5122,hamlet
-"Muscle Shoals, Alabama, United States",34.7437,-87.6533,administrative
-"Forrest City, Arkansas, United States",35.0081,-90.7898,administrative
-"Kingsland, Arkansas, United States",33.8601,-92.2947,administrative
-"Searcy, Arkansas, United States",35.9019,-92.7099,administrative
-"Nogales, Arizona, United States",31.3402,-110.9361,administrative
-"Phoenix, Arizona, United States",33.4484,-112.0741,administrative
-"Tucson, Arizona, United States",32.2229,-110.9748,administrative
-"Anaheim, California, United States",33.8348,-117.9117,administrative
-"Berkeley, California, United States",37.8708,-122.2729,administrative
-"Compton, California, United States",33.8949,-118.2266,city
-"Edwards, California, United States",34.9261,-117.9351,hamlet
-"El Monte, California, United States",34.0752,-118.0368,administrative
-"El Sobrante, California, United States",37.9745,-122.3057,census
-"Fullerton, California, United States",33.8708,-117.9294,administrative
-"Havertown, California, United States",37.5963,-120.999,residential
-"Hawthorne, California, United States",33.9128,-118.3426,administrative
-"Hermosa Beach, California, United States",33.8638,-118.3992,administrative
-"Huntington Park, California, United States",33.9806,-118.2252,administrative
-"Inglewood, California, United States",33.9562,-118.3531,administrative
-"Laguna Beach, California, United States",33.5427,-117.7854,administrative
-"Laguna Hills, California, United States",33.5949,-117.6882,administrative
-"Long Beach, California, United States",33.769,-118.1916,administrative
-"Los Angeles, California, United States",34.0537,-118.2428,administrative
-"Modesto, California, United States",37.6393,-120.9969,administrative
-"Oakland, California, United States",37.8045,-122.2714,administrative
-"Oxnard, California, United States",34.1976,-119.1804,administrative
-"Palm Desert, California, United States",33.7288,-116.3826,administrative
-"Palo Alto, California, United States",37.4443,-122.1598,administrative
-"Pasadena, California, United States",34.1477,-118.1442,administrative
-"Pomona, California, United States",34.0554,-117.7517,administrative
-"Redlands, California, United States",34.055,-117.1827,administrative
-"Riverside, California, United States",33.9732,-117.3731,administrative
-"Sacramento, California, United States",38.5811,-121.4939,administrative
-"San Diego, California, United States",32.7157,-117.1638,administrative
-"San Francisco, California, United States",37.7879,-122.4075,administrative
-"San Jose, California, United States",37.3362,-121.8906,administrative
-"San Pedro, California, United States",33.7359,-118.2923,suburb
-"Santa Monica, California, United States",34.0195,-118.4912,administrative
-"South Gate, California, United States",33.9463,-118.201,administrative
-"Stockton, California, United States",37.9577,-121.2908,administrative
-"Thousand Oaks, California, United States",34.1706,-118.8376,administrative
-"Vallejo, California, United States",38.1041,-122.2566,administrative
-"Walnut Creek, California, United States",37.9021,-122.0619,administrative
-"Westlake Village, California, United States",34.146,-118.8062,administrative
-"Denver, Colorado, United States",39.7392,-104.9849,administrative
-"Middletown, Connecticut, United States",41.5623,-72.6509,administrative
-"New Canaan, Connecticut, United States",41.1468,-73.4948,administrative
-"New Haven, Connecticut, United States",41.3082,-72.9251,administrative
-"Washington, District of Columbia, United States",38.8951,-77.0364,city
-"Santo Domingo, Dominican Republic, Dominican Republic",18.4861,-69.9312,manual
-"Carol City, Florida, United States",25.9406,-80.2456,hamlet
-"Coral Gables, Florida, United States",25.7331,-80.2585,administrative
-"Gainesville, Florida, United States",29.652,-82.325,administrative
-"Jacksonville, Florida, United States",30.3262,-81.6579,administrative
-"Miami, Florida, United States",25.7742,-80.1936,administrative
-"Nassau County, Florida, United States",30.6624,-81.7707,administrative
-"Pensacola, Florida, United States",30.4213,-87.2169,administrative
-"Tallahassee, Florida, United States",30.4381,-84.2809,administrative
-"Tampa, Florida, United States",27.945,-82.4583,administrative
-"West Palm Beach, Florida, United States",26.7154,-80.0533,administrative
-"Winter Haven, Florida, United States",28.0222,-81.7329,administrative
-"Athens, Georgia, United States",33.9598,-83.3764,administrative
-"Atlanta, Georgia, United States",33.7545,-84.3898,administrative
-"Dawson, Georgia, United States",34.4077,-84.1357,administrative
-"East Point, Georgia, United States",33.6796,-84.4394,administrative
-"Mableton, Georgia, United States",33.8188,-84.5823,administrative
-"Marietta, Georgia, United States",33.9528,-84.5496,administrative
-"Perry, Georgia, United States",32.4587,-83.732,administrative
-"Savannah, Georgia, United States",32.079,-81.0921,administrative
-"Ames, Iowa, United States",42.0268,-93.617,administrative
-"Des Moines, Iowa, United States",41.5869,-93.6249,administrative
-"Boise, Idaho, United States",43.6166,-116.2009,administrative
-"Alton, Illinois, United States",38.8909,-90.1843,administrative
-"Belleville, Illinois, United States",38.5136,-89.9842,administrative
-"Champaign, Illinois, United States",40.1165,-88.2431,administrative
-"Chicago, Illinois, United States",41.8756,-87.6244,administrative
-"Evanston, Illinois, United States",42.0694,-87.6829,board
-"Lake Forest, Illinois, United States",42.2586,-87.8407,administrative
-"Maywood, Illinois, United States",41.879,-87.8436,administrative
-"Rockford, Illinois, United States",42.2714,-89.094,administrative
-"Urbana, Illinois, United States",40.1117,-88.2073,administrative
-"Bloomington, Indiana, United States",39.167,-86.5343,administrative
-"Gary, Indiana, United States",41.6021,-87.3371,administrative
-"Goshen, Indiana, United States",41.585,-85.8344,administrative
-"Indianapolis, Indiana, United States",39.7683,-86.1584,administrative
-"Lawrence, Kansas, United States",38.9719,-95.2359,administrative
-"Butcher Hollow, Kentucky, United States",37.7805,-82.7106,hamlet
-"Fort Knox, Kentucky, United States",37.8977,-85.9039,military
-"Jackson, Kentucky, United States",37.42,-83.9914,administrative
-"Louisville, Kentucky, United States",38.2542,-85.7594,administrative
-"Kenner, Louisiana, United States",29.9942,-90.2418,administrative
-"Lake Charles, Louisiana, United States",30.2305,-93.217,administrative
-"New Orleans, Louisiana, United States",29.9575,-90.0629,administrative
-"Ruston, Louisiana, United States",32.5297,-92.6387,administrative
-"Amherst, Massachusetts, United States",42.3732,-72.5199,administrative
-"Boston, Massachusetts, United States",42.3588,-71.0578,administrative
-"Cambridge, Massachusetts, United States",42.3656,-71.104,administrative
-"Natick, Massachusetts, United States",42.2836,-71.347,administrative
-"Northampton, Massachusetts, United States",42.3179,-72.6311,administrative
-"Westfield, Massachusetts, United States",42.1205,-72.7489,administrative
-"Baltimore, Maryland, United States",39.2909,-76.6108,administrative
-"Easton, Maryland, United States",38.7745,-76.0763,administrative
-"Rockville, Maryland, United States",39.0818,-77.1517,administrative
-"Silver Spring, Maryland, United States",38.9998,-77.024,statistical
-"Ann Arbor, Michigan, United States",42.2814,-83.7485,administrative
-"Bay City, Michigan, United States",43.5962,-83.8882,administrative
-"Detroit, Michigan, United States",42.3316,-83.0466,administrative
-"Muskegon, Michigan, United States",43.2342,-86.2484,administrative
-"Saginaw, Michigan, United States",43.42,-83.949,administrative
-"Duluth, Minnesota, United States",46.7838,-92.1053,administrative
-"Edina, Minnesota, United States",44.8897,-93.3501,administrative
-"Minneapolis, Minnesota, United States",44.9773,-93.2655,administrative
-"Saint Paul, Minnesota, United States",44.9497,-93.0931,administrative
-"Aurora, Missouri, United States",36.9725,-93.7212,administrative
-"Kansas City, Missouri, United States",39.1001,-94.5781,administrative
-"Lilbourn, Missouri, United States",36.5923,-89.6154,administrative
-"St. Louis, Missouri, United States",38.6254,-90.19,administrative
-"Harmontown, Mississippi, United States",34.5404,-89.6484,hamlet
-"Tupelo, Mississippi, United States",34.2576,-88.7034,administrative
-"Asheville, North Carolina, United States",35.5954,-82.5508,administrative
-"Chapel Hill, North Carolina, United States",35.9132,-79.0558,administrative
-"Concord, North Carolina, United States",35.4094,-80.58,administrative
-"Durham, North Carolina, United States",35.9967,-78.9018,administrative
-"Greenville, North Carolina, United States",35.6132,-77.3725,administrative
-"Hamlet, North Carolina, United States",34.8864,-79.6972,administrative
-"Newton, North Carolina, United States",35.6631,-81.2219,administrative
-"Raleigh, North Carolina, United States",35.7804,-78.6391,administrative
-"Spruce Pine, North Carolina, United States",35.9148,-82.0664,administrative
-"Tryon, North Carolina, United States",35.2082,-82.2384,administrative
-"Grand Forks, North Dakota, United States",47.9252,-97.0306,administrative
-"Lincoln, Nebraska, United States",40.8089,-96.7078,administrative
-"Livonia, Nebraska, United States",42.3684,-83.3527,manual
-"Omaha, Nebraska, United States",41.2587,-95.9384,administrative
-"Nashua, New Hampshire, United States",42.7656,-71.4677,administrative
-"East Orange, New Jersey, United States",40.7642,-74.215,administrative
-"Glen Rock, New Jersey, United States",40.9629,-74.1329,administrative
-"Hoboken, New Jersey, United States",40.7433,-74.0324,administrative
-"Little Ferry, New Jersey, United States",40.8529,-74.0421,administrative
-"Long Branch, New Jersey, United States",40.3043,-73.9924,administrative
-"Montville, New Jersey, United States",40.9148,-74.3838,administrative
-"New Brunswick, New Jersey, United States",40.4936,-74.4436,administrative
-"Newark, New Jersey, United States",40.7357,-74.1724,administrative
-"Plainfield, New Jersey, United States",40.6201,-74.4222,administrative
-"Ridgewood, New Jersey, United States",40.9797,-74.1194,administrative
-"Secaucus, New Jersey, United States",40.7899,-74.0567,administrative
-"South Orange, New Jersey, United States",40.7475,-74.2635,administrative
-"Albuquerque, New Mexico, United States",35.0841,-106.651,administrative
-"Santa Fe, New Mexico, United States",35.6876,-105.9385,administrative
-"Las Vegas, Nevada, United States",36.1674,-115.1484,administrative
-"Nevada City, Nevada, United States",39.2626,-121.0187,administrative
-"Dobbs Ferry, New York, United States",41.0145,-73.8726,administrative
-"Amityville, New York, United States",40.679,-73.4171,administrative
-"Buffalo, New York, United States",42.8864,-78.8781,administrative
-"Greenwich, New York, United States",43.0904,-73.4994,administrative
-"Jamestown, New York, United States",42.0965,-79.238,administrative
-"Center Moriches, New York, United States",40.8006,-72.7933,census
-"Hicksville, New York, United States",40.7695,-73.5293,census
-"Malone, New York, United States",44.8488,-74.295,administrative
-"New Paltz, New York, United States",41.7465,-74.0845,administrative
 "New York City, New York, United States",40.7127,-74.006,administrative
-"Oyster Bay, New York, United States",40.7697,-73.4999,administrative
-"Rochester, New York, United States",43.1573,-77.6152,administrative
-"Syracuse, New York, United States",43.0481,-76.1474,administrative
-"West Babylon, New York, United States",40.7044,-73.3501,census
-"White Plains, New York, United States",41.034,-73.7629,administrative
-"Akron, Ohio, United States",41.0831,-81.5185,administrative
-"Canton, Ohio, United States",40.7985,-81.375,administrative
-"Cincinnati, Ohio, United States",39.1013,-84.5127,administrative
-"Claremont, Ohio, United States",40.0473,-80.8576,hamlet
-"Cleveland, Ohio, United States",41.4997,-81.6937,administrative
-"Dayton, Ohio, United States",39.7589,-84.1916,administrative
-"Massillon, Ohio, United States",40.7965,-81.5232,administrative
-"Broken Arrow, Oklahoma, United States",36.0526,-95.7908,administrative
-"Norman, Oklahoma, United States",35.2226,-97.4395,administrative
-"Oklahoma City, Oklahoma, United States",35.473,-97.5171,administrative
-"Stillwater, Oklahoma, United States",36.1156,-97.0586,administrative
-"Tulsa, Oklahoma, United States",36.1563,-95.9928,administrative
-"Beaverton, Oregon, United States",45.4872,-122.8038,administrative
-"Eugene, Oregon, United States",44.0505,-123.0951,administrative
-"Portland, Oregon, United States",45.5202,-122.6742,administrative
-"Salem, Oregon, United States",44.9392,-123.0331,administrative
-"Hershey, Pennsylvania, United States",40.285,-76.6535,census
-"Lansdowne, Pennsylvania, United States",39.9382,-75.2719,administrative
-"New Hope, Pennsylvania, United States",40.3643,-74.9513,administrative
-"Philadelphia, Pennsylvania, United States",39.9527,-75.1635,administrative
-"Phoenixville, Pennsylvania, United States",40.1339,-75.5173,administrative
-"Pittsburgh, Pennsylvania, United States",40.4407,-80.0026,administrative
-"Reading, Pennsylvania, United States",40.3353,-75.9279,administrative
-"West Grove, Pennsylvania, United States",39.823,-75.8274,administrative
-"Newport, Rhode Island, United States",41.49,-71.3138,administrative
-"North Smithfield, Rhode Island, United States",41.9668,-71.5495,administrative
-"Providence, Rhode Island, United States",41.824,-71.4128,administrative
-"Barnwell, South Carolina, United States",33.2641,-81.4191,administrative
-"Chapin, South Carolina, United States",34.166,-81.3498,administrative
-"Charleston, South Carolina, United States",32.7884,-79.9399,administrative
-"Columbia, South Carolina, United States",34.0008,-81.0352,administrative
-"Jackson, Tennessee, United States",35.6144,-88.8177,administrative
-"Locust Ridge, Tennessee, United States",35.7986,-86.7268,unclassified
-"Memphis, Tennessee, United States",35.146,-90.0518,administrative
-"Nashville, Tennessee, United States",36.1623,-86.7743,administrative
-"Abbott, Texas, United States",31.8899,-97.0871,administrative
-"Austin, Texas, United States",30.2649,-97.7474,administrative
-"Dallas, Texas, United States",32.7763,-96.7969,administrative
-"Denton, Texas, United States",33.1839,-97.1413,administrative
-"El Paso, Texas, United States",31.7601,-106.487,administrative
-"Fort Worth, Texas, United States",32.7532,-97.3327,administrative
-"Golden, Texas, United States",32.7296,-95.563,hamlet
-"Houston, Texas, United States",29.7589,-95.3677,administrative
-"Lubbock, Texas, United States",33.5856,-101.847,administrative
-"Port Arthur, Texas, United States",29.8717,-93.9332,administrative
-"San Antonio, Texas, United States",29.4246,-98.4951,administrative
-"Alexandria, Virginia, United States",38.8051,-77.047,administrative
-"Blacksburg, Virginia, United States",37.2297,-80.4137,administrative
-"Charlottesville, Virginia, United States",38.0293,-78.4767,administrative
-"Falls Church, Virginia, United States",38.8823,-77.1711,administrative
-"Hampton, Virginia, United States",37.0264,-76.3443,administrative
-"Portsmouth, Virginia, United States",36.832,-76.2977,administrative
-"Richmond, Virginia, United States",37.5385,-77.4343,administrative
-"Brattleboro, Vermont, United States",42.8508,-72.5573,administrative
-"Randolph, Vermont, United States",43.9253,-72.6659,administrative
-"Aberdeen, Washington, United States",46.9754,-123.8157,administrative
-"Anacortes, Washington, United States",48.5168,-122.6126,administrative
+"Reykjavík, Iceland",64.146,-21.9422,administrative
 "Bellingham, Washington, United States",48.7544,-122.4788,administrative
-"Bremerton, Washington, United States",47.5654,-122.6247,administrative
-"Ellensburg, Washington, United States",46.9971,-120.5451,administrative
-"Issaquah, Washington, United States",47.5349,-122.0433,administrative
+"Albuquerque, New Mexico, United States",35.0841,-106.651,administrative
+"Detroit, Michigan, United States",42.3316,-83.0466,administrative
+"Boise, Idaho, United States",43.6166,-116.2009,administrative
+"London, England, United Kingdom",51.5074,-0.1278,administrative
+"Nashville, Tennessee, United States",36.1623,-86.7743,administrative
 "Mount Vernon, Washington, United States",48.42,-122.3264,administrative
-"Olympia, Washington, United States",47.0451,-122.895,administrative
-"Ravensdale, Washington, United States",47.3559,-121.9849,census
+"Richmond, Virginia, United States",37.5385,-77.4343,administrative
+"Washington, District of Columbia, United States",38.8951,-77.0364,city
+"Dayton, Ohio, United States",39.7589,-84.1916,administrative
+"Dallas, Texas, United States",32.7763,-96.7969,administrative
+"Austin, Texas, United States",30.2649,-97.7474,administrative
+"Edinburgh, Scotland, United Kingdom",55.9533,-3.1884,administrative
+"Los Angeles, California, United States",34.0537,-118.2428,administrative
 "Seattle, Washington, United States",47.6038,-122.3301,administrative
-"Tacoma, Washington, United States",47.2455,-122.4383,administrative
-"Walla Walla, Washington, United States",46.2055,-118.5174,administrative
-"Appleton, Wisconsin, United States",44.2614,-88.407,administrative
+"Duluth, Minnesota, United States",46.7838,-92.1053,administrative
+"Buffalo, New York, United States",42.8864,-78.8781,administrative
+"Portland, Oregon, United States",45.5202,-122.6742,administrative
+"San Francisco, California, United States",37.7879,-122.4075,administrative
+"Versailles, France",48.8035,2.1267,administrative
+"San Diego, California, United States",32.7157,-117.1638,administrative
+"Melbourne, Victoria, Australia",-37.8142,144.9632,city
+"St. Louis, Missouri, United States",38.6254,-90.19,administrative
+"Rugby, England, United Kingdom",52.3727,-1.262,administrative
+"Tokyo, Japan",35.6769,139.7639,administrative
+"Beaverton, Oregon, United States",45.4872,-122.8038,administrative
+"Glasgow, Scotland, United Kingdom",55.8612,-4.2502,city
+"Providence, Rhode Island, United States",41.824,-71.4128,administrative
+"Fort Worth, Texas, United States",32.7532,-97.3327,administrative
+"Salford, England, United Kingdom",53.4877,-2.2892,city
+"Olympia, Washington, United States",47.0451,-122.895,administrative
+"Paris, France",48.8535,2.3484,administrative
+"Manchester, England, United Kingdom",53.4425,-2.2325,administrative
+"Oakland, California, United States",37.8045,-122.2714,administrative
+"Bergen, Norway",60.3943,5.3259,administrative
+"Boston, Massachusetts, United States",42.3588,-71.0578,administrative
+"Crosby, England, United Kingdom",54.3019,-1.3699,administrative
+"Chicago, Illinois, United States",41.8756,-87.6244,administrative
+"Cincinnati, Ohio, United States",39.1013,-84.5127,administrative
+"Kansas City, Missouri, United States",39.1001,-94.5781,administrative
+"Athens, Georgia, United States",33.9598,-83.3764,administrative
+"Chapel Hill, North Carolina, United States",35.9132,-79.0558,administrative
+"Sacramento, California, United States",38.5811,-121.4939,administrative
+"Atlanta, Georgia, United States",33.7545,-84.3898,administrative
+"Denton, Texas, United States",33.1839,-97.1413,administrative
+"Stockton, California, United States",37.9577,-121.2908,administrative
+"Baltimore, Maryland, United States",39.2909,-76.6108,administrative
+"Liverpool, England, United Kingdom",53.3933,-2.9166,administrative
+"Dundee, Scotland, United Kingdom",56.4606,-2.9702,city
+"Falkirk, Scotland, United Kingdom",55.9992,-3.7844,town
+"Oklahoma City, Oklahoma, United States",35.473,-97.5171,administrative
+"Handforth, England, United Kingdom",53.3502,-2.2158,administrative
+"Omaha, Nebraska, United States",41.2587,-95.9384,administrative
+"Issaquah, Washington, United States",47.5349,-122.0433,administrative
+"Tromsø, Norway",69.6516,18.9559,administrative
+"Cardiff, Wales, United Kingdom",51.4817,-3.1792,city
+"Westminster, England, United Kingdom",51.5004,-0.1265,quarter
+"Memphis, Tennessee, United States",35.146,-90.0518,administrative
+"Fagersta, Sweden",59.9667,15.8333,administrative
+"Palm Desert, California, United States",33.7288,-116.3826,administrative
+"Philadelphia, Pennsylvania, United States",39.9527,-75.1635,administrative
+"Livonia, Michigan, United States",42.3684,-83.3527,geonames
+"Columbus, Ohio, United States",39.9612,-82.9988,geonames
+"Victoria, British Columbia, Canada",48.4283,-123.365,administrative
+"Oslo, Norway",59.9133,10.739,administrative
+"Cambridge, England, United Kingdom",52.1976,0.1392,administrative
+"Akron, Ohio, United States",41.0831,-81.5185,administrative
+"Minneapolis, Minnesota, United States",44.9773,-93.2655,administrative
+"Southport, England, United Kingdom",53.6487,-3.0045,town
+"Sydney, New South Wales, Australia",-33.8698,151.2083,city
+"Kippax, England, United Kingdom",53.7701,-1.3702,administrative
+"Auckland, New Zealand",-36.8521,174.7632,city
+"Bristol, England, United Kingdom",51.443,-2.5817,administrative
+"Rouen, France",49.4405,1.094,administrative
+"Palo Alto, California, United States",37.4443,-122.1598,administrative
+"El Paso, Texas, United States",31.7601,-106.487,administrative
+"Secaucus, New Jersey, United States",40.7899,-74.0567,administrative
+"Vancouver, British Columbia, Canada",49.2609,-123.114,administrative
+"Louisville, Kentucky, United States",38.2542,-85.7594,administrative
+"Modesto, California, United States",37.6393,-120.9969,administrative
+"Montréal, Quebec, Canada",45.5032,-73.5698,administrative
+"Toronto, Ontario, Canada",43.6535,-79.3839,administrative
+"New Orleans, Louisiana, United States",29.9575,-90.0629,administrative
+"Weilheim in Oberbayern, Germany",47.8395,11.1416,administrative
+"Wayne, New Jersey, United States",40.9254,-74.2765,geonames
+"Phoenixville, Pennsylvania, United States",40.1339,-75.5173,administrative
+"Long Beach, California, United States",33.769,-118.1916,administrative
+"Dublin, Ireland",53.3494,-6.2606,administrative
+"Lawrence, Kansas, United States",38.9719,-95.2359,administrative
+"Tucson, Arizona, United States",32.2229,-110.9748,administrative
+"Hoboken, New Jersey, United States",40.7433,-74.0324,administrative
+"Ashill, England, United Kingdom",50.89,-3.3,manual
+"Brighton, England, United Kingdom",50.8215,-0.1401,city
+"Ramsbottom, England, United Kingdom",53.6484,-2.3157,town
+"Guelph, Ontario, Canada",43.5461,-80.2493,administrative
+"Winnipeg, Manitoba, Canada",49.8955,-97.1385,administrative
+"New Hope, Pennsylvania, United States",40.3643,-74.9513,administrative
+"Ottawa, Ontario, Canada",45.4209,-75.6901,administrative
+"Perth, Western Australia, Australia",-31.9559,115.8606,city
+"Monterrey, Mexico",25.6802,-100.3153,city
+"Las Vegas, Nevada, United States",36.1674,-115.1484,administrative
+"Lewiston, Maine, United States",44.1003,-70.2148,geonames
+"Butcher Hollow, Kentucky, United States",37.7805,-82.7106,hamlet
+"Inglewood, California, United States",33.9562,-118.3531,administrative
+"Southampton, England, United Kingdom",50.9025,-1.4042,administrative
+"Battle, England, United Kingdom",50.9265,0.4757,administrative
+"Yeovil, England, United Kingdom",50.942,-2.6319,administrative
+"Sunderland, England, United Kingdom",54.9059,-1.3829,city
+"Penarth, Wales, United Kingdom",51.4357,-3.1751,administrative
+"Antibes, France",43.5814,7.1237,administrative
+"Teignmouth, England, United Kingdom",50.5463,-3.4958,administrative
+"Prestwich, England, United Kingdom",53.5304,-2.296,town
+"Trafford, England, United Kingdom",53.4189,-2.3593,administrative
+"Motherwell, Scotland, United Kingdom",55.7894,-3.9904,town
+"Hamilton, Ontario, Canada",43.2561,-79.8729,administrative
+"Stockholm, Sweden",59.3251,18.0711,city
+"Aberdeen, Washington, United States",46.9754,-123.8157,administrative
+"Claremont, California, United States",34.0967,-117.7198,geonames
+"Pensacola, Florida, United States",30.4213,-87.2169,administrative
+"Reading, England, United Kingdom",51.4564,-0.9701,administrative
+"Leicester, England, United Kingdom",52.6362,-1.1332,city
+"Birmingham, England, United Kingdom",52.4949,-1.8518,administrative
+"Leeds, England, United Kingdom",53.7974,-1.5438,city
+"Tulsa, Oklahoma, United States",36.1563,-95.9928,administrative
+"Newcastle upon Tyne, England, United Kingdom",54.9738,-1.6132,administrative
+"Ryde, England, United Kingdom",50.73,-1.1621,geonames
+"Sheffield, England, United Kingdom",53.3807,-1.4702,administrative
+"Nevada City, California, United States",39.2617,-121.0178,geonames
+"Bath, England, United Kingdom",51.3814,-2.3597,city
+"Ann Arbor, Michigan, United States",42.2814,-83.7485,administrative
+"Newmarket, Ontario, Canada",44.0563,-79.4617,administrative
+"Denver, Colorado, United States",39.7392,-104.9849,administrative
+"Muscle Shoals, Alabama, United States",34.7437,-87.6533,administrative
+"Berkeley, California, United States",37.8708,-122.2729,administrative
+"Hellerup, Denmark",55.7337,12.5655,suburb
+"Gothenburg, Sweden",57.7072,11.967,city
+"Lake Forest, Illinois, United States",42.2586,-87.8407,administrative
+"Calgary, Alberta, Canada",51.0456,-114.0575,administrative
+"Wellingborough, England, United Kingdom",52.3019,-0.6937,town
+"Concord, North Carolina, United States",35.4094,-80.58,administrative
+"Kilsyth, Scotland, United Kingdom",55.9765,-4.056,town
+"Amherst, Massachusetts, United States",42.3732,-72.5199,administrative
+"Asbury Park, New Jersey, United States",40.2204,-74.0121,geonames
+"Oyster Bay, New York, United States",40.7697,-73.4999,administrative
+"Cleveland, Ohio, United States",41.4997,-81.6937,administrative
+"Middletown, Connecticut, United States",41.5623,-72.6509,administrative
 "Eau Claire, Wisconsin, United States",44.8113,-91.4985,administrative
+"Wellington, New Zealand",-41.2888,174.7772,city
+"Selkirk, Scotland, United Kingdom",55.5471,-2.8415,town
+"Pittsburgh, Pennsylvania, United States",40.4407,-80.0026,administrative
+"Syracuse, New York, United States",43.0481,-76.1474,administrative
+"West Grove, Pennsylvania, United States",39.823,-75.8274,administrative
+"Copenhagen, Denmark",55.6867,12.5701,city
+"Falls Church, Virginia, United States",38.8823,-77.1711,administrative
+"Berlin, Germany",52.5174,13.3951,administrative
+"Huntingdon, England, United Kingdom",52.3305,-0.1844,administrative
+"Cambridge, Massachusetts, United States",42.3656,-71.104,administrative
+"Southend-on-Sea, England, United Kingdom",51.5388,0.7128,administrative
+"São Paulo, Brazil",-23.5507,-46.6334,administrative
+"Clacton-on-Sea, England, United Kingdom",51.7884,1.1528,town
+"Greenwich, New York, United States",43.0904,-73.4994,administrative
+"Leksand, Sweden",60.7329,14.9968,town
+"West Palm Beach, Florida, United States",26.7154,-80.0533,administrative
+"Woodside, California, United States",37.4299,-122.2539,geonames
+"Glen Rock, New Jersey, United States",40.9629,-74.1329,administrative
+"Ames, Iowa, United States",42.0268,-93.617,administrative
+"Blacksburg, Virginia, United States",37.2297,-80.4137,administrative
+"New Canaan, Connecticut, United States",41.1468,-73.4948,administrative
+"Keflavík, Iceland",63.9998,-22.5565,town
+"Mold, Wales, United Kingdom",53.1666,-3.1414,town
+"Ridgewood, New Jersey, United States",40.9797,-74.1194,administrative
+"Anacortes, Washington, United States",48.5168,-122.6126,administrative
 "Madison, Wisconsin, United States",43.0747,-89.3842,administrative
-"Milwaukee, Wisconsin, United States",43.0386,-87.9091,administrative
+"Wasilla, Alaska, United States",61.5824,-149.4426,administrative
+"Riverside, California, United States",33.9732,-117.3731,administrative
+"Stillwater, Oklahoma, United States",36.1156,-97.0586,administrative
+"Edmonton, Alberta, Canada",53.5462,-113.4912,administrative
+"Charleston, South Carolina, United States",32.7884,-79.9399,administrative
+"Compton, California, United States",33.8949,-118.2266,city
+"Brattleboro, Vermont, United States",42.8508,-72.5573,administrative
+"Appleton, Wisconsin, United States",44.2614,-88.407,administrative
+"Barcelona, Spain",41.3826,2.1771,administrative
+"Reigate, England, United Kingdom",51.2377,-0.2057,town
+"Westlake Village, California, United States",34.146,-118.8062,administrative
+"Santa Monica, California, United States",34.0195,-118.4912,administrative
+"Nottingham, England, United Kingdom",52.9534,-1.1496,administrative
+"Salem, Oregon, United States",44.9392,-123.0331,administrative
+"Columbia, South Carolina, United States",34.0008,-81.0352,administrative
+"Hershey, Pennsylvania, United States",40.285,-76.6535,census
+"Blue Mountains, New South Wales, Australia",-33.6097,150.4052,mountain_range
+"Greenville, North Carolina, United States",35.6132,-77.3725,administrative
+"Kettering, England, United Kingdom",52.3994,-0.728,administrative
+"Durham, North Carolina, United States",35.9967,-78.9018,administrative
+"Norman, Oklahoma, United States",35.2226,-97.4395,administrative
+"Birmingham, Alabama, United States",33.5207,-86.8024,administrative
+"Aurora, Missouri, United States",36.9725,-93.7212,administrative
+"Walla Walla, Washington, United States",46.2055,-118.5174,administrative
+"Bremerton, Washington, United States",47.5654,-122.6247,administrative
+"Northampton, Massachusetts, United States",42.3179,-72.6311,administrative
+"Houston, Texas, United States",29.7589,-95.3677,administrative
+"Oxnard, California, United States",34.1976,-119.1804,administrative
+"Amityville, New York, United States",40.679,-73.4171,administrative
+"Vestmannaeyjar, Iceland",63.4267,-20.2699,archipelago
+"Maplewood, New Jersey, United States",40.7312,-74.2735,geonames
+"New Paltz, New York, United States",41.7465,-74.0845,administrative
+"East Kilbride, Scotland, United Kingdom",55.7606,-4.1777,town
+"Norwich, England, United Kingdom",52.6286,1.2924,administrative
+"Brisbane, Queensland, Australia",-27.469,153.0235,city
+"Lyttelton, New Zealand",-43.6025,172.7206,suburb
+"Walnut Creek, California, United States",37.9021,-122.0619,administrative
+"Reading, Pennsylvania, United States",40.3353,-75.9279,administrative
+"Turin, Italy",45.0678,7.6825,administrative
+"Edwards, California, United States",34.9261,-117.9351,hamlet
+"Champaign, Illinois, United States",40.1165,-88.2431,administrative
+Mali,16.37,-2.29,administrative
+"Bloomington, Indiana, United States",39.167,-86.5343,administrative
+"Little Ferry, New Jersey, United States",40.8529,-74.0421,administrative
+"Agadez, Niger",16.9726,7.9907,city
+"Vallejo, California, United States",38.1041,-122.2566,administrative
+"Amsterdam, Netherlands",52.3731,4.8925,administrative
+"Horten, Norway",59.4102,10.4437,administrative
+"Spruce Pine, North Carolina, United States",35.9148,-82.0664,administrative
+"Tacoma, Washington, United States",47.2455,-122.4383,administrative
+"Miami, Florida, United States",25.7742,-80.1936,administrative
+"Dundalk, Ireland",54.0046,-6.4009,town
+"Tallahassee, Florida, United States",30.4381,-84.2809,administrative
+"Savannah, Georgia, United States",32.079,-81.0921,administrative
+"Spanish Town, Jamaica",17.9957,-76.9541,city
+"Basildon, England, United Kingdom",51.5702,0.4584,town
+"Canberra, Australian Capital Territory, Australia",-35.2976,149.1013,city
+"Asheville, North Carolina, United States",35.5954,-82.5508,administrative
+"Hull, England, United Kingdom",53.7624,-0.3301,administrative
 "Kitwe, Zambia",-12.8204,28.2156,city
-"Shawnee, Oklahoma, United States",35.3273,-96.9253,administrative
-"Minsk, Belarus",53.9025,27.5618,administrative
-"Virginia Beach, Virginia, United States",36.8497,-75.9761,administrative
-"Franklin, Tennessee, United States",35.9252,-86.8689,administrative
+"Caldicot, Wales, United Kingdom",51.5912,-2.7518,town
+"Center Moriches, New York, United States",40.8006,-72.7933,census
+"Milan, Italy",45.4642,9.1896,administrative
+"Crawley, England, United Kingdom",51.1103,-0.1801,administrative
+"Swansea, Wales, United Kingdom",51.6196,-3.9459,city
+"Tel Aviv, Israel",32.0809,34.7806,geonames
+"Pajala Municipality, Sweden",59.363,17.8736,pedestrian
+"El Monte, California, United States",34.0752,-118.0368,administrative
+"Tampa, Florida, United States",27.945,-82.4583,administrative
+"Zurich, Switzerland",47.3744,8.541,administrative
+"Dobbs Ferry, New York, United States",41.0145,-73.8726,administrative
+"Jerusalem, Israel",31.769,35.2163,geonames
+"Madrid, Spain",40.4168,-3.7035,administrative
+"Hicksville, New York, United States",40.7695,-73.5293,census
+"San Juan, Puerto Rico",18.4663,-66.1057,geonames
 "Calabasas, California, United States",34.1447,-118.6441,administrative
-"San Juan, Puerto Rico",18.4655,-66.1057,manual
+"Franklin, Tennessee, United States",35.9252,-86.8689,administrative
+"Virginia Beach, Virginia, United States",36.8497,-75.9761,administrative
+"Minsk, Belarus",53.9025,27.5618,administrative
+"Shawnee, Oklahoma, United States",35.3273,-96.9253,administrative

@@ -1,0 +1,257 @@
+place,country_code,region,city,population,pop_source,pop_note,geonames_id,geonames_name
+"Oxford, England, United Kingdom",GB,England,Oxford,162100.0,geonames,,2640729,Oxford
+"New York City, New York, United States",US,New York,New York City,8804190.0,geonames,,5128581,New York City
+"Reykjavík, Iceland",IS,,Reykjavík,118918.0,geonames,,3413829,Reykjavík
+"Bellingham, Washington, United States",US,Washington,Bellingham,85146.0,geonames,,5786899,Bellingham
+"Albuquerque, New Mexico, United States",US,New Mexico,Albuquerque,564559.0,geonames,,5454711,Albuquerque
+"Detroit, Michigan, United States",US,Michigan,Detroit,645705.0,geonames,,4990729,Detroit
+"Boise, Idaho, United States",US,Idaho,Boise,235684.0,geonames,,5586437,Boise
+"London, England, United Kingdom",GB,England,London,8961989.0,geonames,,2643743,London
+"Nashville, Tennessee, United States",US,Tennessee,Nashville,689447.0,geonames,,4644585,Nashville
+"Mount Vernon, Washington, United States",US,Washington,Mount Vernon,34053.0,geonames,,5804127,Mount Vernon
+"Richmond, Virginia, United States",US,Virginia,Richmond,226610.0,geonames,,4781708,Richmond
+"Washington, District of Columbia, United States",US,District of Columbia,Washington,689545.0,geonames,,4140963,Washington
+"Dayton, Ohio, United States",US,Ohio,Dayton,135512.0,geonames,,4509884,Dayton
+"Dallas, Texas, United States",US,Texas,Dallas,1326087.0,geonames,,4684888,Dallas
+"Austin, Texas, United States",US,Texas,Austin,974447.0,geonames,,4671654,Austin
+"Edinburgh, Scotland, United Kingdom",GB,Scotland,Edinburgh,514990.0,geonames,,2650225,Edinburgh
+"Los Angeles, California, United States",US,California,Los Angeles,3820914.0,geonames,,5368361,Los Angeles
+"Seattle, Washington, United States",US,Washington,Seattle,780995.0,geonames,,5809844,Seattle
+"Duluth, Minnesota, United States",US,Minnesota,Duluth,86110.0,geonames,,5024719,Duluth
+"Buffalo, New York, United States",US,New York,Buffalo,258071.0,geonames,,5110629,Buffalo
+"Portland, Oregon, United States",US,Oregon,Portland,652503.0,geonames,,5746545,Portland
+"San Francisco, California, United States",US,California,San Francisco,827526.0,geonames,,5391959,San Francisco
+"Versailles, France",FR,,Versailles,85416.0,geonames,,2969679,Versailles
+"San Diego, California, United States",US,California,San Diego,1404452.0,geonames,,5391811,San Diego
+"Melbourne, Victoria, Australia",AU,Victoria,Melbourne,5435590.0,geonames,,2158177,Melbourne
+"St. Louis, Missouri, United States",US,Missouri,St. Louis,279695.0,geonames,,4407066,St. Louis
+"Rugby, England, United Kingdom",GB,England,Rugby,78117.0,geonames,,2638978,Rugby
+"Tokyo, Japan",JP,,Tokyo,9733276.0,geonames,,1850147,Tokyo
+"Beaverton, Oregon, United States",US,Oregon,Beaverton,96577.0,geonames,,5713376,Beaverton
+"Glasgow, Scotland, United Kingdom",GB,Scotland,Glasgow,626410.0,geonames,,2648579,Glasgow
+"Providence, Rhode Island, United States",US,Rhode Island,Providence,190934.0,geonames,,5224151,Providence
+"Fort Worth, Texas, United States",US,Texas,Fort Worth,1008106.0,geonames,,4691930,Fort Worth
+"Salford, England, United Kingdom",GB,England,Salford,129794.0,geonames,,2638671,Salford
+"Olympia, Washington, United States",US,Washington,Olympia,55733.0,geonames,,5805687,Olympia
+"Paris, France",FR,,Paris,2138551.0,geonames,,2988507,Paris
+"Manchester, England, United Kingdom",GB,England,Manchester,568996.0,geonames,,2643123,Manchester
+"Oakland, California, United States",US,California,Oakland,419267.0,geonames,,5378538,Oakland
+"Bergen, Norway",NO,,Bergen,294029.0,geonames,,3161732,Bergen
+"Boston, Massachusetts, United States",US,Massachusetts,Boston,653833.0,geonames,,4930956,Boston
+"Crosby, England, United Kingdom",GB,England,Crosby,,,no population found,,
+"Chicago, Illinois, United States",US,Illinois,Chicago,2664452.0,geonames,,4887398,Chicago
+"Cincinnati, Ohio, United States",US,Ohio,Cincinnati,311097.0,geonames,,4508722,Cincinnati
+"Kansas City, Missouri, United States",US,Missouri,Kansas City,475378.0,geonames,,4393217,Kansas City
+"Athens, Georgia, United States",US,Georgia,Athens,127315.0,geonames,,4180386,Athens
+"Chapel Hill, North Carolina, United States",US,North Carolina,Chapel Hill,59568.0,geonames,,4460162,Chapel Hill
+"Sacramento, California, United States",US,California,Sacramento,524943.0,geonames,,5389489,Sacramento
+"Atlanta, Georgia, United States",US,Georgia,Atlanta,510823.0,geonames,,4180439,Atlanta
+"Denton, Texas, United States",US,Texas,Denton,131044.0,geonames,,4685907,Denton
+"Stockton, California, United States",US,California,Stockton,305658.0,geonames,,5399020,Stockton
+"Baltimore, Maryland, United States",US,Maryland,Baltimore,585708.0,geonames,,4347778,Baltimore
+"Liverpool, England, United Kingdom",GB,England,Liverpool,496770.0,geonames,,2644210,Liverpool
+"Dundee, Scotland, United Kingdom",GB,Scotland,Dundee,148210.0,geonames,,2650752,Dundee
+"Falkirk, Scotland, United Kingdom",GB,Scotland,Falkirk,35310.0,geonames,,2649723,Falkirk
+"Oklahoma City, Oklahoma, United States",US,Oklahoma,Oklahoma City,681054.0,geonames,,4544349,Oklahoma City
+"Handforth, England, United Kingdom",GB,England,Handforth,6715.0,wikipedia,"secondary source, page ""Handforth""; may be a district or county rather than the city",,
+"Omaha, Nebraska, United States",US,Nebraska,Omaha,486051.0,geonames,,5074472,Omaha
+"Issaquah, Washington, United States",US,Washington,Issaquah,36081.0,geonames,,5798487,Issaquah
+"Tromsø, Norway",NO,,Tromsø,41915.0,geonames,,3133895,Tromsø
+"Cardiff, Wales, United Kingdom",GB,Wales,Cardiff,372089.0,geonames,,2653822,Cardiff
+"Westminster, England, United Kingdom",GB,England,Westminster,247614.0,geonames (alternate name),,2634341,City of Westminster
+"Memphis, Tennessee, United States",US,Tennessee,Memphis,633104.0,geonames,,4641239,Memphis
+"Fagersta, Sweden",SE,,Fagersta,11936.0,geonames,,2715656,Fagersta
+"Palm Desert, California, United States",US,California,Palm Desert,51869.0,geonames,,5380626,Palm Desert
+"Philadelphia, Pennsylvania, United States",US,Pennsylvania,Philadelphia,1573916.0,geonames,,4560349,Philadelphia
+"Livonia, Michigan, United States",US,Michigan,Livonia,94635.0,geonames,,4999837,Livonia
+"Columbus, Ohio, United States",US,Ohio,Columbus,913175.0,geonames,,4509177,Columbus
+"Victoria, British Columbia, Canada",CA,British Columbia,Victoria,289625.0,geonames,,6174041,Victoria
+"Oslo, Norway",NO,,Oslo,1082575.0,geonames,,3143244,Oslo
+"Cambridge, England, United Kingdom",GB,England,Cambridge,145674.0,geonames,,2653941,Cambridge
+"Akron, Ohio, United States",US,Ohio,Akron,197542.0,geonames,,5145476,Akron
+"Minneapolis, Minnesota, United States",US,Minnesota,Minneapolis,410939.0,geonames,,5037649,Minneapolis
+"Southport, England, United Kingdom",GB,England,Southport,91703.0,geonames,,2637343,Southport
+"Sydney, New South Wales, Australia",AU,New South Wales,Sydney,5638830.0,geonames,,2147714,Sydney
+"Kippax, England, United Kingdom",GB,England,Kippax,15965.0,geonames,,2645347,Kippax
+"Auckland, New Zealand",NZ,,Auckland,1547200.0,geonames,,2193733,Auckland
+"Bristol, England, United Kingdom",GB,England,Bristol,479024.0,geonames,,2654675,Bristol
+"Rouen, France",FR,,Rouen,116331.0,geonames,,2982652,Rouen
+"Palo Alto, California, United States",US,California,Palo Alto,66853.0,geonames,,5380748,Palo Alto
+"El Paso, Texas, United States",US,Texas,El Paso,678815.0,geonames,,5520993,El Paso
+"Secaucus, New Jersey, United States",US,New Jersey,Secaucus,19104.0,geonames,,5104504,Secaucus
+"Vancouver, British Columbia, Canada",CA,British Columbia,Vancouver,662248.0,geonames,,6173331,Vancouver
+"Louisville, Kentucky, United States",US,Kentucky,Louisville,624444.0,geonames,,4299276,Louisville
+"Modesto, California, United States",US,California,Modesto,211266.0,geonames,,5373900,Modesto
+"Montréal, Quebec, Canada",CA,Quebec,Montréal,1762949.0,geonames,,6077243,Montréal
+"Toronto, Ontario, Canada",CA,Ontario,Toronto,2794356.0,geonames,,6167865,Toronto
+"New Orleans, Louisiana, United States",US,Louisiana,New Orleans,362701.0,geonames,,4335045,New Orleans
+"Weilheim in Oberbayern, Germany",DE,,Weilheim in Oberbayern,23378.0,geonames (alternate name),,2812515,Weilheim
+"Wayne, New Jersey, United States",US,New Jersey,Wayne,57915.0,geonames,,5106160,Wayne
+"Phoenixville, Pennsylvania, United States",US,Pennsylvania,Phoenixville,16658.0,geonames,,5205849,Phoenixville
+"Long Beach, California, United States",US,California,Long Beach,474140.0,geonames,,5367929,Long Beach
+"Dublin, Ireland",IE,,Dublin,1024027.0,geonames,,2964574,Dublin
+"Lawrence, Kansas, United States",US,Kansas,Lawrence,93917.0,geonames,,4274277,Lawrence
+"Tucson, Arizona, United States",US,Arizona,Tucson,542629.0,geonames,,5318313,Tucson
+"Hoboken, New Jersey, United States",US,New Jersey,Hoboken,53635.0,geonames,,5099133,Hoboken
+"Ashill, England, United Kingdom",GB,England,Ashill,,,"Ashill, Devon (hamlet in Uffculme parish, Joss Stone's teenage home); GeoNames lists only Ashill, Norfolk; no population found",,
+"Brighton, England, United Kingdom",GB,England,Brighton,283870.0,geonames,,2654710,Brighton
+"Ramsbottom, England, United Kingdom",GB,England,Ramsbottom,17067.0,geonames,,2639668,Ramsbottom
+"Guelph, Ontario, Canada",CA,Ontario,Guelph,143740.0,geonames,,5967629,Guelph
+"Winnipeg, Manitoba, Canada",CA,Manitoba,Winnipeg,749607.0,geonames,,6183235,Winnipeg
+"New Hope, Pennsylvania, United States",US,Pennsylvania,New Hope,2510.0,geonames,,5203197,New Hope
+"Ottawa, Ontario, Canada",CA,Ontario,Ottawa,1017449.0,geonames,,6094817,Ottawa
+"Perth, Western Australia, Australia",AU,Western Australia,Perth,2384371.0,geonames,,2063523,Perth
+"Monterrey, Mexico",MX,,Monterrey,1135512.0,geonames,2 same-name places in that state/country; largest used,3995465,Monterrey
+"Las Vegas, Nevada, United States",US,Nevada,Las Vegas,641903.0,geonames,,5506956,Las Vegas
+"Lewiston, Maine, United States",US,Maine,Lewiston,36202.0,geonames,,4969398,Lewiston
+"Butcher Hollow, Kentucky, United States",US,Kentucky,Butcher Hollow,,,no population found,,
+"Inglewood, California, United States",US,California,Inglewood,111666.0,geonames,,5359488,Inglewood
+"Southampton, England, United Kingdom",GB,England,Southampton,269781.0,geonames,,2637487,Southampton
+"Battle, England, United Kingdom",GB,England,Battle,6800.0,geonames,,2656161,Battle
+"Yeovil, England, United Kingdom",GB,England,Yeovil,50176.0,geonames,,2633373,Yeovil
+"Sunderland, England, United Kingdom",GB,England,Sunderland,170134.0,geonames,,2636531,Sunderland
+"Penarth, Wales, United Kingdom",GB,Wales,Penarth,23437.0,geonames,,2640496,Penarth
+"Antibes, France",FR,,Antibes,76393.0,geonames,,3037456,Antibes
+"Teignmouth, England, United Kingdom",GB,England,Teignmouth,14932.0,geonames,,2636132,Teignmouth
+"Prestwich, England, United Kingdom",GB,England,Prestwich,31500.0,geonames,,2639897,Prestwich
+"Trafford, England, United Kingdom",GB,England,Trafford,,,no population found,,
+"Motherwell, Scotland, United Kingdom",GB,Scotland,Motherwell,32840.0,geonames,,2642135,Motherwell
+"Hamilton, Ontario, Canada",CA,Ontario,Hamilton,569353.0,geonames,,5969782,Hamilton
+"Stockholm, Sweden",SE,,Stockholm,1515017.0,geonames,,2673730,Stockholm
+"Aberdeen, Washington, United States",US,Washington,Aberdeen,16276.0,geonames,,5785243,Aberdeen
+"Claremont, California, United States",US,California,Claremont,36283.0,geonames,,5337696,Claremont
+"Pensacola, Florida, United States",US,Florida,Pensacola,53724.0,geonames,,4168228,Pensacola
+"Reading, England, United Kingdom",GB,England,Reading,318014.0,geonames,,2639577,Reading
+"Leicester, England, United Kingdom",GB,England,Leicester,368600.0,geonames,,2644668,Leicester
+"Birmingham, England, United Kingdom",GB,England,Birmingham,1157603.0,geonames,,2655603,Birmingham
+"Leeds, England, United Kingdom",GB,England,Leeds,536280.0,geonames,,2644688,Leeds
+"Tulsa, Oklahoma, United States",US,Oklahoma,Tulsa,413066.0,geonames,,4553433,Tulsa
+"Newcastle upon Tyne, England, United Kingdom",GB,England,Newcastle upon Tyne,300125.0,geonames,,2641673,Newcastle upon Tyne
+"Ryde, England, United Kingdom",GB,England,Ryde,24096.0,geonames,,2638911,Ryde
+"Sheffield, England, United Kingdom",GB,England,Sheffield,556500.0,geonames,,2638077,Sheffield
+"Nevada City, California, United States",US,California,Nevada City,3152.0,geonames,,5376502,Nevada City
+"Bath, England, United Kingdom",GB,England,Bath,101557.0,geonames,,2656173,Bath
+"Ann Arbor, Michigan, United States",US,Michigan,Ann Arbor,117070.0,geonames,,4984247,Ann Arbor
+"Newmarket, Ontario, Canada",CA,Ontario,Newmarket,91034.0,geonames,,6087701,Newmarket
+"Denver, Colorado, United States",US,Colorado,Denver,729019.0,geonames,,5419384,Denver
+"Muscle Shoals, Alabama, United States",US,Alabama,Muscle Shoals,13706.0,geonames,,4078964,Muscle Shoals
+"Berkeley, California, United States",US,California,Berkeley,120972.0,geonames,,5327684,Berkeley
+"Hellerup, Denmark",DK,,Hellerup,,,no population found,,
+"Gothenburg, Sweden",SE,,Gothenburg,608462.0,geonames,,2711537,Gothenburg
+"Lake Forest, Illinois, United States",US,Illinois,Lake Forest,19408.0,geonames,,4899012,Lake Forest
+"Calgary, Alberta, Canada",CA,Alberta,Calgary,1306784.0,geonames,,5913490,Calgary
+"Wellingborough, England, United Kingdom",GB,England,Wellingborough,56564.0,geonames,,2634578,Wellingborough
+"Concord, North Carolina, United States",US,North Carolina,Concord,87696.0,geonames,,4461574,Concord
+"Kilsyth, Scotland, United Kingdom",GB,Scotland,Kilsyth,9860.0,geonames,,2645548,Kilsyth
+"Amherst, Massachusetts, United States",US,Massachusetts,Amherst,39833.0,geonames,,4929022,Amherst
+"Asbury Park, New Jersey, United States",US,New Jersey,Asbury Park,15818.0,geonames,,5095281,Asbury Park
+"Oyster Bay, New York, United States",US,New York,Oyster Bay,6707.0,geonames,,5130327,Oyster Bay
+"Cleveland, Ohio, United States",US,Ohio,Cleveland,365379.0,geonames,,5150529,Cleveland
+"Middletown, Connecticut, United States",US,Connecticut,Middletown,46756.0,geonames,,4838633,Middletown
+"Eau Claire, Wisconsin, United States",US,Wisconsin,Eau Claire,67778.0,geonames,,5251436,Eau Claire
+"Wellington, New Zealand",NZ,,Wellington,381900.0,geonames,,2179537,Wellington
+"Selkirk, Scotland, United Kingdom",GB,Scotland,Selkirk,5730.0,geonames,,2638229,Selkirk
+"Pittsburgh, Pennsylvania, United States",US,Pennsylvania,Pittsburgh,304391.0,geonames,,5206379,Pittsburgh
+"Syracuse, New York, United States",US,New York,Syracuse,144142.0,geonames,,5140405,Syracuse
+"West Grove, Pennsylvania, United States",US,Pennsylvania,West Grove,2859.0,geonames,,4562148,West Grove
+"Copenhagen, Denmark",DK,,Copenhagen,1153615.0,geonames,,2618425,Copenhagen
+"Falls Church, Virginia, United States",US,Virginia,Falls Church,13892.0,geonames,,4758390,Falls Church
+"Berlin, Germany",DE,,Berlin,3426354.0,geonames,,2950159,Berlin
+"Huntingdon, England, United Kingdom",GB,England,Huntingdon,23937.0,geonames,,2646393,Huntingdon
+"Cambridge, Massachusetts, United States",US,Massachusetts,Cambridge,110402.0,geonames,,4931972,Cambridge
+"Southend-on-Sea, England, United Kingdom",GB,England,Southend-on-Sea,295310.0,geonames,,2637433,Southend-on-Sea
+"São Paulo, Brazil",BR,,São Paulo,12400232.0,geonames,,3448439,São Paulo
+"Clacton-on-Sea, England, United Kingdom",GB,England,Clacton-on-Sea,50548.0,geonames,,2652974,Clacton-on-Sea
+"Greenwich, New York, United States",US,New York,Greenwich,1744.0,geonames,,5119416,Greenwich
+"Leksand, Sweden",SE,,Leksand,6107.0,geonames,,2696650,Leksand
+"West Palm Beach, Florida, United States",US,Florida,West Palm Beach,120932.0,geonames,,4177887,West Palm Beach
+"Woodside, California, United States",US,California,Woodside,5561.0,geonames,,5410535,Woodside
+"Glen Rock, New Jersey, United States",US,New Jersey,Glen Rock,11999.0,geonames,,5098436,Glen Rock
+"Ames, Iowa, United States",US,Iowa,Ames,65060.0,geonames,,4846834,Ames
+"Blacksburg, Virginia, United States",US,Virginia,Blacksburg,44215.0,geonames,,4747845,Blacksburg
+"New Canaan, Connecticut, United States",US,Connecticut,New Canaan,19738.0,geonames,,4839319,New Canaan
+"Keflavík, Iceland",IS,,Keflavík,15930.0,geonames,,3415496,Keflavík
+"Mold, Wales, United Kingdom",GB,Wales,Mold,10058.0,geonames,,2642372,Mold
+"Ridgewood, New Jersey, United States",US,New Jersey,Ridgewood,25621.0,geonames,,5103269,Ridgewood
+"Anacortes, Washington, United States",US,Washington,Anacortes,18103.0,geonames,,5785657,Anacortes
+"Madison, Wisconsin, United States",US,Wisconsin,Madison,280305.0,geonames,,5261457,Madison
+"Wasilla, Alaska, United States",US,Alaska,Wasilla,9284.0,geonames,,5877641,Wasilla
+"Riverside, California, United States",US,California,Riverside,317261.0,geonames,,5387877,Riverside
+"Stillwater, Oklahoma, United States",US,Oklahoma,Stillwater,48967.0,geonames,,4552215,Stillwater
+"Edmonton, Alberta, Canada",CA,Alberta,Edmonton,1010899.0,geonames,,5946768,Edmonton
+"Charleston, South Carolina, United States",US,South Carolina,Charleston,132609.0,geonames,,4574324,Charleston
+"Compton, California, United States",US,California,Compton,98462.0,geonames,,5339066,Compton
+"Brattleboro, Vermont, United States",US,Vermont,Brattleboro,7414.0,geonames,,5234141,Brattleboro
+"Appleton, Wisconsin, United States",US,Wisconsin,Appleton,74139.0,geonames,,5244080,Appleton
+"Barcelona, Spain",ES,,Barcelona,1686208.0,geonames,,3128760,Barcelona
+"Reigate, England, United Kingdom",GB,England,Reigate,21820.0,geonames,,2639506,Reigate
+"Westlake Village, California, United States",US,California,Westlake Village,8507.0,geonames,,5408395,Westlake Village
+"Santa Monica, California, United States",US,California,Santa Monica,93220.0,geonames,,5393212,Santa Monica
+"Nottingham, England, United Kingdom",GB,England,Nottingham,323632.0,geonames,,2641170,Nottingham
+"Salem, Oregon, United States",US,Oregon,Salem,175535.0,geonames,,5750162,Salem
+"Columbia, South Carolina, United States",US,South Carolina,Columbia,142416.0,geonames,,4575352,Columbia
+"Hershey, Pennsylvania, United States",US,Pennsylvania,Hershey,14257.0,geonames,,5193342,Hershey
+"Blue Mountains, New South Wales, Australia",AU,New South Wales,Blue Mountains,78121.0,geonames,,6615604,Blue Mountains
+"Greenville, North Carolina, United States",US,North Carolina,Greenville,90597.0,geonames,,4469160,Greenville
+"Kettering, England, United Kingdom",GB,England,Kettering,56676.0,geonames,,2645753,Kettering
+"Durham, North Carolina, United States",US,North Carolina,Durham,257636.0,geonames,,4464368,Durham
+"Norman, Oklahoma, United States",US,Oklahoma,Norman,128026.0,geonames,,4543762,Norman
+"Birmingham, Alabama, United States",US,Alabama,Birmingham,196357.0,geonames,,4049979,Birmingham
+"Aurora, Missouri, United States",US,Missouri,Aurora,7477.0,geonames,,4375349,Aurora
+"Walla Walla, Washington, United States",US,Washington,Walla Walla,32237.0,geonames,,5814916,Walla Walla
+"Bremerton, Washington, United States",US,Washington,Bremerton,39520.0,geonames,,5788054,Bremerton
+"Northampton, Massachusetts, United States",US,Massachusetts,Northampton,28540.0,geonames,,4945819,Northampton
+"Houston, Texas, United States",US,Texas,Houston,2314157.0,geonames,,4699066,Houston
+"Oxnard, California, United States",US,California,Oxnard,207254.0,geonames,,5380184,Oxnard
+"Amityville, New York, United States",US,New York,Amityville,9486.0,geonames,,5107140,Amityville
+"Vestmannaeyjar, Iceland",IS,,Vestmannaeyjar,4639.0,geonames,,3412093,Vestmannaeyjar
+"Maplewood, New Jersey, United States",US,New Jersey,Maplewood,25008.0,geonames,,5100854,Maplewood
+"New Paltz, New York, United States",US,New York,New Paltz,7070.0,geonames,,5128539,New Paltz
+"East Kilbride, Scotland, United Kingdom",GB,Scotland,East Kilbride,75310.0,geonames,,2650405,East Kilbride
+"Norwich, England, United Kingdom",GB,England,Norwich,143135.0,geonames,,2641181,Norwich
+"Brisbane, Queensland, Australia",AU,Queensland,Brisbane,2780063.0,geonames,,2174003,Brisbane
+"Lyttelton, New Zealand",NZ,,Lyttelton,3220.0,geonames,,6220981,Lyttelton
+"Walnut Creek, California, United States",US,California,Walnut Creek,68910.0,geonames,,5406990,Walnut Creek
+"Reading, Pennsylvania, United States",US,Pennsylvania,Reading,87879.0,geonames,,5207728,Reading
+"Turin, Italy",IT,,Turin,847287.0,geonames,,3165524,Turin
+"Edwards, California, United States",US,California,Edwards,,,no population found,,
+"Champaign, Illinois, United States",US,Illinois,Champaign,86096.0,geonames,,4887158,Champaign
+Mali,ML,,Mali,,,no population found,,
+"Bloomington, Indiana, United States",US,Indiana,Bloomington,84067.0,geonames,,4254679,Bloomington
+"Little Ferry, New Jersey, United States",US,New Jersey,Little Ferry,10963.0,geonames,,5100542,Little Ferry
+"Agadez, Niger",NE,,Agadez,149549.0,geonames,,2448085,Agadez
+"Vallejo, California, United States",US,California,Vallejo,121692.0,geonames,,5405380,Vallejo
+"Amsterdam, Netherlands",NL,,Amsterdam,741636.0,geonames,,2759794,Amsterdam
+"Horten, Norway",NO,,Horten,27178.0,geonames,,3151770,Horten
+"Spruce Pine, North Carolina, United States",US,North Carolina,Spruce Pine,2134.0,geonames,,4493110,Spruce Pine
+"Tacoma, Washington, United States",US,Washington,Tacoma,222906.0,geonames,,5812944,Tacoma
+"Miami, Florida, United States",US,Florida,Miami,487014.0,geonames,,4164138,Miami
+"Dundalk, Ireland",IE,,Dundalk,43112.0,geonames,,2964540,Dundalk
+"Tallahassee, Florida, United States",US,Florida,Tallahassee,201731.0,geonames,,4174715,Tallahassee
+"Savannah, Georgia, United States",US,Georgia,Savannah,147780.0,geonames,,4221552,Savannah
+"Spanish Town, Jamaica",JM,,Spanish Town,145018.0,geonames,,3488465,Spanish Town
+"Basildon, England, United Kingdom",GB,England,Basildon,144859.0,geonames,,2656194,Basildon
+"Canberra, Australian Capital Territory, Australia",AU,Australian Capital Territory,Canberra,367752.0,geonames,,2172517,Canberra
+"Asheville, North Carolina, United States",US,North Carolina,Asheville,95056.0,geonames,,4453066,Asheville
+"Hull, England, United Kingdom",GB,England,Hull,314018.0,geonames (alternate name),,2645425,Kingston upon Hull
+"Kitwe, Zambia",ZM,,Kitwe,665961.0,geonames,,911148,Kitwe
+"Caldicot, Wales, United Kingdom",GB,Wales,Caldicot,9813.0,geonames,,2654014,Caldicot
+"Center Moriches, New York, United States",US,New York,Center Moriches,7580.0,geonames,,5112020,Center Moriches
+"Milan, Italy",IT,,Milan,1371498.0,geonames,,3173435,Milan
+"Crawley, England, United Kingdom",GB,England,Crawley,124008.0,geonames,,2652053,Crawley
+"Swansea, Wales, United Kingdom",GB,Wales,Swansea,300352.0,geonames,,2636432,Swansea
+"Tel Aviv, Israel",IL,,Tel Aviv,432892.0,geonames,,293397,Tel Aviv
+"Pajala Municipality, Sweden",SE,,Pajala Municipality,1958.0,wikipedia,"secondary source, page ""Pajala""; may be a district or county rather than the city",,
+"El Monte, California, United States",US,California,El Monte,116732.0,geonames,,5345743,El Monte
+"Tampa, Florida, United States",US,Florida,Tampa,414547.0,geonames,,4174757,Tampa
+"Zurich, Switzerland",CH,,Zurich,415367.0,geonames,,2657896,Zürich
+"Dobbs Ferry, New York, United States",US,New York,Dobbs Ferry,11131.0,geonames,,5115123,Dobbs Ferry
+"Jerusalem, Israel",IL,,Jerusalem,971800.0,geonames,,281184,Jerusalem
+"Madrid, Spain",ES,,Madrid,3255944.0,geonames,,3117735,Madrid
+"Hicksville, New York, United States",US,New York,Hicksville,41547.0,geonames,,5120656,Hicksville
+"San Juan, Puerto Rico",PR,,San Juan,418140.0,geonames,,4568127,San Juan
+"Calabasas, California, United States",US,California,Calabasas,23058.0,geonames,,5332593,Calabasas
+"Franklin, Tennessee, United States",US,Tennessee,Franklin,72639.0,geonames,,4623560,Franklin
+"Virginia Beach, Virginia, United States",US,Virginia,Virginia Beach,454808.0,geonames,,4791259,Virginia Beach
+"Minsk, Belarus",BY,,Minsk,1742124.0,geonames,,625144,Minsk
+"Shawnee, Oklahoma, United States",US,Oklahoma,Shawnee,31286.0,geonames,,4551177,Shawnee

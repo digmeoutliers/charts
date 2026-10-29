@@ -1,0 +1,27 @@
+city,borough,lat,lon
+London,Barnet,51.6127,-0.2117
+London,Brent,51.564,-0.2759
+London,Bromley,51.3669,0.0617
+London,Camden,51.5428,-0.1625
+London,Croydon,51.3551,-0.0643
+London,Ealing,51.5251,-0.3143
+London,Enfield,51.6488,-0.0809
+London,Greenwich,51.4686,0.0488
+London,Hackney,51.5489,-0.0477
+London,Hammersmith and Fulham,51.4983,-0.2279
+London,Haringey,51.5879,-0.1054
+London,Havering,51.5579,0.2498
+London,Hounslow,51.4617,-0.3801
+London,Islington,51.547,-0.1017
+London,Kensington and Chelsea,51.5038,-0.2008
+London,Lambeth,51.4605,-0.1213
+London,Lewisham,51.4535,-0.0125
+London,Merton,51.4109,-0.1881
+London,Redbridge,51.5863,0.0698
+London,Southwark,51.4653,-0.069
+London,Tower Hamlets,51.5146,-0.0351
+London,Wandsworth,51.4519,-0.1995
+New York City,Brooklyn,40.6526,-73.9497
+New York City,Manhattan,40.758,-73.9855
+New York City,Queens,40.7135,-73.8283
+New York City,Staten Island,40.5835,-74.1496
