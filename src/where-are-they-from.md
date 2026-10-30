@@ -98,7 +98,7 @@ const urlModes = (new URLSearchParams(location.search).get("mode") ?? "").split(
 function segmented(options, initial, def) {
   const el = document.createElement("div");
   el.className = "dmo-seg dmo-ctl";
-  el.style.cssText = "display:inline-flex;border:1px solid #8a8985;border-radius:999px;overflow:hidden;background:#d9d8d3;margin:0.25rem 0.75rem 0.75rem 0;font-family:var(--sans-serif);";
+  el.style.cssText = "display:inline-flex;border:1px solid #8a8985;border-radius:999px;overflow:hidden;background:#d9d8d3;margin:0.25rem 0.75rem 0.75rem 0;vertical-align:middle;font-family:var(--sans-serif);";
   const buttons = options.map(([label, value]) => {
     const b = document.createElement("button");
     b.type = "button"; b.textContent = label;
@@ -304,7 +304,7 @@ const mapColor = view(segmented([["Albums per artist", "per"], ["Total albums", 
 // a second Reset, up here with the other switches: it presses the Reset button under the map (back to countries, no zoom, search cleared)
 const resetTop = document.createElement("button");
 resetTop.type = "button"; resetTop.textContent = "Reset"; resetTop.className = "dmo-ctl";
-resetTop.style.cssText = "border:1px solid #8a8985;border-radius:999px;background:#d9d8d3;color:#5f5e5a;font-size:13px;padding:6px 16px;margin:0.25rem 0.75rem 0.75rem 0;cursor:pointer;font-family:var(--sans-serif);white-space:nowrap;";
+resetTop.style.cssText = "border:1px solid #8a8985;border-radius:999px;background:#d9d8d3;color:#5f5e5a;font-size:13px;padding:6px 16px;margin:0.25rem 0.75rem 0.75rem 0;vertical-align:middle;cursor:pointer;font-family:var(--sans-serif);white-space:nowrap;";
 resetTop.onclick = () => [...document.querySelectorAll('[data-chart="map"] button')].find((b) => b.textContent === "Reset")?.click();
 display(resetTop);
 ```
