@@ -292,7 +292,7 @@ statTiles([
 
 ### Debut or deep catalog?
 
-Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. Switch to studio albums only if you'd rather not count them. Hover a cell to see which artists it holds.
+Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. A word on "album": everywhere else in this series, "album" is the way KEXP uses it, for anything on the lists, which means LPs, EPs, and in three cases singles. MusicBrainz, where the release types come from, keeps "Album" for full-length LPs and files EPs and singles under their own types. So "studio albums only" below uses MusicBrainz's narrower meaning. Switch to it if you'd rather not count EPs. Hover a cell to see which artists it holds.
 
 ```js
 const countMode = view(segmented([["Studio albums and EPs", "both"], ["Studio albums only", "albums"]], new URLSearchParams(location.search).get("mode") === "albums" ? "albums" : "both"));
@@ -307,7 +307,7 @@ const numberedIn = (lo, hi) => numbered.filter((d) => d.list_year >= lo && d.lis
 const firsts = [...d3.group(rows.filter((d) => d.artist_type !== "Other"), (d) => d.artist_id).values()]
   .map((v) => v.slice().sort((a, b) => a.list_year - b.list_year || a.rank - b.rank)[0]);
 const firstsNumbered = firsts.filter((d) => numOf(d) != null);
-const lateBloomers = firstsNumbered.slice().sort((a, b) => numOf(b) - numOf(a)).slice(0, 3);
+const lateBloomers = firstsNumbered.filter((d) => d.artist_name !== "Thurston Moore").sort((a, b) => numOf(b) - numOf(a)).slice(0, 3);
 ```
 
 ```js
@@ -524,7 +524,7 @@ function lifelines() {
     svg.append("line").attr("x1", x(a.start)).attr("x2", x(last)).attr("y1", cy).attr("y2", cy).attr("stroke", catColor[a.c]).attr("stroke-width", 2).attr("opacity", 0.3);
     const startHtml = `<b>${a.name}</b><br>Start: ${a.start}`;
     tapPts.push({x: x(a.start), y: cy, html: startHtml});
-    svg.append("circle").attr("cx", x(a.start)).attr("cy", cy).attr("r", 3.5).attr("fill", "none").attr("stroke", catColor[a.c]).attr("stroke-width", 1.5)
+    svg.append("circle").attr("cx", x(a.start)).attr("cy", cy).attr("r", 7.5).attr("fill", "none").attr("stroke", catColor[a.c]).attr("stroke-width", 1.5)
       .on("pointerenter pointermove", (event) => showTip(event, startHtml)).on("pointerleave", hideTip);
     a.items.forEach((d) => {
       const html = `<b>${a.name}</b><br><i>${d.release_group_name}</i><br>Released ${d.release_year} &middot; #${d.rank} on the ${d.list_year} list<br>${d.career_years == null ? "" : d.career_years + " years in"}`;
@@ -547,7 +547,7 @@ lifelines()
 
 </div>
 
-The open circle marks each artist's start. The typical artist here got going around ${d3.median(lifeList(), (a) => a.start)} and has kept landing albums for about ${d3.median(lifeList(), (a) => a.items[a.items.length - 1].release_year - a.start)} years, which is part of why the middle of the first chart is so full.
+The open circle marks each artist's start. When an artist's first album came out in their start year, the circle sits around that dot, as it does for Iron & Wine and SAULT. The typical artist here got going around ${d3.median(lifeList(), (a) => a.start)} and has kept landing albums for about ${d3.median(lifeList(), (a) => a.items[a.items.length - 1].release_year - a.start)} years, which is part of why the middle of the first chart is so full.
 
 ### A revolving door with a regular cast
 
