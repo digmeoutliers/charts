@@ -33,15 +33,22 @@ head: |
         } catch (e) {}
       });
     }
-    // inside the blog post: no extra space under the last block, so the text that follows sits one normal paragraph gap below
-    var trimmed;
+    // inside the blog post: no extra space above the first block or under the last one, so the text around the embed sits one normal paragraph gap away
+    var trimmed, trimmedTop;
     function trimTail() {
       if (window.self === window.top) return;
-      var kids = document.querySelectorAll("main > *");
-      for (var i = kids.length - 1; i >= 0; i--) {
+      var kids = document.querySelectorAll("main > *"), i;
+      for (i = kids.length - 1; i >= 0; i--) {
         if (kids[i].offsetHeight > 0) {
           if (trimmed && trimmed !== kids[i]) trimmed.style.marginBottom = "";
           kids[i].style.marginBottom = "0"; trimmed = kids[i];
+          break;
+        }
+      }
+      for (i = 0; i < kids.length; i++) {
+        if (kids[i].offsetHeight > 0) {
+          if (trimmedTop && trimmedTop !== kids[i]) trimmedTop.style.marginTop = "";
+          kids[i].style.marginTop = "0"; trimmedTop = kids[i];
           break;
         }
       }
