@@ -187,7 +187,7 @@ const under25 = (lo, hi, c) => shareWhere(agesIn(lo, hi, c), (d) => d.age_at_rel
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">MusicBrainz keeps one "begin" date for every artist, but it means different things. For a person it is a birth date, and for a band it is the year the band formed. Those aren't comparable, so for "years in" I built my own start year for every artist. For a band, it is the formed date MusicBrainz lists (or, when there isn't one, the year of its first release). For a solo artist, it is the year of their first release under their own name, not their birth year. This is a convention I chose, not a fact about anyone's career. A solo artist who came out of a well-known band starts the clock at their first solo release: Bob Mould's start is 1989, not Hüsker Dü in 1979, and Johnny Marr's is 2013, not The Smiths. I count the person and the band separately, the way MusicBrainz does. Birth dates are used only in the age chart, and only for solo artists. Albums released after an artist's death are left out of the career and age charts.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">MusicBrainz keeps one "begin" date for every artist, but it means different things. For a person it is a birth date, and for a band it is the year the band formed. Those aren't comparable, so for "years in" I built my own start year for every artist. For a band, it is the formed date MusicBrainz lists (or, when there isn't one, the year of its first release). For a solo artist, it is the year of their first release under their own name, not their birth year. This is a convention I chose, not a fact about anyone's career. A solo artist who came out of a well-known band starts the clock at their first solo release: Bob Mould's start is 1989, not Hüsker Dü in 1979, and Johnny Marr's is 2013, not The Smiths' 1982. I count the person and the band separately, the way MusicBrainz does. Birth dates are used only in the age chart, and only for solo artists. MusicBrainz has a birth date for ${(100 * rows.filter((d) => d.age_at_release != null).length / rows.filter((d) => d.artist_type === "Person" && !d.posthumous).length).toFixed(0)}% of the solo albums here, so the age charts cover those. The ${rows.filter((d) => d.posthumous).length} albums released after an artist's death are left out of the career and age charts.</div>
 </div>
 
 <p class="phone-note">On a phone? Tap a dot or bar to see its details. These charts have more room on a laptop or tablet.</p>
@@ -292,7 +292,7 @@ statTiles([
 
 ### Debut or deep catalog?
 
-Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, so live albums, compilations, and the like are left out"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. A word on "album": everywhere else in this series, "album" is the way KEXP uses it, for anything on the lists, which means LPs, EPs, and in two cases singles. MusicBrainz, where the release types come from, keeps "Album" for full-length LPs and files EPs and singles under their own types. So "studio albums only" below uses MusicBrainz's narrower meaning. Switch to it if you'd rather not count EPs. Hover a cell to see which artists it holds.
+Years are one way to measure career stage. Another is to count releases: is this an artist's first record, or their fifth? Each cell below is the share of a year's numbered ${noun}s that were that artist's 1st, 2nd, 3rd, and so on. ${countMode === "albums" ? "Only studio albums get a number, so EPs, live albums, and compilations are left out" : "Studio albums and studio EPs get a number, but I have chosen to leave live albums, compilations, and similar non-studio releases out for this particular analysis"} (${rows.length - numbered.length} of ${rows.length} entries). EPs are a real part of many careers, especially in indie music, so by default they count. A word on "album": everywhere else in this series, "album" is the way KEXP uses it, for anything on the lists, which means LPs, EPs, and in two cases singles. MusicBrainz, where the release types come from, keeps "Album" for full-length LPs and files EPs and singles under their own types. So "studio albums only" below uses MusicBrainz's narrower meaning. Switch to it if you'd rather not count EPs. Hover a cell to see which artists it holds.
 
 ```js
 const countMode = view(segmented([["Studio albums and EPs", "both"], ["Studio albums only", "albums"]], new URLSearchParams(location.search).get("mode") === "albums" ? "albums" : "both"));
@@ -375,11 +375,11 @@ Debuts fell from ${shareWhere(numberedIn(2001, 2010), (d) => numOf(d) === 1).toF
 
 ### When do artists first make a list?
 
-Each bar counts artists by which ${noun} first put them on a list. Colors are the same as above.
+Each bar counts artists by which ${noun} first put them on a list.
 
 ```js
 function firstListBars() {
-  const width = 880, height = 380, m = {l: 54, r: 16, t: 24, b: 54};
+  const width = 880, height = 400, m = {l: 54, r: 16, t: 46, b: 54};
   const labels = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th or later"];
   const bucketOf = (n) => Math.min(n, 9) - 1;
   const total = firstsNumbered.length;
@@ -390,6 +390,14 @@ function firstListBars() {
   y.ticks(5).forEach((v) => {
     svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(v)).attr("y2", y(v)).attr("stroke", v === 0 ? "#4a4a46" : "#2a2a27");
     svg.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", "#898781").attr("font-size", 11).text(v);
+  });
+  // key: the same colors as the charts above
+  const keyW = catOrder.map((c) => 16 + c.length * 6.8 + 22);
+  let kx = (width - d3.sum(keyW) + 22) / 2;
+  catOrder.forEach((c, i) => {
+    svg.append("rect").attr("x", kx).attr("y", 12).attr("width", 11).attr("height", 11).attr("rx", 2.5).attr("fill", catColor[c]);
+    svg.append("text").attr("x", kx + 16).attr("y", 18).attr("dominant-baseline", "middle").attr("fill", "#c9c8c3").attr("font-size", 12).text(c);
+    kx += keyW[i];
   });
   const tapPts = [];
   labels.forEach((lab, i) => {
@@ -422,7 +430,7 @@ firstListBars()
 
 </div>
 
-Most artists don't wait. About ${shareWhere(firstsNumbered, (d) => numOf(d) === 1).toFixed(0)}% first made a list with their debut and ${shareWhere(firstsNumbered, (d) => numOf(d) <= 2).toFixed(0)}% by their second ${noun}. But a long tail waits much longer. ${lateBloomers.map((d) => `${d.artist_name} (${noun} ${numOf(d)}, ${d.list_year})`).join(", ")} all arrived late.
+Most artists don't wait. About ${shareWhere(firstsNumbered, (d) => numOf(d) === 1).toFixed(0)}% first made a list with their debut and ${shareWhere(firstsNumbered, (d) => numOf(d) <= 2).toFixed(0)}% by their second ${noun}. But a long tail waits much longer. ${lateBloomers.map((d) => `${d.artist_name} (${noun} ${numOf(d)}, ${d.list_year})`).join(", ")}, three legendary artists whose vast catalogs mostly predate the KEXP Annual lists, all arrived late.
 
 ### How old are the solo artists?
 
@@ -575,11 +583,6 @@ statTiles([
 ```
 
 Most artists do pass through once: ${(100 * [...appearances.values()].filter((n) => n === 1).length / appearances.size).toFixed(0)}% of everyone who has made a list made exactly one. But a small group of repeat artists holds far more than its share of the spots. The ${shareOfArtists(5).toFixed(0)}% of artists with five or more albums hold ${shareOfSpots(5).toFixed(0)}% of all the entries, and the ${lifeList().length} artists in the chart above are only ${shareOfArtists(7).toFixed(0)}% of artists but hold ${shareOfSpots(7).toFixed(0)}% of the spots. The door is still turning: about ${(firstTimers(2021, 2025).filter(isFirst).length / 5).toFixed(0)} artists a year make a list for the first time, or roughly one spot in three. It is turning a little more slowly than it used to, though, and that matches what the first chart showed. So the best way to put the two ideas together is a revolving door with a regular cast.
-
-<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
-  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. "Years in" counts from a start year I chose (see the note at the top), so it is a way to compare artists, not a measure of anyone's real career length. Solo artists who came out of a band start the clock again at their first solo release. Ages need a birth date, and MusicBrainz has one for ${(100 * rows.filter((d) => d.age_at_release != null).length / rows.filter((d) => d.artist_type === "Person" && !d.posthumous).length).toFixed(0)}% of the solo albums here, so the age charts cover those. Release numbers count the studio albums and EPs MusicBrainz lists for an artist (or albums only, if you switch) and ${rows.filter((d) => d.posthumous).length} albums released after an artist's death are left out of the career and age charts.</div>
-</div>
 
 ```js
 addExpandButtons(() => document.querySelector(".dmo-seg")?.value);
