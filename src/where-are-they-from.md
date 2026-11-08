@@ -612,6 +612,12 @@ function selectionList(sel) {
 selectionList(mapSelection)
 ```
 
+The map shows all 25 years at once. The sections below take that picture apart: how the mix of places has changed over time, what's inside the biggest cities, which places stay, take the top spot, or arrive new, how the Northwest and Bay Area scenes have fared, and how big the hometowns are.
+
+## Interesting observations
+
+The map is mostly two clusters of big bubbles, with a long tail of small ones. ${cityName(hometown)} is the biggest hometown by artists, ahead of ${cityName(cityRank[1])} and ${cityName(cityRank[2])}${topByAlbums.key !== hometown.key ? ` (${cityName(topByAlbums)} has more albums on the lists, ${topByAlbums.albums} to ${hometown.albums}, because its artists made the list more often)` : ""}, and the lists are overwhelmingly American, with Britain a distant second. But the U.S. share has slipped, from ${shareOf(2001, 2010, (d) => d.group === "United States").toFixed(0)}% of entries in the first decade to ${shareOf(2016, 2025, (d) => d.group === "United States").toFixed(0)}% in the last ten years.
+
 ```js
 statTiles([
   {label: "Countries represented", value: `${countries.size}`,
@@ -622,12 +628,6 @@ statTiles([
    caption: `Most artists of any city: ${hometown.artists}, with ${hometown.albums} albums on the lists.`}
 ])
 ```
-
-The map is mostly two clusters of big bubbles, with a long tail of small ones. ${cityName(hometown)} is the biggest hometown by artists, ahead of ${cityName(cityRank[1])} and ${cityName(cityRank[2])}${topByAlbums.key !== hometown.key ? ` (${cityName(topByAlbums)} has more albums on the lists, ${topByAlbums.albums} to ${hometown.albums}, because its artists made the list more often)` : ""}, and the lists are overwhelmingly American, with Britain a distant second. But the U.S. share has slipped, from ${shareOf(2001, 2010, (d) => d.group === "United States").toFixed(0)}% of entries in the first decade to ${shareOf(2016, 2025, (d) => d.group === "United States").toFixed(0)}% in the last ten years.
-
-## Interesting observations
-
-The map shows all 25 years at once. The sections below take that picture apart: how the mix of places has changed over time, what's inside the biggest cities, which places stay, take the top spot, or arrive new, how the Northwest and Bay Area scenes have fared, and how big the hometowns are.
 
 ### Home turf, over the years
 
@@ -885,10 +885,7 @@ const BAY = new Set(["San Francisco", "Oakland", "Berkeley", "San Jose", "Alamed
   "Sacramento", "Santa Cruz", "Chico", "Modesto", "Stockton"]);
 const isBay = (d) => d.region === "California" && BAY.has(d.city);
 const bayRecent = era(2024, 2025).filter(isBay);
-const newcomerAlbums = located.filter((d) => newcomers.some(([c]) => c === d.country));
 ```
-
-Something outside the data may be part of this story. KEXP has region-focused shows, including Wo' Pop, El Sonido, and, since September 2023, The Continent and Eastern Echoes. I checked the play data for the artists behind the new countries (the ${newcomerAlbums.length} albums include Songhoy Blues, Mdou Moctar, Altın Gün, Liraz, and Bad Bunny), and those shows account for only a small slice of their airplay. Most of it came on KEXP's general shows. A few artists did lean on the regional programming, Liraz most of all, but The Continent and Eastern Echoes began after several of the newcomers had already arrived. So the programming may have helped some artists find an audience, but it does not explain the new countries on its own.
 
 ### Staying power, top spots, and new arrivals
 
@@ -1055,7 +1052,7 @@ The pace slowed as the map filled in, but it never stopped: ${newSince(2016)} of
 
 ### Two local scenes
 
-KEXP has two shows built around local music, and each defines its region. Audioasis, from Seattle, takes submissions from Washington, Oregon, Idaho, Alaska, and British Columbia. Vinelands, from the Bay Area, covers San Francisco, Oakland, Berkeley, and the cities around them, and KEXP also names Northern California more widely. In the chart, the Bay Area means those core cities plus Northern California out to Sacramento, Modesto, and Stockton. Here is each region's share of every year's list. The two panels have different scales, because the Northwest is several times bigger than the Bay Area.
+KEXP has two shows built around local music, and each defines its region. The chart below builds off of these definitions. Audioasis, from Seattle, takes submissions from Washington, Oregon, Idaho, Alaska, and British Columbia. Vinelands, from the Bay Area, covers San Francisco, Oakland, Berkeley, and the cities around them, and KEXP also names Northern California more widely. In the chart, the Bay Area means those core cities plus Northern California out to Sacramento, Modesto, and Stockton. Here is each region's share of every year's list. The two panels have different scales, because the Northwest is several times bigger than the Bay Area.
 
 ```js
 function localTrend() {
