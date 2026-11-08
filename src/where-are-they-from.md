@@ -612,9 +612,9 @@ function selectionList(sel) {
 selectionList(mapSelection)
 ```
 
-The map shows all 25 years at once. The sections below take that picture apart: how the mix of places has changed over time, what's inside the biggest cities, which places stay, take the top spot, or arrive new, how the Northwest and Bay Area scenes have fared, and how big the hometowns are.
-
 ## Interesting observations
+
+The map shows all 25 years at once. The sections below take that picture apart: how the mix of places has changed over time, what's inside the biggest cities, which places stay, take the top spot, or arrive new, how the Northwest and Bay Area scenes have fared, and how big the hometowns are.
 
 The map is mostly two clusters of big bubbles, with a long tail of small ones. ${cityName(hometown)} is the biggest hometown by artists, ahead of ${cityName(cityRank[1])} and ${cityName(cityRank[2])}${topByAlbums.key !== hometown.key ? ` (${cityName(topByAlbums)} has more albums on the lists, ${topByAlbums.albums} to ${hometown.albums}, because its artists made the list more often)` : ""}, and the lists are overwhelmingly American, with Britain a distant second. But the U.S. share has slipped, from ${shareOf(2001, 2010, (d) => d.group === "United States").toFixed(0)}% of entries in the first decade to ${shareOf(2016, 2025, (d) => d.group === "United States").toFixed(0)}% in the last ten years.
 
@@ -833,8 +833,8 @@ const la = located.filter((d) => d.city === "Los Angeles"), laTotal = nArtists(l
 statTiles([
   {label: "Brooklyn", value: `${boroughArtists(nyc, "Brooklyn")}`,
    caption: `Artists from Brooklyn, out of ${nArtists(nyc)} from New York City. Manhattan has ${boroughArtists(nyc, "Manhattan")}.`},
-  {label: "London, borough on file", value: `${nArtists(ldn.filter((d) => d.borough))} of ${nArtists(ldn)}`,
-   caption: "London artists with a borough on file, from MusicBrainz or my own research. The rest are counted just as London."},
+  {label: londonBoroughs[0][0], value: `${londonBoroughs[0][1]}`,
+   caption: `Artists from ${londonBoroughs[0][0]}, out of ${nArtists(ldn)} from London. ${nArtists(ldn.filter((d) => d.borough))} of the ${nArtists(ldn)} have a borough on file, the rest are just counted as London.`},
   {label: "Cities with one artist", value: `${bubbles("cities").filter((d) => d.artists === 1).length}`,
    caption: `Of ${bubbles("cities").length} places, the number that have exactly one artist on the lists.`}
 ])
@@ -937,7 +937,7 @@ function staysChart() {
   const rowsL = listsOn.slice(0, 15);
   const W = 880, rowH = 25, m = {l: 215, r: 80, t: 28, b: 10};
   const cw = (W - m.l - m.r) / years.length, H = m.t + rowsL.length * rowH + m.b;
-  const color = d3.scaleSequential(d3.interpolateRgbBasis(["#3b2a86", "#9c57f3", "#f2cf6a"])).domain([1, 8]).clamp(true);
+  const color = d3.scaleSequential(d3.interpolateRgbBasis(["#3b2a86", "#9c57f3", "#d4b8ff"])).domain([1, 8]).clamp(true);
   const svg = d3.create("svg").attr("viewBox", [0, 0, W, H]).attr("width", W).attr("height", H).attr("style", CARD);
   [2001, 2005, 2010, 2015, 2020, 2025].forEach((yr) => svg.append("text").attr("x", m.l + (years.indexOf(yr) + 0.5) * cw).attr("y", 18).attr("text-anchor", "middle").attr("fill", "#898781").attr("font-size", 11).text(yr));
   const tapPts = [];
@@ -1290,7 +1290,7 @@ statTiles([
   {label: "Smallest hometown", value: smallestPlace.city,
    caption: `Population ${fmtN(smallestPlace.pop)}. Home of ${smallestArtist}.`},
   {label: "Seattle, per resident", value: `${(seattleStat.per / nycStat.per).toFixed(0)}×`,
-   caption: `Seattle has ${seattleStat.per.toFixed(1)} artists per 100,000 residents, New York City ${nycStat.per.toFixed(1)}.`}
+   caption: `Seattle has ${seattleStat.per.toFixed(1)} artists per 100,000 residents, ${(seattleStat.per / nycStat.per).toFixed(0)} times greater than New York City's ${nycStat.per.toFixed(1)} for comparison.`}
 ])
 ```
 
