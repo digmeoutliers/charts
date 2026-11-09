@@ -363,9 +363,13 @@ ridgeline()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Studio albums only. The two white curves are 2001 and 2025, and the white dots and dotted line follow each year's median. The two dashed lines are for scale: teal is about what fits on one vinyl LP, and grey is the length of a standard CD. They are reference points, not explanations.</p>
 
+## Interesting observations
+
+The ridgeline above shows every list year at once. The sections below take that picture apart: what kinds of albums are on the lists, when they come out, how the lengths changed and whether songs got fewer or shorter, a few theories about why, and some smaller changes in titles and EPs.
+
 In 2001 the typical studio album on the list ran ${medianOf(studioIn(2001, 2001)).toFixed(0)} minutes. In 2025 it ran ${medianOf(studioIn(2025, 2025)).toFixed(0)}. The bump in the 35 to 45 minute range was there from the start, so what has changed is everything to its right: albums that run 50, 60 or more minutes have been thinning out for a quarter century.
 
-## What's on the lists
+### What's on the lists
 
 ```js
 statTiles([
@@ -416,7 +420,7 @@ typeBar()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Type is MusicBrainz's primary and secondary release type. The studio EPs are ${nEP} of ${nAll.toLocaleString()} albums, and they show no trend across the 25 years.</p>
 
-## When the albums come out
+### When the albums come out
 
 ```js
 function monthBars() {
@@ -460,7 +464,7 @@ monthBars()
 
 Albums come out all year, but not evenly: ${d3.sum(monthRows.filter((d) => d.month === 9 || d.month === 10), (d) => d.listed_albums).toLocaleString()} of the ${datedRows.length.toLocaleString()} came out in September or October, and only ${monthRows[6].listed_albums} in July. The summer dip and the fall peak show up in the ballot candidates too, so they reflect when records come out and not just what voters pick. Voting happens in the fall, which is why November and December are nearly empty: those albums mostly wait for next year's list.
 
-## How the lengths changed
+### How the lengths changed
 
 The ridgeline showed the shape. The heat map below counts instead: each column is a list year, each row is a stretch of five minutes, and a brighter cell means a bigger share of that year's studio albums sit there.
 
@@ -681,7 +685,7 @@ trackChart()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">One bar per album, with a gap between tracks. Bars longer than 90 minutes run off the right edge. ${nAll - withRun.length} albums with missing track times are left out.</p>
 
-## Some theories about why
+### Some theories about why
 
 This data can show that albums are getting shorter, but it can't say why. These are the explanations I have seen people give, and what the lists say about each one. None of this is proven, and a lot of it comes from musicians, engineers and fans talking, not from studies.
 
@@ -693,7 +697,7 @@ This data can show that albums are getting shorter, but it can't say why. These 
 
 **More EPs.** If artists were splitting their songs across more releases, EPs should be on the rise. They aren't. EPs are ${(100 * nEP / nAll).toFixed(0)}% of the lists with no trend, and across all the releases MusicBrainz has for these artists, the EP share of albums plus EPs has not climbed either.
 
-## Titles and EPs
+### Titles and EPs
 
 A few smaller changes that came out of the same data.
 
