@@ -365,7 +365,7 @@ ridgeline()
 
 ## Interesting observations
 
-The ridgeline above shows every list year at once. The sections below take that picture apart: what kinds of albums are on the lists, when they come out, how the lengths changed and whether songs got fewer or shorter, a few theories about why, and some smaller changes in titles and EPs.
+The ridgeline above shows every list year at once. The sections below take that picture apart: what kinds of albums are on the lists, how the lengths changed and whether songs got fewer or shorter, a few theories about why, when the albums come out, and some smaller changes in titles and EPs.
 
 In 2001 the typical studio album on the list ran ${medianOf(studioIn(2001, 2001)).toFixed(0)} minutes. In 2025 it ran ${medianOf(studioIn(2025, 2025)).toFixed(0)}. The bump in the 35 to 45 minute range was there from the start, so what has changed is everything to its right: albums that run 50, 60 or more minutes have been thinning out for a quarter century.
 
@@ -419,75 +419,6 @@ typeBar()
 </div>
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Type is MusicBrainz's primary and secondary release type. The studio EPs are ${nEP} of ${nAll.toLocaleString()} albums, and they show no trend across the 25 years.</p>
-
-### When the albums come out
-
-```js
-function monthBars() {
-  const width = 880, m = {l: 48, r: 16, t: 28, b: 34}, h = 260;
-  const names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const x = d3.scaleBand(d3.range(1, 13), [m.l, width - m.r]).padding(0.28);
-  const topV = Math.ceil(d3.max(monthRows, (d) => Math.max(d.listed_albums, d.expected_from_ballots)) / 100) * 100;
-  const y = d3.scaleLinear([0, topV], [h - m.b, m.t]);
-  const wrap = document.createElement("div");
-  const svg = d3.create("svg").attr("viewBox", [0, 0, width, h]).attr("width", width).attr("height", h).attr("style", SVG_STYLE)
-    .attr("role", "img").attr("aria-label", "Listed albums by release month, with the number the ballots predict. Most come out in spring and fall, and very few in November and December.");
-  svg.append("rect").attr("x", x(11) - x.step() * 0.14).attr("y", m.t - 10).attr("width", x.step() * 2).attr("height", h - m.b - m.t + 10).attr("fill", "#232321");
-  d3.range(0, topV + 1, 100).forEach((v) => {
-    svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(v)).attr("y2", y(v)).attr("stroke", GRID);
-    svg.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", MUTED).attr("font-size", 12).text(v);
-  });
-  monthRows.forEach((d) => {
-    const html = `<b>${names[d.month - 1]}</b><br>${d.listed_albums} albums on the lists<br><span style="color:#898781">${d.expected_from_ballots} expected from the ballots</span>`;
-    svg.append("rect").attr("x", x(d.month)).attr("y", y(d.listed_albums)).attr("width", x.bandwidth()).attr("height", y(0) - y(d.listed_albums)).attr("rx", 3).attr("fill", PURPLE)
-      .on("pointerenter pointermove", (event) => tip.show(event, html)).on("pointerleave", (event) => tip.hide(event));
-    svg.append("text").attr("x", x(d.month) + x.bandwidth() / 2).attr("y", h - m.b + 20).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(names[d.month - 1]);
-  });
-  const cx = (d) => x(d.month) + x.bandwidth() / 2;
-  svg.append("polyline").attr("points", monthRows.map((d) => `${cx(d)},${y(d.expected_from_ballots)}`).join(" ")).attr("fill", "none").attr("stroke", FG).attr("stroke-width", 1.5).attr("stroke-dasharray", "3 3").attr("pointer-events", "none");
-  monthRows.forEach((d) => svg.append("path").attr("d", `M${cx(d)},${y(d.expected_from_ballots) - 6} l6,6 l-6,6 l-6,-6 z`).attr("fill", FG).attr("stroke", SURFACE).attr("stroke-width", 1.5).attr("pointer-events", "none"));
-  monthRows.forEach((d) => svg.append("text").attr("x", cx(d)).attr("y", Math.min(y(d.listed_albums), y(d.expected_from_ballots) - 6) - 8).attr("text-anchor", "middle").attr("fill", FG).attr("font-size", 12).attr("font-weight", 500).attr("pointer-events", "none").text(d.listed_albums));
-  wrap.append(legend([["Albums on the lists", PURPLE], ["Expected, if the lists mirrored the ballots' candidates", FG]]), svg.node());
-  return wrap;
-}
-```
-
-<div class="card" data-chart="months" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
-
-```js
-monthBars()
-```
-
-</div>
-
-<p style="font-size:13px;color:var(--theme-foreground-muted);">${datedRows.length.toLocaleString()} of ${nAll.toLocaleString()} albums have a full release date in MusicBrainz. The diamonds show how many would come out in each month if the lists matched the share of ballot candidates released that month, using the seven KEXP ballots I could recover (2014, 2016, 2018, 2020, 2021, 2022 and 2023) and scaling to the same total.</p>
-
-```js
-// albums on a list that came out the year before, and where the late-year (November, December) releases land
-const relYear = (d) => d.release_date instanceof Date ? d.release_date.getUTCFullYear() : +String(d.release_date).slice(0, 4);
-const priorYearRows = datedRows.filter((d) => d.list_year - relYear(d) === 1);
-const priorLate = priorYearRows.filter((d) => d.release_month >= 11).length;
-const monthRowsOf = (m) => datedRows.filter((d) => d.release_month === m);
-const sameYearOf = (rs) => rs.filter((d) => relYear(d) === d.list_year).length;
-const novAll = monthRowsOf(11).length, novSame = sameYearOf(monthRowsOf(11)), decAll = monthRowsOf(12).length, decSame = sameYearOf(monthRowsOf(12));
-```
-
-```js
-statTiles([
-  {label: "Came out the year before", value: `${priorYearRows.length}`,
-   caption: `Albums on a list that were released in the previous calendar year, ${(100 * priorYearRows.length / datedRows.length).toFixed(1)}% of the ${datedRows.length.toLocaleString()} with a full date. ${priorLate} of them came out in November or December.`},
-  {label: "November albums on that year's list", value: `${(100 * novSame / novAll).toFixed(0)}%`,
-   caption: `${novSame} of ${novAll} November releases were on the list for their own year. December: ${decSame} of ${decAll}.`},
-  {label: "Nov. and Dec. on the ballots", value: "133",
-   caption: "Ballot candidates released in November or December of the ballot year, across the seven ballots I recovered, against 4,763 from January to October. 12% of them made the list, the same as the rest."}
-])
-```
-
-Albums come out all year, but not evenly: ${d3.sum(monthRows.filter((d) => d.month === 9 || d.month === 10), (d) => d.listed_albums).toLocaleString()} of the ${datedRows.length.toLocaleString()} came out in September or October, and only ${monthRows[6].listed_albums} in July. The summer dip and the fall peak show up in the ballot candidates too, so they reflect when records come out and not just what voters pick.
-
-November and December are nearly empty, but the albums released then do not mostly wait for the next year's list. ${novSame} of the ${novAll} November albums were on the list for their own year, but only ${decSame} of the ${decAll} December albums were. Only December mostly waits, and there are just ${decAll} of those. Across all 25 lists, only ${priorYearRows.length} albums were on a list a year after they came out, and ${priorLate} of those came out in November or December. Most of the rest came out between January and October and made the next year's list anyway, usually because they reached the US later: 32 of those 50 had their first US release in the list year, a median of 9.5 months after they came out elsewhere.
-
-So the thin end of the calendar is mostly the ballot's doing, not the voters'. KEXP puts the ballot together before the year is over: on the seven ballots I recovered, the typical ballot held about 19 albums released in November and almost none from December, against about 680 from January to October. The few that were there made the list at the same rate as everything else, 12%. KEXP does not drop late releases, though. Each ballot also carries a batch from the previous November and December, 92 across the seven ballots, and in the three years I can check back to back (2021 through 2023) none of them had been on the year before's ballot. They look like records that missed one ballot and were added to the next. Those carryovers made the list less often: 5 of the 92. (Release dates for the ballot candidates come from KEXP's own play records, so about 90% of them have one; the lists use MusicBrainz dates.)
 
 ### How the lengths changed
 
@@ -722,6 +653,75 @@ This data can show that albums are getting shorter, but it can't say why. These 
 **Streaming changed the incentives.** In the streaming era an artist can release songs one at a time, apart from any album, and each one earns its own streams and, on a site like Bandcamp, its own purchases. If that is the plan, there is less reason to pack an album. I checked this against MusicBrainz's list of singles by the artists KEXP plays. Singles per album rose from about 1.5 in 2001 to about 3.8 since 2018, and the share of listed albums with at least one standalone single, meaning one that is not on the album, rose from 15% on the 2001 through 2005 lists to 45% on the 2021 through 2025 lists. The timing is the catch. Most of that rise came after 2017, while most of the drop in tracks per album had happened by about 2015, so singles don't explain the early part of the shortening. MusicBrainz's coverage of recent digital releases may also be better than its coverage of older ones, so some of the rise may be better record-keeping.
 
 **More EPs.** If artists were splitting their songs across more releases, EPs should be on the rise. They aren't. EPs are ${(100 * nEP / nAll).toFixed(0)}% of the lists with no trend, and across all the releases MusicBrainz has for these artists, the EP share of albums plus EPs has not climbed either.
+
+### When the albums come out
+
+```js
+function monthBars() {
+  const width = 880, m = {l: 48, r: 16, t: 28, b: 34}, h = 260;
+  const names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const x = d3.scaleBand(d3.range(1, 13), [m.l, width - m.r]).padding(0.28);
+  const topV = Math.ceil(d3.max(monthRows, (d) => Math.max(d.listed_albums, d.expected_from_ballots)) / 100) * 100;
+  const y = d3.scaleLinear([0, topV], [h - m.b, m.t]);
+  const wrap = document.createElement("div");
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, h]).attr("width", width).attr("height", h).attr("style", SVG_STYLE)
+    .attr("role", "img").attr("aria-label", "Listed albums by release month, with the number the ballots predict. Most come out in spring and fall, and very few in November and December.");
+  svg.append("rect").attr("x", x(11) - x.step() * 0.14).attr("y", m.t - 10).attr("width", x.step() * 2).attr("height", h - m.b - m.t + 10).attr("fill", "#232321");
+  d3.range(0, topV + 1, 100).forEach((v) => {
+    svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(v)).attr("y2", y(v)).attr("stroke", GRID);
+    svg.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", MUTED).attr("font-size", 12).text(v);
+  });
+  monthRows.forEach((d) => {
+    const html = `<b>${names[d.month - 1]}</b><br>${d.listed_albums} albums on the lists<br><span style="color:#898781">${d.expected_from_ballots} expected from the ballots</span>`;
+    svg.append("rect").attr("x", x(d.month)).attr("y", y(d.listed_albums)).attr("width", x.bandwidth()).attr("height", y(0) - y(d.listed_albums)).attr("rx", 3).attr("fill", PURPLE)
+      .on("pointerenter pointermove", (event) => tip.show(event, html)).on("pointerleave", (event) => tip.hide(event));
+    svg.append("text").attr("x", x(d.month) + x.bandwidth() / 2).attr("y", h - m.b + 20).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(names[d.month - 1]);
+  });
+  const cx = (d) => x(d.month) + x.bandwidth() / 2;
+  svg.append("polyline").attr("points", monthRows.map((d) => `${cx(d)},${y(d.expected_from_ballots)}`).join(" ")).attr("fill", "none").attr("stroke", FG).attr("stroke-width", 1.5).attr("stroke-dasharray", "3 3").attr("pointer-events", "none");
+  monthRows.forEach((d) => svg.append("path").attr("d", `M${cx(d)},${y(d.expected_from_ballots) - 6} l6,6 l-6,6 l-6,-6 z`).attr("fill", FG).attr("stroke", SURFACE).attr("stroke-width", 1.5).attr("pointer-events", "none"));
+  monthRows.forEach((d) => svg.append("text").attr("x", cx(d)).attr("y", Math.min(y(d.listed_albums), y(d.expected_from_ballots) - 6) - 8).attr("text-anchor", "middle").attr("fill", FG).attr("font-size", 12).attr("font-weight", 500).attr("pointer-events", "none").text(d.listed_albums));
+  wrap.append(legend([["Albums on the lists", PURPLE], ["Expected, if the lists mirrored the ballots' candidates", FG]]), svg.node());
+  return wrap;
+}
+```
+
+<div class="card" data-chart="months" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
+
+```js
+monthBars()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">${datedRows.length.toLocaleString()} of ${nAll.toLocaleString()} albums have a full release date in MusicBrainz. The diamonds show how many would come out in each month if the lists matched the share of ballot candidates released that month, using the seven KEXP ballots I could recover (2014, 2016, 2018, 2020, 2021, 2022 and 2023) and scaling to the same total.</p>
+
+```js
+// albums on a list that came out the year before, and where the late-year (November, December) releases land
+const relYear = (d) => d.release_date instanceof Date ? d.release_date.getUTCFullYear() : +String(d.release_date).slice(0, 4);
+const priorYearRows = datedRows.filter((d) => d.list_year - relYear(d) === 1);
+const priorLate = priorYearRows.filter((d) => d.release_month >= 11).length;
+const monthRowsOf = (m) => datedRows.filter((d) => d.release_month === m);
+const sameYearOf = (rs) => rs.filter((d) => relYear(d) === d.list_year).length;
+const novAll = monthRowsOf(11).length, novSame = sameYearOf(monthRowsOf(11)), decAll = monthRowsOf(12).length, decSame = sameYearOf(monthRowsOf(12));
+```
+
+```js
+statTiles([
+  {label: "Came out the year before", value: `${priorYearRows.length}`,
+   caption: `Albums on a list that were released in the previous calendar year, ${(100 * priorYearRows.length / datedRows.length).toFixed(1)}% of the ${datedRows.length.toLocaleString()} with a full date. ${priorLate} of them came out in November or December.`},
+  {label: "November albums on that year's list", value: `${(100 * novSame / novAll).toFixed(0)}%`,
+   caption: `${novSame} of ${novAll} November releases were on the list for their own year. December: ${decSame} of ${decAll}.`},
+  {label: "Nov. and Dec. on the ballots", value: "133",
+   caption: "Ballot candidates released in November or December of the ballot year, across the seven ballots I recovered, against 4,763 from January to October. 12% of them made the list, the same as the rest."}
+])
+```
+
+Albums come out all year, but not evenly: ${d3.sum(monthRows.filter((d) => d.month === 9 || d.month === 10), (d) => d.listed_albums).toLocaleString()} of the ${datedRows.length.toLocaleString()} came out in September or October, and only ${monthRows[6].listed_albums} in July. The summer dip and the fall peak show up in the ballot candidates too, so they reflect when records come out and not just what voters pick.
+
+November and December are nearly empty, but the albums released then do not mostly wait for the next year's list. ${novSame} of the ${novAll} November albums were on the list for their own year, but only ${decSame} of the ${decAll} December albums were. Only December mostly waits, and there are just ${decAll} of those. Across all 25 lists, only ${priorYearRows.length} albums were on a list a year after they came out, and ${priorLate} of those came out in November or December. Most of the rest came out between January and October and made the next year's list anyway, usually because they reached the US later: 32 of those 50 had their first US release in the list year, a median of 9.5 months after they came out elsewhere.
+
+So the thin end of the calendar is mostly the ballot's doing, not the voters'. KEXP puts the ballot together before the year is over: on the seven ballots I recovered, the typical ballot held about 19 albums released in November and almost none from December, against about 680 from January to October. The few that were there made the list at the same rate as everything else, 12%. KEXP does not drop late releases, though. Each ballot also carries a batch from the previous November and December, 92 across the seven ballots, and in the three years I can check back to back (2021 through 2023) none of them had been on the year before's ballot. They look like records that missed one ballot and were added to the next. Those carryovers made the list less often: 5 of the 92. (Release dates for the ballot candidates come from KEXP's own play records, so about 90% of them have one; the lists use MusicBrainz dates.)
 
 ### Titles and EPs
 
