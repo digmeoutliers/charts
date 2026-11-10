@@ -481,6 +481,7 @@ function lengthHeat() {
     return {yr, n: r.length, c};
   });
   const peak = d3.max(grid, (g) => d3.max(g.c.map((v) => v / g.n)));
+  const heatRamp = d3.interpolateRgbBasis(["#3b2a86", "#9c57f3", "#d4b8ff"]);   // same dark-to-bright purple as the staying-power chart in "Where are they from?"
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", SVG_STYLE)
     .attr("role", "img").attr("aria-label", "Heat map of the share of studio albums at each length, by list year. A bright band sits at 35 to 45 minutes throughout, and the 50 to 60 minute rows fade.");
   const label = (k) => k === 0 ? "under 25" : k === nb - 1 ? "80+" : `${bins[k]}–${bins[k] + 5}`;
@@ -488,7 +489,7 @@ function lengthHeat() {
     const share = g.c[k] / g.n, row = nb - 1 - k;
     const range = k === 0 ? "under 25 min" : k === nb - 1 ? "80 min or more" : `${b} to ${b + 5} min`;
     svg.append("rect").attr("x", m.l + i * cellW).attr("y", m.t + row * rowH).attr("width", cellW - 2).attr("height", rowH - 2).attr("rx", 2)
-      .attr("fill", PURPLE).attr("fill-opacity", 0.06 + 0.94 * Math.sqrt(share / peak))
+      .attr("fill", share > 0 ? heatRamp(Math.sqrt(share / peak)) : "#232321").attr("stroke", share > 0 ? "none" : "#2f2f2c")
       .on("pointerenter pointermove", (event) => tip.show(event, `<b>${g.yr} &middot; ${range}</b><br>${g.c[k]} of ${g.n} studio albums (${(100 * share).toFixed(0)}%)`)).on("pointerleave", (event) => tip.hide(event));
   }));
   bins.forEach((b, k) => svg.append("text").attr("x", m.l - 10).attr("y", m.t + (nb - 1 - k) * rowH + rowH / 2).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", MUTED).attr("font-size", 12).text(label(k)));
