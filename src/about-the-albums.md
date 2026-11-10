@@ -462,7 +462,32 @@ monthBars()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">${datedRows.length.toLocaleString()} of ${nAll.toLocaleString()} albums have a full release date in MusicBrainz. The diamonds show how many would come out in each month if the lists matched the share of ballot candidates released that month, using the seven KEXP ballots I could recover (2014, 2016, 2018, 2020, 2021, 2022 and 2023) and scaling to the same total.</p>
 
-Albums come out all year, but not evenly: ${d3.sum(monthRows.filter((d) => d.month === 9 || d.month === 10), (d) => d.listed_albums).toLocaleString()} of the ${datedRows.length.toLocaleString()} came out in September or October, and only ${monthRows[6].listed_albums} in July. The summer dip and the fall peak show up in the ballot candidates too, so they reflect when records come out and not just what voters pick. Voting happens in the fall, which is why November and December are nearly empty: those albums mostly wait for next year's list.
+```js
+// albums on a list that came out the year before, and where the late-year (November, December) releases land
+const relYear = (d) => d.release_date instanceof Date ? d.release_date.getUTCFullYear() : +String(d.release_date).slice(0, 4);
+const priorYearRows = datedRows.filter((d) => d.list_year - relYear(d) === 1);
+const priorLate = priorYearRows.filter((d) => d.release_month >= 11).length;
+const monthRowsOf = (m) => datedRows.filter((d) => d.release_month === m);
+const sameYearOf = (rs) => rs.filter((d) => relYear(d) === d.list_year).length;
+const novAll = monthRowsOf(11).length, novSame = sameYearOf(monthRowsOf(11)), decAll = monthRowsOf(12).length, decSame = sameYearOf(monthRowsOf(12));
+```
+
+```js
+statTiles([
+  {label: "Came out the year before", value: `${priorYearRows.length}`,
+   caption: `Albums on a list that were released in the previous calendar year, ${(100 * priorYearRows.length / datedRows.length).toFixed(1)}% of the ${datedRows.length.toLocaleString()} with a full date. ${priorLate} of them came out in November or December.`},
+  {label: "November albums on that year's list", value: `${(100 * novSame / novAll).toFixed(0)}%`,
+   caption: `${novSame} of ${novAll} November releases were on the list for their own year. December: ${decSame} of ${decAll}.`},
+  {label: "Nov. and Dec. on the ballots", value: "133",
+   caption: "Ballot candidates released in November or December of the ballot year, across the seven ballots I recovered, against 4,763 from January to October. 12% of them made the list, the same as the rest."}
+])
+```
+
+Albums come out all year, but not evenly: ${d3.sum(monthRows.filter((d) => d.month === 9 || d.month === 10), (d) => d.listed_albums).toLocaleString()} of the ${datedRows.length.toLocaleString()} came out in September or October, and only ${monthRows[6].listed_albums} in July. The summer dip and the fall peak show up in the ballot candidates too, so they reflect when records come out and not just what voters pick.
+
+November and December are nearly empty, but the albums released then do not mostly wait for the next year's list. ${novSame} of the ${novAll} November albums were on the list for their own year, but only ${decSame} of the ${decAll} December albums were. Only December mostly waits, and there are just ${decAll} of those. Across all 25 lists, only ${priorYearRows.length} albums were on a list a year after they came out, and ${priorLate} of those came out in November or December.
+
+So the thin end of the calendar is mostly the ballot's doing, not the voters'. KEXP puts the ballot together before the year is over: on the seven ballots I recovered, the typical ballot held about 19 albums released in November and almost none from December, against about 680 from January to October. The few that were there made the list at the same rate as everything else, 12%. KEXP does not drop late releases, though. Each ballot also carries a batch from the previous November and December, 92 across the seven ballots, and in the three years I can check back to back (2021 through 2023) none of them had been on the year before's ballot. They look like records that missed one ballot and were added to the next. Those carryovers made the list less often: 5 of the 92. (Release dates for the ballot candidates come from KEXP's own play records, so about 90% of them have one; the lists use MusicBrainz dates.)
 
 ### How the lengths changed
 
