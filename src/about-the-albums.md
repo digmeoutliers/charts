@@ -97,6 +97,7 @@ import {addExpandButtons} from "./components/expand.js";
 ```js
 const rows = FileAttachment("data/albums_2001_2025.csv").csv({typed: true});
 const monthRows = FileAttachment("data/albums_release_months.csv").csv({typed: true});
+const eraRows = FileAttachment("data/albums_length_by_era_musicbrainz.csv").csv({typed: true});
 ```
 
 ```js
@@ -658,7 +659,47 @@ That is three claims, and the first two can be checked against the data. These l
 
 **Did lengths spike with the CD?** Yes. CDs took off in the second half of the 1980s and the typical length rose with them: 45 minutes for 1985 through 1989, 49 for 1990 through 1994 and 52 for 1995 through 1999, when about 30% of albums ran longer than an hour. In 1997 it was nearly half.
 
-**Did they come back down?** Yes. The typical album ran 48 minutes for 2000 through 2004, 44 for 2010 through 2014 and 43 for 2020 through 2024. The annual lists catch that second half of the trip: the share of studio albums under 46 minutes, about what fits on one LP, went from ${shareUnder(early, 46).toFixed(0)}% to ${shareUnder(late, 46).toFixed(0)}%.
+**Did they come back down?** Yes. The typical album ran 48 minutes for 2000 through 2004, 44 for 2010 through 2014 and 42.5 for 2020 through 2025. The annual lists catch that second half of the trip: the share of studio albums under 46 minutes, about what fits on one LP, went from ${shareUnder(early, 46).toFixed(0)}% to ${shareUnder(late, 46).toFixed(0)}%.
+
+```js
+function eraChart() {
+  const width = 880, m = {l: 62, r: 24, t: 34, b: 38}, h = 320;
+  const label = (d) => `${d.start}–${d.end === 2025 && d.start === 2020 ? "25" : String(d.end).slice(2)}`;
+  const x = d3.scalePoint(eraRows.map(label), [m.l + 20, width - m.r - 20]);
+  const y = d3.scaleLinear([30, 70], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", [0, 0, width, h]).attr("width", width).attr("height", h).attr("style", SVG_STYLE)
+    .attr("role", "img").attr("aria-label", "Median length of studio albums by five-year period of release, 1965 to 2025: about 40 minutes through 1984, rising to 52 minutes for 1995 to 1999, then falling to about 42 minutes.");
+  [30, 40, 50, 60, 70].forEach((v) => {
+    svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(v)).attr("y2", y(v)).attr("stroke", GRID);
+    svg.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", MUTED).attr("font-size", 12).text(v);
+  });
+  svg.append("text").attr("x", m.l - 8).attr("y", m.t - 16).attr("text-anchor", "end").attr("fill", MUTED).attr("font-size", 12).text("minutes");
+  svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(44)).attr("y2", y(44)).attr("stroke", TEAL).attr("stroke-opacity", 0.85).attr("stroke-dasharray", "3 4");
+  svg.append("text").attr("x", m.l + 6).attr("y", y(44) - 7).attr("text-anchor", "start").attr("fill", TEAL).attr("font-size", 12).text("one LP, about 44 min");
+  svg.append("path").attr("d", d3.area().x((d) => x(label(d))).y0((d) => y(d.p25)).y1((d) => y(d.p75)).curve(d3.curveMonotoneX)(eraRows)).attr("fill", PURPLE).attr("fill-opacity", 0.2);
+  svg.append("path").attr("d", d3.line().x((d) => x(label(d))).y((d) => y(d.median)).curve(d3.curveMonotoneX)(eraRows)).attr("fill", "none").attr("stroke", PURPLE).attr("stroke-width", 2.6).attr("stroke-linejoin", "round");
+  eraRows.forEach((d) => {
+    svg.append("circle").attr("cx", x(label(d))).attr("cy", y(d.median)).attr("r", 5).attr("fill", PURPLE).attr("stroke", SURFACE).attr("stroke-width", 2);
+    svg.append("text").attr("x", x(label(d))).attr("y", y(d.median) - 12).attr("text-anchor", "middle").attr("fill", FG).attr("font-size", 12).attr("font-weight", 500).attr("pointer-events", "none").text(d.median.toFixed(0));
+    svg.append("text").attr("x", x(label(d))).attr("y", h - 12).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(label(d));
+    svg.append("rect").attr("x", x(label(d)) - 28).attr("y", m.t).attr("width", 56).attr("height", h - m.t - m.b).attr("fill", "transparent")
+      .on("pointerenter pointermove", (event) => tip.show(event, `<b>${label(d)}</b><br>Median <b>${d.median.toFixed(1)} min</b><br>Middle half: ${d.p25.toFixed(0)} to ${d.p75.toFixed(0)} min<br>${d.over60.toFixed(0)}% ran over 60 min<br><span style="color:#898781">${d.n} studio albums</span>`)).on("pointerleave", (event) => tip.hide(event));
+  });
+  const out = document.createElement("div");
+  out.append(legend([["Median studio album", PURPLE], ["Middle half of albums", "rgba(156,87,243,0.35)"]]), svg.node());
+  return out;
+}
+```
+
+<div class="card" data-chart="eras" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
+
+```js
+eraChart()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">From MusicBrainz, not the annual lists, which start in 2001. Studio albums by the artists KEXP plays, grouped by the five years they were released, using the edition that came out in the album's first year. Those artists are the ones still played today, so older periods are not every album of their time.</p>
 
 So the shape matches the story: a 40-minute album in the vinyl years, a CD-era bulge that peaked in the late 1990s, and a return to something close to an LP. One caution on the older numbers: they cover albums by artists KEXP plays, which is a few thousand albums, not every album ever made, and for the 1970s and 80s it is about 370 of them. The third claim, that vinyl's return is what pulled lengths back, is the one the data can't test. The decline began around 2000, well before vinyl's comeback was big, and there is no format information in this data, so I can't tell which records were pressed on vinyl. Even on the 2001 through 2005 lists, only ${shareOver(early, 60).toFixed(0)}% of albums ran over 60 minutes, so by then the CD-era peak had already passed.
 
