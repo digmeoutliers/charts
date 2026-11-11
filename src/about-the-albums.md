@@ -272,7 +272,7 @@ function ridgeline() {
   function drawMain() {
     const any = picked.size > 0;
     const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height).attr("style", SVG_STYLE)
-      .attr("role", "img").attr("aria-label", "Distribution of studio album length for each list year, 2001 at the top to 2025 at the bottom. The hump slides from about 48 minutes to about 42 and the tail of long albums thins out.");
+      .attr("role", "img").attr("aria-label", "Distribution of studio album length for each list year, 2001 at the top to 2025 at the bottom. The typical album slides from about 50 minutes to about 42 and the tail of long albums thins out.");
     [20, 40, 60, 80].forEach((v) => {
       svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", m.t - 8).attr("y2", height - m.b + 6).attr("stroke", GRID);
       svg.append("text").attr("x", x(v)).attr("y", height - 8).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(`${v} min`);
