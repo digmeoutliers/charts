@@ -206,7 +206,7 @@ const datedRows = rows.filter((d) => d.release_month != null);
 
 <p class="phone-note">On a phone? Tap a row, bar or cell to see its details. These charts have more room on a laptop or tablet.</p>
 
-## Albums are getting shorter, and the long ones are going
+## Studio album length across 25 annual lists
 
 Each line below is one list year, 2001 at the top and 2025 at the bottom. A line's height at any point shows how many of that year's studio albums run that long, and the white dots mark the typical album, the median. "Studio albums" here means full-length albums only: EPs, live albums and compilations are left out. Hover a line to see the year's numbers. To compare years, pick up to three with the buttons or by clicking their lines, and they are drawn on top of each other underneath.
 
