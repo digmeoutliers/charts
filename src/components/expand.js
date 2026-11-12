@@ -68,7 +68,7 @@ export function addExpandButtons(getMode) {
     b.setAttribute("aria-label", "Expand this chart");
     b.innerHTML = ICON + "<span>Expand</span>";
     b.style.cssText = "position:absolute;top:10px;right:10px;z-index:5;display:flex;align-items:center;gap:6px;font-size:12px;color:#c9c8c3;background:#232321;border:1px solid #383835;border-radius:999px;padding:4px 10px;cursor:pointer;font-family:var(--sans-serif);";
-    b.onclick = () => openChart(card.dataset.chart, getMode ? getMode() : undefined);
+    b.onclick = () => openChart(card.dataset.chart, getMode ? getMode(card.dataset.chart) : undefined);
     card.append(b);
   }
 }

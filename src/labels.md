@@ -209,7 +209,95 @@ const sameCountry = withCountry.filter((d) => d.artist_country);
 
 <p class="phone-note">On a phone? Tap a row, bar or cell to see its details. These charts have more room on a laptop or tablet.</p>
 
-## Majors and independents, 2001 to 2025
+## The biggest labels on the lists, ranked by albums
+
+Each line follows one label's rank by number of albums, in five-year groups of lists. A line starts the first time a label reaches the top spots and ends when it drops out of them. Hover or tap a line to follow one label, and switch between the top 5, 10 and 15.
+
+```js
+const bumpUI = {top: ["5", "10", "15"].includes(new URLSearchParams(location.search).get("mode")) ? new URLSearchParams(location.search).get("mode") : "10"};
+const BANDS = [[2001, 2005], [2006, 2010], [2011, 2015], [2016, 2020], [2021, 2025]];
+// each label's albums and rank in each five-year group (ties broken by the label's total over all 25 lists, then by name)
+const bumpCounts = BANDS.map(([lo, hi]) => d3.rollup(named.filter((d) => d.label !== "[no label]" && d.list_year >= lo && d.list_year <= hi), (v) => v.length, (d) => d.label));
+const labelTotal = new Map(labelCounts.map((d) => [d.label, d.n]));
+const labelInfo = new Map(labelCounts.map((d) => [d.label, d]));
+const bumpRanks = bumpCounts.map((m) => new Map([...m].sort((a, b) => d3.descending(a[1], b[1]) || d3.descending(labelTotal.get(a[0]), labelTotal.get(b[0])) || d3.ascending(a[0], b[0])).map(([l], i) => [l, i + 1])));
+function bumpChart() {
+  const width = 880, m = {l: 140, r: 140, t: 30, b: 14};
+  const wrap = document.createElement("div");
+  const holder = document.createElement("div");
+  const clip = (s) => s.length > 17 ? s.slice(0, 16) + "…" : s;
+  function draw(topValue) {
+    bumpUI.top = topValue;
+    holder.innerHTML = "";
+    const N = +topValue, rowH = Math.min(64, 440 / (N - 1)), h = m.t + (N - 1) * rowH + m.b + 10;
+    const x = d3.scalePoint(BANDS.map((b) => b.join("–")), [m.l, width - m.r]);
+    const y = (r) => m.t + (r - 1) * rowH;
+    const svg = d3.create("svg").attr("viewBox", [0, 0, width, h]).attr("width", width).attr("height", h).attr("style", SVG_STYLE)
+      .attr("role", "img").attr("aria-label", `How the ${N} biggest labels rank by number of albums on the lists, in five-year groups from 2001 to 2025. Sub Pop stays first throughout; Columbia and the Secretly Group labels climb; Capitol and Astralwerks fall away.`);
+    BANDS.forEach((b) => svg.append("text").attr("x", x(b.join("–"))).attr("y", 14).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(b.join("–")));
+    d3.range(1, N + 1).forEach((r) => {
+      svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(r)).attr("y2", y(r)).attr("stroke", GRID).attr("stroke-dasharray", "1 4");
+      svg.append("text").attr("x", 4).attr("y", y(r)).attr("dominant-baseline", "middle").attr("fill", "#5f5e5a").attr("font-size", 11).text(r);
+    });
+    const shown = [...labelInfo.values()].filter((d) => d3.min(bumpRanks, (r) => r.get(d.label) || 99) <= N);
+    const groups = new Map();
+    let pinned = null;
+    function focus(label) { groups.forEach((g, l) => g.attr("opacity", !label || l === label ? 1 : 0.13)); }
+    shown.forEach((d) => {
+      const color = d.cls === "Major" ? TEAL : PURPLE;
+      const pts = BANDS.map((b, i) => ({i, key: b.join("–"), r: bumpRanks[i].get(d.label), n: bumpCounts[i].get(d.label) || 0})).map((q) => ({...q, ok: q.r && q.r <= N}));
+      const g = svg.append("g").attr("opacity", 1).style("transition", "opacity .15s");
+      groups.set(d.label, g);
+      const line = d3.line().defined((q) => q.ok).x((q) => x(q.key)).y((q) => y(q.r)).curve(d3.curveMonotoneX);
+      g.append("path").attr("d", line(pts)).attr("fill", "none").attr("stroke", color).attr("stroke-width", 3).attr("stroke-opacity", 0.92);
+      pts.filter((q) => q.ok).forEach((q) => g.append("circle").attr("cx", x(q.key)).attr("cy", y(q.r)).attr("r", 5.5).attr("fill", color).attr("stroke", SURFACE).attr("stroke-width", 2));
+      // name each unbroken run at its start and at its end
+      let run = [];
+      const runs = [];
+      pts.forEach((q) => { if (q.ok) run.push(q); else if (run.length) { runs.push(run); run = []; } });
+      if (run.length) runs.push(run);
+      runs.forEach((rn) => {
+        const first = rn[0], last = rn[rn.length - 1];
+        const put = (q, left) => g.append("text").attr("x", x(q.key) + (left ? -12 : 12)).attr("y", y(q.r)).attr("text-anchor", left ? "end" : "start").attr("dominant-baseline", "middle")
+          .attr("fill", color).attr("stroke", SURFACE).attr("stroke-width", 3.5).attr("paint-order", "stroke").attr("font-size", 13).attr("font-weight", 600).attr("pointer-events", "none").text(clip(short(d.label)));
+        if (last === first && first.i === BANDS.length - 1) { put(first, false); return; }   // a lone dot in the last column is named on its right
+        put(first, true);
+        if (last !== first) put(last, false);
+      });
+      const rowsHtml = pts.map((q) => `${q.key}: ${q.n ? `<b>#${q.r}</b> · ${q.n} album${q.n === 1 ? "" : "s"}` : "none"}`).join("<br>");
+      const html = `<b>${short(d.label)}</b><br><span style="color:#898781">${d.cls === "Major" ? "Major-owned" : "Independent"}${d.fam && d.fam !== d.label ? " · " + d.fam : ""}</span><br>${rowsHtml}`;
+      g.append("path").attr("d", line(pts)).attr("fill", "none").attr("stroke", "transparent").attr("stroke-width", 18).attr("pointer-events", "stroke").style("cursor", "pointer")
+        .on("pointerenter pointermove", (event) => { focus(d.label); tip.show(event, html); })
+        .on("pointerleave", (event) => { focus(pinned); tip.hide(event); })
+        .on("click", (event) => { pinned = pinned === d.label ? null : d.label; focus(pinned); event.stopPropagation(); });
+    });
+    svg.on("click", () => { pinned = null; focus(null); });
+    holder.append(legend([["Independent", PURPLE], ["Major-owned", TEAL]]), svg.node());
+  }
+  wrap.append(toggleBar([["5", "Top 5"], ["10", "Top 10"], ["15", "Top 15"]], bumpUI.top, draw), holder);
+  draw(bumpUI.top);
+  return wrap;
+}
+```
+
+<div class="card" data-chart="rank" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
+
+```js
+bumpChart()
+```
+
+</div>
+
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Rank by number of albums in each five-year group of lists. Ties are broken by the label's total across all 25 lists. Albums with no label, or self-released, are not ranked. A line ends where a label drops out of the top spots shown.</p>
+
+
+## Interesting observations
+
+The chart above follows individual labels. The sections below take the picture apart: how the majors faded, who the biggest labels are overall, who rose and fell, and where the labels are based.
+
+In 2001, ${shareClass(inYears(2001, 2001), "Major").toFixed(0)}% of the albums on the list came from a major-owned label. In 2025 it was ${shareClass(inYears(2025, 2025), "Major").toFixed(0)}%. Independents rose from ${shareClass(inYears(2001, 2001), "Independent").toFixed(0)}% to ${shareClass(inYears(2025, 2025), "Independent").toFixed(0)}% over the same stretch. Most of the decline is one company's labels: Universal's went from ${shareFamily(early, "Universal Music Group").toFixed(1)}% of entries on the 2001 to 2010 lists to ${shareFamily(late, "Universal Music Group").toFixed(1)}% on the 2016 to 2025 lists, while Warner's (${shareFamily(early, "Warner Music Group").toFixed(1)}% to ${shareFamily(late, "Warner Music Group").toFixed(1)}%) and Sony's (${shareFamily(early, "Sony Music Entertainment").toFixed(1)}% to ${shareFamily(late, "Sony Music Entertainment").toFixed(1)}%) barely moved.
+
+### Majors and independents, year by year
 
 Each bar is one list year, split by who owns the label the album came out on. Switch to see the major slice split by owner, and hover a bar for the counts.
 
@@ -262,7 +350,7 @@ function heroChart() {
 }
 ```
 
-<div class="card" data-chart="hero" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
+<div class="card" data-chart="shares" style="background:#1a1a19;padding:1.5rem 1.5rem 1rem;max-width:900px;margin:0 auto;position:relative;">
 
 ```js
 heroChart()
@@ -271,12 +359,6 @@ heroChart()
 </div>
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">Owner is who owns the label today, not when the album came out. "Self-released or no label" is ${rows.filter((d) => d.owner_class === "Self-released").length} albums MusicBrainz shows with no label plus ${rows.filter((d) => d.owner_class === "No label on file").length} with no label on file.</p>
-
-## Interesting observations
-
-The bars above show every list year at once. The sections below take the picture apart: how the majors faded, who the biggest labels are, who rose and fell, and where the labels are based.
-
-In 2001, ${shareClass(inYears(2001, 2001), "Major").toFixed(0)}% of the albums on the list came from a major-owned label. In 2025 it was ${shareClass(inYears(2025, 2025), "Major").toFixed(0)}%. Independents rose from ${shareClass(inYears(2001, 2001), "Independent").toFixed(0)}% to ${shareClass(inYears(2025, 2025), "Independent").toFixed(0)}% over the same stretch. Most of the decline is one company's labels: Universal's went from ${shareFamily(early, "Universal Music Group").toFixed(1)}% of entries on the 2001 to 2010 lists to ${shareFamily(late, "Universal Music Group").toFixed(1)}% on the 2016 to 2025 lists, while Warner's (${shareFamily(early, "Warner Music Group").toFixed(1)}% to ${shareFamily(late, "Warner Music Group").toFixed(1)}%) and Sony's (${shareFamily(early, "Sony Music Entertainment").toFixed(1)}% to ${shareFamily(late, "Sony Music Entertainment").toFixed(1)}%) barely moved.
 
 ### Majors faded, but they still land near the top
 
@@ -501,5 +583,5 @@ statTiles([
 </div>
 
 ```js
-addExpandButtons(() => heroUI.mode);
+addExpandButtons((id) => id === "rank" ? bumpUI.top : heroUI.mode);
 ```
