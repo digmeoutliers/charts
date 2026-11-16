@@ -727,6 +727,11 @@ The singles story has the clearest support, from MusicBrainz's list of singles b
 
 **More EPs.** If artists were splitting their songs across more releases, EPs should be on the rise. They aren't. EPs are ${(100 * nEP / nAll).toFixed(0)}% of the lists with no trend, and across all the releases MusicBrainz has for these artists, the EP share of albums plus EPs has not climbed either.
 
+<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
+  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. Track times come from one release of each album, and I can't tell from this data whether a record was ever pressed on vinyl. The explanations above are theories: the lists show that albums got shorter and roughly when, not why. The singles and EP numbers cover all the releases MusicBrainz has for these artists, not only the albums on the lists, and MusicBrainz's record-keeping for recent digital releases may be more complete than for older ones. The numbers about the Billboard charts and the Hot 100 come from other people's analyses, as linked, and I have not rechecked them.</div>
+</div>
+
 ### When the albums come out
 
 ```js
@@ -809,11 +814,6 @@ statTiles([
 ```
 
 Self-titled albums have faded, and one-word titles have gone the other way. "Self-titled" here means the title matches the artist's name once a leading "The" is ignored, and a hyphenated word counts as one word.
-
-<div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
-  <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. Track times come from one release of each album, and I can't tell from this data whether a record was ever pressed on vinyl. The explanations above are theories: the lists show that albums got shorter and roughly when, not why. The singles and EP numbers cover all the releases MusicBrainz has for these artists, not only the albums on the lists, and MusicBrainz's record-keeping for recent digital releases may be more complete than for older ones. The numbers about the Billboard charts and the Hot 100 come from other people's analyses, as linked, and I have not rechecked them.</div>
-</div>
 
 ```js
 addExpandButtons(() => medianUI.mode);
