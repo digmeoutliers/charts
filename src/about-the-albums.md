@@ -87,8 +87,6 @@ head: |
 
 # About the albums
 
-<div class="standalone-only" style="font-size:13px;color:var(--theme-foreground-muted);margin:0 0 1rem;"><strong>Draft</strong>: unlisted page, not part of the published blog yet.</div>
-
 ```js
 import {makeTooltip} from "./components/tooltip.js";
 import {addExpandButtons} from "./components/expand.js";
