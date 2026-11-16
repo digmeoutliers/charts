@@ -368,7 +368,7 @@ ridgeline()
 
 The ridgeline above shows every list year at once. The sections below take that picture apart: what kinds of albums are on the lists, how the lengths changed and whether songs got fewer or shorter, a few theories about why, when the albums come out, and some smaller changes in titles and EPs.
 
-In 2001 the typical studio album on the list ran ${medianOf(studioIn(2001, 2001)).toFixed(0)} minutes. In 2025 it ran ${medianOf(studioIn(2025, 2025)).toFixed(0)}. The bump in the 35 to 45 minute range was there from the start, so what has changed is everything to its right: albums that run 50, 60 or more minutes have been thinning out for a quarter century.
+In 2001, the typical studio album on the list ran ${medianOf(studioIn(2001, 2001)).toFixed(0)} minutes. In 2025, it ran ${medianOf(studioIn(2025, 2025)).toFixed(0)}. The bump in the 35 to 45 minute range was there from the start, so what has changed is everything to its right: albums that run 50, 60 or more minutes have been thinning out for a quarter century.
 
 ### What's on the lists
 
@@ -380,7 +380,7 @@ statTiles([
 ])
 ```
 
-Studio albums are ${(100 * nStudio / nAll).toFixed(0)}% of the lists, which is why the hero chart is about them. Here is the rest of what shows up under "album", using the release types MusicBrainz keeps. EPs are counted separately, not as studio albums.
+Studio albums are ${(100 * nStudio / nAll).toFixed(0)}% of the lists, which is why the ridgeline chart is about them. Here is the rest of what shows up under "album", using the release types MusicBrainz keeps. EPs are counted separately, not as studio albums.
 
 ```js
 function typeBar() {
@@ -649,7 +649,7 @@ trackChart()
 
 The lists show that albums got shorter, not why. These are the explanations I have seen people give, and what the data says about each. None of it is proven, and much of it is musicians, engineers and fans talking, not studies.
 
-**Vinyl set the length, the CD loosened it, and vinyl is pulling it back.** Bruce Soord of The Pineapple Thief, talking to Montreal Rocks about the band's album *It Leads To This*, put it like this:
+**Vinyl set the length, the CD loosened it, and vinyl is pulling it back.** Bruce Soord of The Pineapple Thief, talking to [Montreal Rocks](https://montrealrocks.ca/the-pineapple-thief-it-leads-to-this-interview-2024/) about the band's album *It Leads To This*, put it like this:
 
 > "You got the '70s where everything was 40 minutes because of vinyl. The CDs came out and everyone was like, 'Yeah, let's have 74 minutes, fill up the whole thing.' And now we've kind of gone back full circle because vinyl is so important and the record label doesn't like doing double vinyls because they're so expensive. It just prices people out. So there is actually a business reason to keep it sort of in that 40 to 45 minute length."
 
@@ -697,9 +697,9 @@ eraChart()
 
 <p style="font-size:13px;color:var(--theme-foreground-muted);">From MusicBrainz, not the annual lists, which start in 2001. Studio albums on KEXP's annual and all-time lists, grouped by the five years they were released, using the edition that came out in the album's first year. Everything before 2000 comes from the all-time lists, so the older periods are albums that were loved enough to be voted onto a list, not every album of their time.</p>
 
-So the shape matches the story: a 40-minute album in the vinyl years, a CD-era bulge that peaked in the late 1990s, and a return to about an LP. The third part, that vinyl's return pulled lengths back, is the one the data can't test: the decline began around 2000, well before vinyl's comeback was big, and there is no format information here, so I can't tell which records were pressed on vinyl.
+So the shape matches the story: a 40-minute album in the vinyl years, a CD-era bulge that peaked in the late 1990s, and a return to about an LP. The third part, that vinyl's return pulled lengths back, is the one the data can't test: the decline began around 2000, well before vinyl's big comeback, and there is no format information here, so I can't tell which records were pressed on vinyl.
 
-**Streaming changed the incentives, but people disagree about which way.** One story says it favors singles: playlists and recommendation algorithms surface music one release at a time, so ten singles make ten chances at a playlist slot and one album makes one ([PlaylistSupply](https://playlistsupply.com/blog/singles-vs-albums-strategy-2026/), which sells playlist-pitching tools, and [Acoustable](https://acoustable.com/exploring-the-impact-of-streaming-on-album-production-and-release-strategies/)). The opposite story says it rewards big albums: Billboard has counted streams toward its album chart since 2014, so a 20-song album gets twice the chances of a 10-song one. A Billboard analysis found that the ten biggest albums on the year-end Billboard 200 averaged 13.2 tracks in 2014 and 19.1 in 2022, though changes in how the chart counts probably explain part of the jump ([Billboard Pro](https://www.billboard.com/pro/longer-albums-in-the-streaming-age/)).
+**Streaming changed the incentives, but people disagree about which way.** One story says streaming favors singles: playlists and recommendation algorithms surface music one release at a time, so ten singles make ten chances at a playlist slot and one album makes one ([PlaylistSupply](https://playlistsupply.com/blog/singles-vs-albums-strategy-2026/), which sells playlist-pitching tools, and [Acoustable](https://acoustable.com/exploring-the-impact-of-streaming-on-album-production-and-release-strategies/)). The opposite story says it rewards big albums: Billboard has counted streams toward its album chart since 2014, so a 20-song album gets twice the chances of a 10-song one. A Billboard analysis found that the ten biggest albums on the year-end Billboard 200 averaged 13.2 tracks in 2014 and 19.1 in 2022, though changes in how the chart counts probably explain part of the jump ([Billboard Pro](https://www.billboard.com/pro/longer-albums-in-the-streaming-age/)).
 
 A third claim is about songs: a stream only pays after 30 seconds, so songs should open with the hook and run shorter. The average song on the Billboard Hot 100 fell from about 3:50 in 2013 to about 3:30 in 2018, according to a Quartz analysis reported by [Hypebot](https://www.hypebot.com/hypebot/2019/01/songs-are-getting-shorter-and-streaming-is-to-blame.html). [Switched On Pop](https://switchedonpop.com/episodes/how-streaming-changed-the-sound-of-pop) sums up both trends: "Songs are getting shorter, albums are getting longer."
 
@@ -731,7 +731,7 @@ The singles story has the clearest support, from MusicBrainz's list of singles b
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. Track times come from one release of each album, and I can't tell from this data whether a record was ever pressed on vinyl. The explanations above are theories: the lists show that albums got shorter and roughly when, not why. The singles and EP numbers cover all the releases MusicBrainz has for these artists, not only the albums on the lists, and MusicBrainz's record-keeping for recent digital releases may be more complete than for older ones. The numbers about the Billboard charts and the Hot 100 come from other people's analyses, as linked, and I have not rechecked them.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">Here's what these charts can't tell us. Track times come from one release of each album, and I can't tell from this data whether a record was ever pressed on vinyl. The explanations above are theories: the lists show that albums got shorter and roughly when, not why. The singles and EP numbers cover all the releases MusicBrainz has for these artists, not only the albums on the lists, and MusicBrainz's record-keeping for recent digital releases may be more complete than for older ones. The numbers about the Billboard charts and the Hot 100 come from other people's analyses, as linked, and I have not independently verified them.</div>
 </div>
 
 ### When the albums come out
