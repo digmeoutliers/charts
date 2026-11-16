@@ -453,7 +453,9 @@ function lengthHeat() {
   [2001, 2005, 2010, 2015, 2020, 2025].forEach((yr) => svg.append("text").attr("x", m.l + (yr - 2001) * cellW + cellW / 2 - 1).attr("y", height - 12).attr("text-anchor", "middle").attr("fill", MUTED).attr("font-size", 12).text(yr));
   svg.append("text").attr("x", m.l - 10).attr("y", m.t - 12).attr("text-anchor", "end").attr("fill", MUTED).attr("font-size", 12).text("minutes");
   const y44 = m.t + (nb - 1) * rowH + rowH - (44 - 20) / 5 * rowH - 1;
-  svg.append("line").attr("x1", m.l).attr("x2", m.l + years.length * cellW).attr("y1", y44).attr("y2", y44).attr("stroke", TEAL).attr("stroke-dasharray", "3 4").attr("pointer-events", "none");
+  // dark underlay so the teal dashes stand out against both the dark and the bright cells
+  svg.append("line").attr("x1", m.l).attr("x2", m.l + years.length * cellW).attr("y1", y44).attr("y2", y44).attr("stroke", SURFACE).attr("stroke-opacity", 0.8).attr("stroke-width", 6.5).attr("pointer-events", "none");
+  svg.append("line").attr("x1", m.l).attr("x2", m.l + years.length * cellW).attr("y1", y44).attr("y2", y44).attr("stroke", TEAL).attr("stroke-width", 3).attr("stroke-dasharray", "9 5").attr("pointer-events", "none");
   svg.append("text").attr("x", m.l + years.length * cellW + 6).attr("y", y44).attr("dominant-baseline", "middle").attr("fill", TEAL).attr("font-size", 12).text("44 min");
   return svg.node();
 }
