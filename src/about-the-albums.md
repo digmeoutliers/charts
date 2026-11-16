@@ -295,7 +295,7 @@ function ridgeline() {
     }
     // reference lines sit on top of the curves so they can be read all the way down
     [[44, "one LP, about 44 min", TEAL], [74, "CD, 74 min", "#a9a79f"]].forEach(([v, label, c]) => {
-      svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", m.t - 8).attr("y2", height - m.b + 6).attr("stroke", c).attr("stroke-opacity", 0.85).attr("stroke-dasharray", "3 4").attr("pointer-events", "none");
+      svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", m.t - 8).attr("y2", height - m.b + 6).attr("stroke", c).attr("stroke-opacity", 0.95).attr("stroke-width", 2.2).attr("stroke-dasharray", "7 4").attr("pointer-events", "none");
       svg.append("text").attr("x", x(v)).attr("y", m.t - 16).attr("text-anchor", "middle").attr("fill", c).attr("font-size", 12).text(label);
     });
     // hover and click bands, on top of everything
@@ -340,7 +340,7 @@ function ridgeline() {
       const md = medianOf(studioIn(yr, yr));
       svg.append("line").attr("x1", cx(md)).attr("x2", cx(md)).attr("y1", cy(0)).attr("y2", cy(0) - 14).attr("stroke", c).attr("stroke-width", 3);
     });
-    [44, 74].forEach((v) => svg.append("line").attr("x1", cx(v)).attr("x2", cx(v)).attr("y1", cm.t).attr("y2", h - cm.b).attr("stroke", v === 44 ? TEAL : "#a9a79f").attr("stroke-opacity", 0.85).attr("stroke-dasharray", "3 4"));
+    [44, 74].forEach((v) => svg.append("line").attr("x1", cx(v)).attr("x2", cx(v)).attr("y1", cm.t).attr("y2", h - cm.b).attr("stroke", v === 44 ? TEAL : "#a9a79f").attr("stroke-opacity", 0.95).attr("stroke-width", 2.2).attr("stroke-dasharray", "7 4"));
     compare.append(key, svg.node());
     const note = document.createElement("div");
     note.style.cssText = "font-size:12px;color:#898781;margin-top:4px;font-family:var(--sans-serif);";
@@ -615,7 +615,7 @@ function trackChart() {
         .on("pointerenter pointermove", (event) => tip.show(event, html)).on("pointerleave", (event) => tip.hide(event));
     });
     [[44, "one LP, about 44 min", TEAL], [74, "CD, 74 min", "#a9a79f"]].forEach(([v, label, c]) => {
-      svg.append("line").attr("x1", X0 + v * px).attr("x2", X0 + v * px).attr("y1", TOP - 10).attr("y2", rowsBottom).attr("stroke", c).attr("stroke-opacity", 0.85).attr("stroke-dasharray", "3 4").attr("pointer-events", "none");
+      svg.append("line").attr("x1", X0 + v * px).attr("x2", X0 + v * px).attr("y1", TOP - 10).attr("y2", rowsBottom).attr("stroke", c).attr("stroke-opacity", 0.95).attr("stroke-width", 2.2).attr("stroke-dasharray", "7 4").attr("pointer-events", "none");
       svg.append("text").attr("x", X0 + v * px - 6).attr("y", TOP - 14).attr("text-anchor", "end").attr("fill", c).attr("font-size", 12).text(label);
     });
     chart.innerHTML = ""; chart.append(svg.node());
@@ -670,7 +670,7 @@ function eraChart() {
     svg.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("text-anchor", "end").attr("dominant-baseline", "middle").attr("fill", MUTED).attr("font-size", 12).text(v);
   });
   svg.append("text").attr("x", m.l - 8).attr("y", m.t - 16).attr("text-anchor", "end").attr("fill", MUTED).attr("font-size", 12).text("minutes");
-  svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(44)).attr("y2", y(44)).attr("stroke", TEAL).attr("stroke-opacity", 0.85).attr("stroke-dasharray", "3 4");
+  svg.append("line").attr("x1", m.l).attr("x2", width - m.r).attr("y1", y(44)).attr("y2", y(44)).attr("stroke", TEAL).attr("stroke-opacity", 0.95).attr("stroke-width", 2.2).attr("stroke-dasharray", "7 4");
   svg.append("text").attr("x", m.l + 6).attr("y", y(44) - 7).attr("text-anchor", "start").attr("fill", TEAL).attr("font-size", 12).text("one LP, about 44 min");
   svg.append("path").attr("d", d3.area().x((d) => x(label(d))).y0((d) => y(d.p25)).y1((d) => y(d.p75)).curve(d3.curveMonotoneX)(eraRows)).attr("fill", PURPLE).attr("fill-opacity", 0.2);
   svg.append("path").attr("d", d3.line().x((d) => x(label(d))).y((d) => y(d.median)).curve(d3.curveMonotoneX)(eraRows)).attr("fill", "none").attr("stroke", PURPLE).attr("stroke-width", 2.6).attr("stroke-linejoin", "round");
