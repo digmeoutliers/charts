@@ -204,7 +204,7 @@ const sameCountry = withCountry.filter((d) => d.artist_country);
 
 <div style="border-left:3px solid #58cec8; padding:0.85rem 1.25rem; margin:1.25rem 0;">
   <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:var(--theme-foreground-faint); margin-bottom:0.4rem;">Note from John</div>
-  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">A label here is the first-listed label on the release of each album that KEXP played, as MusicBrainz records it. Where an album lists more than one label, I count the first. "Major" means a label owned today by Universal, Sony or Warner at 50% or more, which is how the UK trade body AIM draws the line. Everything else is independent, including labels that are only distributed by a major, and "self-released" means MusicBrainz shows no label. Ownership changes over time, so I use who owns the label today: ${changedHands} entries sit on labels that have changed hands, and a label that was independent when its album came out may count as major here (or the other way around). The classification is my own hand-made list. About 80% of entries sit on labels I checked one by one; the rest are small labels with one or two entries each, labelled independent by default. Details are in Data Notes. As everywhere in this series, the lists are KEXP listeners' favorites, so this is a picture of what one indie-leaning audience loves, not of the whole record business.</div>
+  <div style="font-size:15px; line-height:1.6; color:var(--theme-foreground-muted);">A label here is the first-listed label on the release of each album that KEXP played, as MusicBrainz records it. Where an album lists more than one label, I count the first. "Major" means a label owned today by Universal, Sony or Warner at 50% or more, which is how the UK trade body AIM draws the line. Everything else is independent, including labels that are only distributed by a major, and "self-released" means MusicBrainz shows no label. Ownership changes over time, so I use who owns the label today: ${changedHands} entries sit on labels that have changed hands, and a label that was independent when its album came out may count as major here (or the other way around). The classification is my own hand-made list. More than 80% of entries sit on labels I checked one by one; the rest are small labels with one or two entries each, labelled independent by default. Details are in Data Notes. As everywhere in this series, the lists are KEXP listeners' favorites, so this is a picture of what one indie-leaning audience loves, not of the whole record business.</div>
 </div>
 
 <p class="phone-note">On a phone? Tap a row, bar or cell to see its details. These charts have more room on a laptop or tablet.</p>
@@ -293,7 +293,7 @@ bumpChart()
 
 ## Interesting observations
 
-The chart above follows individual labels. The sections below take the picture apart: how the majors faded, who the biggest labels are overall, who rose and fell, and where the labels are based.
+The chart above follows individual labels. The sections below unpack the picture: how the majors faded, who the biggest labels are overall, who rose and fell, and where the labels are based.
 
 In 2001, ${shareClass(inYears(2001, 2001), "Major").toFixed(0)}% of the albums on the list came from a major-owned label. In 2025 it was ${shareClass(inYears(2025, 2025), "Major").toFixed(0)}%. Independents rose from ${shareClass(inYears(2001, 2001), "Independent").toFixed(0)}% to ${shareClass(inYears(2025, 2025), "Independent").toFixed(0)}% over the same stretch. Most of the decline is one company's labels: Universal's went from ${shareFamily(early, "Universal Music Group").toFixed(1)}% of entries on the 2001 to 2010 lists to ${shareFamily(late, "Universal Music Group").toFixed(1)}% on the 2016 to 2025 lists, while Warner's (${shareFamily(early, "Warner Music Group").toFixed(1)}% to ${shareFamily(late, "Warner Music Group").toFixed(1)}%) and Sony's (${shareFamily(early, "Sony Music Entertainment").toFixed(1)}% to ${shareFamily(late, "Sony Music Entertainment").toFixed(1)}%) barely moved.
 
@@ -374,7 +374,7 @@ A major album that makes the list does well. Measured as a share of the list, th
 
 ### Who puts them out
 
-Sub Pop is KEXP's hometown label, and since July 1, 2025 it has run a pop-up record store in the [gathering space at KEXP's headquarters](https://www.subpop.com/sub_pop_in_the_kexp_gathering_space).
+Sub Pop is KEXP's hometown label, and the two have grown even closer since July 2025, when Sub Pop began running a pop-up record store in the [gathering space at KEXP's headquarters](https://www.subpop.com/sub_pop_in_the_kexp_gathering_space).
 
 ```js
 const leagueUI = {period: "all"};
@@ -433,9 +433,9 @@ statTiles([
 
 The league table: ${labelCounts.slice(0, 10).map((d) => `${short(d.label)} ${d.n}`).join(", ")}. ${words[labelCounts.slice(0, 12).filter((d) => d.cls === "Major").length]} majors make the top twelve: ${labelCounts.slice(0, 12).filter((d) => d.cls === "Major").map((d) => short(d.label)).join(", ")}.
 
-### The families behind the names
+### The parent companies behind the names
 
-Labels have owners, and a few families sit behind many of the names on the lists. The Beggars Group (Matador, 4AD, XL, Rough Trade, Young and Beggars Banquet) held about ${shareFamily(early, "Beggars Group").toFixed(0)}% of entries on the early lists and about ${shareFamily(late, "Beggars Group").toFixed(0)}% on the recent ones, about one album in ten. The Secretly Group (Jagjaguwar, Dead Oceans and Secretly Canadian) went from ${shareFamily(early, "Secretly Group").toFixed(1)}% to ${shareFamily(late, "Secretly Group").toFixed(1)}%.
+Labels have owners, and a few parent companies sit behind many of the names on the lists. The Beggars Group (Matador, 4AD, XL, Rough Trade, Young and Beggars Banquet) held about ${shareFamily(early, "Beggars Group").toFixed(0)}% of entries on the early lists and about ${shareFamily(late, "Beggars Group").toFixed(0)}% on the recent ones, about one album in ten. The Secretly Group (Jagjaguwar, Dead Oceans and Secretly Canadian) went from ${shareFamily(early, "Secretly Group").toFixed(1)}% to ${shareFamily(late, "Secretly Group").toFixed(1)}%.
 
 ```js
 function familyChart() {
@@ -445,7 +445,7 @@ function familyChart() {
   const peak = d3.max(fams, (f) => Math.max(shareFamily(early, f), shareFamily(late, f)));
   const x = d3.scaleLinear([0, peak], [m.l, width - m.r]);
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, h]).attr("width", width).attr("height", h).attr("style", SVG_STYLE)
-    .attr("role", "img").attr("aria-label", "Share of albums from each of the eight biggest label families, 2001 to 2010 lists compared with 2016 to 2025");
+    .attr("role", "img").attr("aria-label", "Share of albums from each of the eight biggest label parent companies, 2001 to 2010 lists compared with 2016 to 2025");
   fams.forEach((f, i) => {
     const y0 = m.t + i * rowH, e = shareFamily(early, f), l = shareFamily(late, f);
     const members = d3.rollups(named.filter((d) => d.family === f), (v) => v.length, (d) => d.label).sort((a, b) => d3.descending(a[1], b[1])).slice(0, 6).map(([n]) => n).join(", ");
@@ -472,7 +472,7 @@ familyChart()
 
 </div>
 
-<p style="font-size:13px;color:var(--theme-foreground-muted);">Share of all entries on the 2001 to 2010 and 2016 to 2025 lists. Families are my own grouping of labels under a common owner, as of today (see the note at the top).</p>
+<p style="font-size:13px;color:var(--theme-foreground-muted);">Share of all entries on the 2001 to 2010 and 2016 to 2025 lists. Parent companies here are my own grouping of labels under a common owner, as of today (see the note at the top).</p>
 
 ```js
 statTiles([
